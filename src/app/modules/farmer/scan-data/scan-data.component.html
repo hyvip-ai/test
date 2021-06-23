@@ -1,1 +1,52 @@
-<ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+<div class="outer-total" *ngIf='main'>
+	<div class="total" *ngFor='let item of main;index as i' style="margin-top: 50px;">
+	
+
+
+<div class="outer-card">
+	<div class="images">
+		<div class="img1">
+			<h2>Before Scan</h2>
+			<img src="{{item.images[0]}}" alt="">
+			
+		</div>
+		<div class="img2">
+			<h2>After Scan</h2>
+			<img src="{{item.images[0]}}" alt="">
+		</div>
+	</div>
+</div>
+
+
+<div class="mytable" style="margin: 25px auto;text-align: center;">
+	<table class="table table-hover">
+		<thead>
+			<th>Particulars</th>
+			<th>Count Value</th>
+			<th>%Count</th>
+		</thead>
+		<tbody>
+			<tr *ngFor='let arrayitems of item.details;index as i'> 
+				<th scope="col">
+					{{arrayitems}}
+				</th>
+				<td>
+					{{item.numbers[i]}}
+				</td>
+				<td>
+					5
+				</td>
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+<div class="graph">
+	 
+<app-doughnut-chart [data]="[item.numbers[1],item.numbers[2],item.numbers[3],item.numbers[4],item.numbers[5],item.numbers[6]]" [labels]="[item.details[1],item.details[2],item.details[3],item.details[4],item.details[5],item.details[6]]" postion='inside'></app-doughnut-chart>
+
+
+</div>
+
+</div>
+</div>

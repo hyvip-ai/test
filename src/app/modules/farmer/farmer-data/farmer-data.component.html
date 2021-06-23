@@ -1,1 +1,68 @@
-<ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+<div class="row"  style="overflow-x:auto;">
+    <div class="col-4 ml-auto removeRightPadding">
+        <div class="card listing-cards bg-light w-100 header noMargin removeBottomBorderRadius">
+            <div class="card-body removePadding">
+                <span>
+                    <h3 class="left">Total No of Farmers</h3>
+                    <h2>{{numoffarmers}}</h2>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="card listing-cards bg-light mb-3 w-100 noMargin">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-5 paddingTop inherit">
+                    <h3 class="left"><input type="checkbox" id="select_all"> Select All</h3>
+                    <h3 class="left"><input type="checkbox"> Message All</h3>
+                    <h3 class="left"><input type="radio" name="show" id="Expand" (change)='onchin()' checked> <label for="Expand">Expand All</label></h3>
+                    <h3 class="left"><input type="radio" name="show" id="Collapse" (change)='onchin()'> <label for="Collapse">Collapse All</label></h3>
+                </div>
+                <div class="col-4 textCenter">
+                    <button class="btn grey"> Hide</button>
+                    <button class="btn marginLeft grey"> Unhide</button>
+                    <!-- <button (click)='changevisibility()' class="btn marginLeft grey">Scan Results</button> -->
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-4 textCenter noPadding">
+                            <h3>Search:</h3>
+                        </div>
+                        <div class="col-8 noPadding">
+                            <input type="text" class="form-control" placeholder="Type here...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body removePadding removeTopBorderRadius">
+           <table *ngIf='showingdata' class="table table-hover" style="text-align: center;">
+	<thead>
+			<th>Farmer's Name</th>
+			<th>Phone No.</th>
+			<th>Message</th>
+			<th>Machine</th>
+			<th>Crop</th>
+			<th>Date of Scan</th>
+			
+			
+	</thead>
+	<tbody *ngIf='farmerdata'>
+		<tr *ngFor='let item of farmerdata'>
+			<td>{{item.name}}</td>
+			<td>{{item.ph_no}}</td>
+			<td><a routerLink='' style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
+			<td>{{item.machine}}</td>
+			<td>
+                {{item.crop}}       
+            </td>
+		    <td ><a (click)='checkscans(item.ph_no)' class="btn btn-outline-info" style="cursor: pointer;">Check Results</a></td>
+		</tr>
+	</tbody>
+</table>
+        </div>
+    </div>
+</div>
+
+
+

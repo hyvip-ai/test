@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'jquery';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-farmer',
@@ -7,17 +8,10 @@ import 'jquery';
   styleUrls: ['./farmer.component.scss'],
 })
 export class FarmerComponent implements OnInit{
-  
+  constructor(private service:DataService){}
   ngOnInit(){
-    $('app-farmer')[0].style.overflow = "scroll";
-    $('app-farmer')[0].style.display = 'table-row';
-  }
+  
 
-  checkbocClicked(event){
-    if(event.target['checked']){
-      $('input#checkbox').prop('checked', true);
-    }else{
-      $('input#checkbox').prop('checked', false);
-    }
+   
   }
 }
