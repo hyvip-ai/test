@@ -28,6 +28,7 @@ export class DoughNutChartComponent implements AfterViewInit {
     'rgb(183,182,182)',
     'rgb(97,97,97)',
     'rgb(248,180,0)',
+    'rgb(230, 126, 34)'
   ];
 
   chartData = [];
