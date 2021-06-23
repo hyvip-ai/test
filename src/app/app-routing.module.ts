@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from "./modules/common/signUp/signUp.component";
 import { UsersComponent } from './modules/users/users.component';
+import { TraderComponent } from './modules/trader/trader.component';
+import { TraderscandataComponent } from './modules/trader/traderscandata/traderscandata.component';
+import { BrokersComponent } from './modules/brokers/brokers.component';
+import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -46,6 +51,26 @@ const routes: Routes = [
     path: 'users',
     component:UsersComponent
   },
+    {
+    path:'Traders',
+    component:TraderComponent
+   
+  },
+   
+      {
+        path:'Traders/:id',
+        component:TraderscandataComponent
+      },
+             {
+    path:'Brokers',
+    component:BrokersComponent
+   
+  },
+   
+      {
+        path:'Brokers/:id',
+        component:BrokerscandataComponent
+      }
 ];
 
 @NgModule({

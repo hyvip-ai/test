@@ -24,8 +24,10 @@ import { environment } from '../environments/environment';
 import {DataService} from './services/data.service'
 import { UsersComponent } from './modules/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { TraderComponent } from './modules/trader/trader.component';
+import { TraderscandataComponent } from './modules/trader/traderscandata/traderscandata.component';
+import { BrokersComponent } from './modules/brokers/brokers.component';
+import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppSidebarComponent,
     SignUpComponent,
     UsersComponent,
+    TraderscandataComponent,
+    BrokersComponent,
+    BrokerscandataComponent,
+    TraderComponent
   ],
   imports: [
     BrowserModule,
