@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from "./modules/common/signUp/signUp.component";
-
+import { UsersComponent } from './modules/users/users.component';
 const routes: Routes = [
   {
     path: 'home',
@@ -32,19 +32,19 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'farmer',
-    loadChildren: () =>
-      import('./modules/farmer/farmer.module').then(
-        (farmerModule) => farmerModule.FarmerModule
-      ),
+    path:'Farmers',
+    loadChildren:()=>
+    import('./modules/farmer/farmer.module').then(
+      (farmerModule)=>farmerModule.FarmerModule
+    )
   },
   {
     path: 'signUp',
     component: SignUpComponent,
   },
   {
-    path: '**',
-    redirectTo: 'home',
+    path: 'users',
+    component:UsersComponent
   },
 ];
 

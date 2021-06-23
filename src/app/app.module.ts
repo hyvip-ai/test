@@ -22,6 +22,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {DataService} from './services/data.service'
+import { UsersComponent } from './modules/users/users.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {DataService} from './services/data.service'
     AppHeaderComponent,
     AppSidebarComponent,
     SignUpComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
