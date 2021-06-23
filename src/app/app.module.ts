@@ -23,6 +23,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {DataService} from './services/data.service'
 import { UsersComponent } from './modules/users/users.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { UsersComponent } from './modules/users/users.component';
     ComponentHeaderModule,
     FarmerModule,
     AngularFirestoreModule,
+      HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase)
 
   ],
