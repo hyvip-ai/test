@@ -13,12 +13,9 @@ const routes: Routes = [
         path: '',
         component: FarmerDataComponent,
       },
+     
       {
-        path: ':farmer_name',
-        component: FarmerDataComponent,
-      },
-      {
-        path: ':farmer_name/scan-data',
+        path: ':scan_data',
         component: ScanDataComponent,
       },
     ],
