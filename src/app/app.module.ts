@@ -18,7 +18,7 @@ import { CropModule } from './modules/crop/crop.module';
 import { ComponentHeaderModule } from "./modules/common/component-header/component-header.module";
 import { FarmerModule } from "./modules/farmer/farmer.module";
 import { SignUpComponent } from "./modules/common/signUp/signUp.component";
-
+import {DataService} from './services/data.service'
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +43,7 @@ import { SignUpComponent } from "./modules/common/signUp/signUp.component";
     ComponentHeaderModule,
     FarmerModule,
   ],
-  providers: [],
+  providers: DataService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
