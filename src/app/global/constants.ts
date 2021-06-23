@@ -30,10 +30,10 @@ export const constants = {
     },
     {
       id: 5,
-      url: '/farmer',
+      url: '/users',
       icon: '../../assets/images/menu/people_alt-24px.svg',
       active_icon: '../../assets/images/menu-active/people_alt-24px.svg',
-      name: 'Farmers',
+      name: 'Users',
     },
   ],
   indiaState: [
