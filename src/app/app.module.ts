@@ -20,6 +20,7 @@ import { FarmerModule } from "./modules/farmer/farmer.module";
 import { SignUpComponent } from "./modules/common/signUp/signUp.component";
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +44,8 @@ import { AngularFireModule } from '@angular/fire';
     CropModule,
     ComponentHeaderModule,
     FarmerModule,
-     AngularFirestoreModule,
-         AngularFireModule.initializeApp(environment.firebase)
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase)
 
   ],
   providers: [],
