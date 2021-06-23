@@ -18,8 +18,7 @@ import { CropModule } from './modules/crop/crop.module';
 import { ComponentHeaderModule } from "./modules/common/component-header/component-header.module";
 import { FarmerModule } from "./modules/farmer/farmer.module";
 import { SignUpComponent } from "./modules/common/signUp/signUp.component";
-import { AngularFireModule } from '@angular/fire';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +42,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     CropModule,
     ComponentHeaderModule,
     FarmerModule,
-    AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebase),
+
   ],
   providers: [],
   bootstrap: [AppComponent],
