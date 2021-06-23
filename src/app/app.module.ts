@@ -18,7 +18,8 @@ import { CropModule } from './modules/crop/crop.module';
 import { ComponentHeaderModule } from "./modules/common/component-header/component-header.module";
 import { FarmerModule } from "./modules/farmer/farmer.module";
 import { SignUpComponent } from "./modules/common/signUp/signUp.component";
-import {DataService} from './services/data.service'
+import { AngularFireModule } from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +43,10 @@ import {DataService} from './services/data.service'
     CropModule,
     ComponentHeaderModule,
     FarmerModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: DataService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
