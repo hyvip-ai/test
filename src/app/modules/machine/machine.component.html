@@ -1,0 +1,222 @@
+<div class="row">
+    <div *ngFor="let data of machineCardData" [ngClass]="{ 'col-3': innerWidth > 995, 'col-6': innerWidth> 653 && innerWidth < 995,  'col-12': innerWidth < 653 }" class="reducePadding">
+        <div class="card listing-cards bg-light mb-3 borderLeftColor">
+            <div class="card-body">
+                <div class="row cardRow">
+                    <div id="title">
+                        <h2>{{ data.name }}</h2>
+                    </div>
+                    <div>
+                        <h4>No. of Machines: {{ data.no }}</h4>
+                        <h4>Scan by Machine machines: {{ data.scan }}</h4>
+                        <h4>Scan %: {{ data.percentage }}%</h4>
+                        <h4>Scan breakup %:</h4>
+                    </div>
+                    <div class="colorBar">
+                        <div class="row">
+                            <div style="width: 50%;" class="good"></div>
+                            <div style="width: 25%;" class="average"></div>
+                            <div style="width: 25%;" class="poor"></div>
+                        </div>
+                        <div class="row">
+                            <div style="width: 50%;" class="goodColor noWrap">Good</div>
+                            <div style="width: 25%;" class="averageColor noWrap">Average</div>
+                            <div style="width: 25%;" class="poorColor noWrap">Poor</div>
+                        </div>
+                        <div class="row">
+                            <div style="width: 50%;" class="goodColor noWrap">50%</div>
+                            <div style="width: 25%;" class="averageColor noWrap">25%</div>
+                            <div style="width: 25%;" class="poorColor noWrap">25%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row addMargin">
+    <div *ngFor="let machine of machineOption;let i=index" (click)="changeMachine(i)">
+        <a>
+            <div>
+                <h2 class="floatLeft">{{ machine }}</h2>
+            </div>
+        </a>
+        <div *ngIf="selectedMachineIndex == i" class="activeMachine"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" [ngClass]="{'reducePadding': innerWidth < 1220}">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
+                <app-map [size]="sizeOfMap" [top]="topPercent"></app-map>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" [ngClass]="{'reducePadding': innerWidth < 1220}">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div class="card-body">
+                <h2 class="cardTitle">Scans by month</h2>
+                <app-bar-chart [data]="scansByMonthData" [labels]="scansByMonthLabels" barColor="rgb(112,212,224)" size="400px">
+                </app-bar-chart>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div [ngClass]="{ 'col-6 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926,'reducePadding': innerWidth < 1220 }">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div class="card-body extraPadding">
+                <h2 class="cardTitle">Crop-wise scan distribution</h2>
+                <div class="graph">
+                    <app-machine-bar-chart [data]="cropScanData" [labels]="cropScanLabels"></app-machine-bar-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="{ 'col-6': innerWidth >= 926, 'col-12': innerWidth < 926 , 'reducePadding': innerWidth < 1220}">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div class="card-body">
+                <h2 class="cardTitle">User-wise distribution</h2>
+                <div class="graph">
+                    <app-double-bar-chart [machineData]="userBarData" [scanData]="scanBarData" [labels]="labels2" [legend]="legend2">
+                    </app-double-bar-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div [ngClass]="{ 'col-8 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926 ,'reducePadding': innerWidth < 1220}">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div class="card-body">
+                <h2 class="cardTitle">Crop Data</h2>
+                <div class="tableHeight">
+                    <table>
+                        <tr>
+                            <th>
+                                <h3 class="tableTitle type">Crop type</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Total Scans</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Good %</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Average %</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Bad %</h3>
+                            </th>
+                        </tr>
+                        <tr *ngFor="let crop of cropData, let i=index;" (click)="changeSelectedCrop(i)"
+                            [ngClass]="{ 'tableRowShadow': i==selectedCropIndex}" class="">
+                            <td class="textAlignLeft morePadding">
+                                <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1025)" class="row">
+                                    <div class="col-12 center">
+                                        <img src="../../../assets/images/crops-icon/{{ crop.crop }}.png" class="cropIcon">
+                                    </div>
+                                    <div class="col-12 center">
+                                        <h6>{{ crop.crop }}</h6>
+                                    </div>
+                                </div>
+                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1025)"> <img src="../../../assets/images/crops-icon/{{ crop.crop }}.png" class="cropIcon">{{ crop.crop
+                                    }}</h6>
+                            </td>
+                            <td>
+                                <h6 class="center"><strong>{{ crop.scans }}</strong></h6>
+                            </td>
+                            <td>
+                                <h6 class="center"><strong>{{ crop.good }}</strong></h6>
+                            </td>
+                            <td>
+                                <h6 class="center"><strong>{{ crop.average }}</strong></h6>
+                            </td>
+                            <td>
+                                <h6 class="center"><strong>{{ crop.bad }}</strong></h6>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="{ 'col-4 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926,'reducePadding': innerWidth < 1220 }">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div class="card-body">
+                <h6><img src="../../../assets/images/crops-icon/{{ cropData[selectedCropIndex].crop }}.png" class="cropIcon">{{ cropData[selectedCropIndex].crop }}</h6>
+                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside"></app-doughnut-chart>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div [ngClass]="{ 'col-8 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926,'reducePadding': innerWidth < 1220 }">
+        <div class="card listing-cards bg-light mb-3 graphCard w-100">
+            <div class="card-body">
+                <h2 class="cardTitle">User's Data</h2>
+                <div class="tableHeight">
+                    <table>
+                        <tr>
+                            <th>
+                                <h3 class="tableTitle type">User type</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Total Scans</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Good %</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Average %</h3>
+                            </th>
+                            <th>
+                                <h3 class="tableTitle center">Bad %</h3>
+                            </th>
+                        </tr>
+                        <tr *ngFor="let user of userData, let i=index;" (click)="changeSelectedUser(i)"
+                            [ngClass]="{ 'listing-cards': i==selectUserIndex}" class="">
+                            <td class="textAlignLeft morePadding">
+                                <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1025)" class="row">
+                                    <div class="col-12 center">
+                                        <img src="../../../assets/images/crops-icon/{{ user.user }}.png" class="cropIcon">
+                                    </div>
+                                    <div class="col-12 center">
+                                        <h6>{{ user.user}}</h6>
+                                    </div>
+                                </div>
+                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1025)">
+                                    <img src="../../../assets/images/crops-icon/{{ user.user }}.png" class="cropIcon">
+                                    {{ user.user}}
+                                </h6>
+                            </td>
+                            <td class="center">
+                                <h6><strong>{{ user.scans }}</strong></h6>
+                            </td>
+                            <td class="center">
+                                <h6><strong>{{ user.good }}</strong></h6>
+                            </td>
+                            <td class="center">
+                                <h6><strong>{{ user.average }}</strong></h6>
+                            </td>
+                            <td class="center">
+                                <h6><strong>{{ user.bad }}</strong></h6>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [ngClass]="{ 'col-4 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926 ,'reducePadding': innerWidth < 1220 }">
+        <div class="card listing-cards bg-light mb-3 graphCard">
+            <div class="card-body">
+                <h6><img src="../../../assets/images/crops-icon/" class="cropIcon">{{ userData[selectUserIndex].user }}</h6>
+                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside">
+                </app-doughnut-chart>
+            </div>
+        </div>
+    </div>
+</div>

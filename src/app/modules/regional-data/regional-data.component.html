@@ -1,0 +1,218 @@
+<div class="row">
+    <div [ngClass]="{ 'col-4': innerWidth >= 995, 'col-12': innerWidth < 995 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+        <div class="card listing-cards bg-light mb-3 w-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4"  [ngClass]="{'center': innerWidth < 995 }"> 
+                        <img src="../../../assets/images/regional-data/scanner.png" class="avatar">
+                    </div>
+                    <div class="col-8 verticalAlign">
+                        <div>
+                            <span class="greyText">Total number of scans</span>
+                            <h1 class="noMargin largerTextSize">10582</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  [ngClass]="{ 'col-4': innerWidth >= 995, 'col-12': innerWidth < 995 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+        <div class="card listing-cards bg-light mb-3 w-100" [ngClass]="{ 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4"  [ngClass]="{'center': innerWidth < 995 }">
+                        <img src="../../../assets/images/regional-data/map.png" alt="Avatar" class="avatar">
+                    </div>
+                    <div class="col-8 verticalAlign">
+                        <div>
+                            <span class="greyText">No of States from where scanned</span>
+                            <h1 class="noMargin largerTextSize">12</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  [ngClass]="{ 'col-4': innerWidth >= 995, 'col-12': innerWidth < 995 , 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+        <div class="card listing-cards bg-light mb-3 w-100">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4"  [ngClass]="{'center': innerWidth < 995 }">
+                        <img src="../../../assets/images/regional-data/map.png" alt="Avatar" class="avatar">
+                    </div>
+                    <div class="col-8 verticalAlign">
+                        <div>
+                            <span class="greyText">No of district from where scanned</span>
+                            <h1 class="noMargin largerTextSize">12</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div [ngClass]="{ 'col-6 d-flex': innerWidth >= 960, 'col-12': innerWidth < 960, 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+        <div [ngClass]="{'mapHeight': innerWidth < 960 }" class="card listing-cards bg-light mb-3 w-100">
+            <div class="card-body extraPadding">
+                <app-map [size]="this.sizeOfMap" [top]="topPercent"></app-map>
+            </div>
+        </div>
+    </div>
+    <div  [ngClass]="{ 'col-6 d-flex': innerWidth >= 960, 'col-12': innerWidth < 960 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302  }">
+        <div class="card listing-cards bg-light mb-3 w-100">
+            <div class="card-body">
+                <h2 class="cardTitle">Top 5 states with highest number of scans</h2>
+                <app-horizontal-bar-chart [data]="data" [labels]="labels"></app-horizontal-bar-chart>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" [ngClass]="{ 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+        <div class="card listing-cards bg-light mb-3 w-100">
+            <div class="card-body">
+                <h2 class="cardTitle">Data by crop and machine</h2>
+                <div>
+                    <h3 [ngClass]="{ 'middle': innerWidth >= 975}" class="greyText">Showing For :</h3>
+                    <div class="row">
+                        <div
+                            [ngClass]="{ 'col-3': innerWidth >= 975, 'col-12 moreMargin': innerWidth < 975 , 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+                            <select class="form-control" name="crop" id="crop">
+                                <option value="all">Select Crop</option>
+                                <option *ngFor="let crop of crops" value="{{crop}}">{{crop}}</option>
+                            </select>
+                        </div>
+                        <div
+                            [ngClass]="{ 'col-3': innerWidth >= 975, 'col-12 moreMargin': innerWidth < 975 , 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+                            <select class="form-control" name="machine" id="machine">
+                                <option value="all">Select Machine Type</option>
+                                <option *ngFor="let machine of machineType" value="{{machine}}">{{machine}}</option>
+                            </select>
+                        </div>
+                        <div
+                            [ngClass]="{ 'col-3': innerWidth >= 975, 'col-12 moreMargin': innerWidth < 975 , 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
+                            <select class="form-control" name="machine" id="machine">
+                                <option value="all">Select User Type</option>
+                                <option *ngFor="let user of userType" value="{{user}}">{{user}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row floatLeft fullWidth leftPadding">
+                        <div
+                            [ngClass]="{ 'col-3 removePadding d-flex': innerWidth >= 960, 'col-12': innerWidth < 960 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 , 'col-6':  961 < this.innerWidth && this.innerWidth < 1070}">
+                            <div class="card listing-cards bg-light mb-3 w-100">
+                                <div class="card-body">
+                                    <h2 class="cardTitle">Scans for all quality crops<br><span class="smallText">(Top 5 states)</span>
+                                    </h2>
+                                    <div>
+                                        <app-doughnut-chart [data]="data" [labels]="labels" postion='inside' smallerUI="true">
+                                        </app-doughnut-chart>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            [ngClass]="{ 'col-3 removePadding d-flex': innerWidth >= 960, 'col-12': innerWidth < 960 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 , 'col-6':  961 < this.innerWidth && this.innerWidth < 1070 }">
+                            <div class="card listing-cards bg-light mb-3 w-100">
+                                <div class="card-body">
+                                    <h2 class="cardTitle">Scans for good quality crops<br><span class="smallText">(Top 5 states)</span></h2>
+                                    <app-doughnut-chart [data]="data" [labels]="labels" postion='inside' smallerUI="true">
+                                    </app-doughnut-chart>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            [ngClass]="{ 'col-3 removePadding d-flex': innerWidth >= 960, 'col-12': innerWidth < 960 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 , 'col-6':  961 < this.innerWidth && this.innerWidth < 1070 }">
+                            <div class="card listing-cards bg-light mb-3 w-100">
+                                <div class="card-body">
+                                    <h2 class="cardTitle">Scans for average quality crops<br><span class="smallText">(Top 5 states)</span>
+                                    </h2>
+                                    <app-doughnut-chart [data]="data" [labels]="labels" postion='inside' smallerUI="true">
+                                    </app-doughnut-chart>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            [ngClass]="{ 'col-3 removePadding d-flex': innerWidth >= 960, 'col-12': innerWidth < 960 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 , 'col-6':  961 < this.innerWidth && this.innerWidth < 1070 }">
+                            <div class="card listing-cards bg-light mb-3  w-100">
+                                <div class="card-body">
+                                    <h2 class="cardTitle">Scans for poor quality crops<br><span class="smallText">(Top 5 states)</span></h2>
+                                    <app-doughnut-chart [data]="data" [labels]="labels" postion='inside' smallerUI="true">
+                                    </app-doughnut-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" [ngClass]="{'reducePadding d-flex': 961 < this.innerWidth && this.innerWidth < 1302}">
+        <div class="card listing-cards bg-light mb-3 w-100">
+            <div class="card-body">
+                <h2 class="cardTitle">Data by States</h2>
+                <div class="row paddingLeft">
+                    <h3  [ngClass]="{ 'middle': innerWidth >= 741}" class="greyText">Showing For :</h3>
+                    <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12': innerWidth < 741}" class="">
+                        <select class="form-control" name="crop" id="crop">
+                            <option value="all">Select States</option>
+                            <option *ngFor="let state of indiaStates" value="{{state.id}}">{{state.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div  [ngClass]="{ 'col-6': innerWidth >= 975, 'col-12': innerWidth < 975 }">
+                            <h6 class="graphTitle">Time wise scans</h6>
+                            <div class="card listing-cards bg-light mb-3">
+                                <div class="card-body  grey-bg lessPadding">
+                                    <app-line-chart></app-line-chart>
+                                </div>
+                            </div>
+                    </div>
+                    <div  [ngClass]="{ 'col-6': innerWidth >= 975, 'col-12': innerWidth < 975 }">
+                            <h6 class="graphTitle">Crop-wise scans distribution</h6>
+                            <div class="card listing-cards bg-light mb-3">
+                                <div class="card-body grey-bg lessPadding">
+                                    <app-bar-chart [data]="cropData" [labels]="cropLabels"
+                                        [barColor]="'rgb(112,212,224)'" size="400px">
+                                    </app-bar-chart>
+                                </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div [ngClass]="{ 'col-6': innerWidth >= 975, 'col-12': innerWidth < 975 }">
+                        <div class="graphDiv">
+                            <h6 class="graphTitle">Machine-wise scans distribution</h6>
+                            <div class="card listing-cards bg-light mb-3">
+                                <div class="card-body grey-bg lessPadding">
+                                    <app-double-bar-chart [machineData]="machineData" [scanData]="scanData"
+                                        [labels]="labels1" [legend]="legend1">
+                                    </app-double-bar-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div [ngClass]="{ 'col-6': innerWidth >= 975, 'col-12': innerWidth < 975 }">
+                        <div class="graphDiv">
+                            <h6 class="graphTitle">User wise distribution</h6>
+                            <div class="card listing-cards bg-light mb-3">
+                                <div class="card-body grey-bg lessPadding">
+                                    <app-double-bar-chart [machineData]="userData" [scanData]="scanData1"
+                                        [labels]="labels2" [legend]="legend2">
+                                    </app-double-bar-chart>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

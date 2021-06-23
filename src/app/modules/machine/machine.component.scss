@@ -1,0 +1,198 @@
+@media(max-width:414px){
+  .col-12{
+    padding: 0 !important;
+  }
+}
+
+@media(max-width:1302px){
+    .tableHeight{
+        height: 400px !important;
+    }
+}
+
+@media(max-width:681px){
+    .mapCardBody{
+        height: 700px !important;
+    }
+}
+
+@media(max-width:637px){
+    .mapCardBody{
+        height: 600px !important;
+    }
+}
+
+@media(max-width:545px){
+    .mapCardBody{
+        height: 500px !important;
+    }
+}
+
+@media(max-width:460px){
+    .mapCardBody{
+        height: 430px !important;
+    }
+}
+
+
+
+.titleContianer{
+    margin: 40px;
+}
+
+.cardRow{
+    margin: 0;
+}
+
+.borderLeftColor{
+    border-left: 6px solid rgb(213,221,35);
+}
+
+.floatLeft{
+    float: left;
+    margin-right: 40px;
+}
+
+.graphCard{
+    width: 100%;
+}
+
+#title{
+    width: 100%
+}
+
+table, td, th {  
+//   border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+.moreWidth{
+    width: 50%;
+}
+
+.textAlignLeft{
+    text-align: left;
+    padding: 0;
+    cursor: pointer;
+}
+
+h6{
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.cropIcon{
+    margin: 0 30px;
+    width: 30px;
+}
+
+table{
+    height: 100%;
+}
+
+.tableHeight{
+    height: 100%;
+    padding-bottom: 2.2rem;
+}
+
+// .graph{
+//     padding: 30px 0;
+// }
+
+.extraPadding{
+    padding-top: 25px;
+}
+
+.leftPadding{
+    padding-left: 200px;
+}
+
+.colorBar{
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+.good{
+    background-color: rgb(169,84,49);
+    height: 35px;
+    border-radius: 10px 0 0 10px;
+}
+
+.average{
+    background-color: rgb(255,213,103);
+    height: 35px;
+}
+
+.poor{
+    background-color: rgb(183,182,182);
+    height: 35px;
+    border-radius: 0 10px 10px 0;
+}
+
+.tableTitle{
+  font-weight: 500;
+  margin: 0;
+}
+
+.center{
+  text-align: center;
+}
+
+.type{
+  padding-left: 15px;
+}
+
+.noWrap{
+    white-space: nowrap;
+}
+
+.goodColor{
+    text-align: left;
+}
+
+.averageColor{
+    text-align: center;
+}
+
+.poorColor{
+    text-align: right;
+}
+
+.activeMachine{
+    border: 1px solid brown;
+    background-color: brown;
+    border-radius: 100px;
+    height: 6px;
+    position: relative;
+    top: 80%;
+    width: 50%;
+}
+
+a{
+    color: black;
+    cursor: pointer;
+}
+
+.mapCardBody{
+    height: 750px;
+}
+
+.regionalDataNumber{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.cardTitle{
+    font-size: x-large;
+}
+
+.addMargin{
+    margin: 40px 0;
+}

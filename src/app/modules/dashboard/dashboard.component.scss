@@ -1,0 +1,196 @@
+@media(max-width:414px){
+  .col-12{
+    padding: 0 !important;
+  }
+}
+
+@media(max-width:414px){
+  .col-12{
+    padding: 0 !important;
+  }
+}
+
+@media(max-width:960px){
+    .machineTable{
+        height: 400px;
+    }
+
+    .col-12{
+        width: 100%;
+    }
+}
+
+@media(max-width:336px){
+    .mapBody{
+        height: 450px !important;
+    }
+}
+
+@media(max-width:463px){
+    .mapBody{
+        height: 480px !important;
+    }
+}
+
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.titleContianer{
+    margin: 40px;
+}
+
+.col-4{
+    padding: 0px;
+}
+
+.innerCardRow{
+    padding: 10px;
+    margin: 0;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+h6{
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.green{
+    background-color: rgba(219,242,240,255) !important;
+    border: 1px solid rgba(178,226,221,255) !important;
+}
+
+.yellow{
+    background-color: rgba(252,240,213,255) !important;
+    border: 1px solid rgba(232,216,181,255) !important;
+}
+
+.blue{
+    background-color: rgba(220,239,255,255) !important;
+    border: 1px solid rgba(173,208,237,255) !important;
+}
+
+.darkGreen{
+    background-color: rgba(232,241,239,255) !important;
+    border: 1px solid rgba(201,220,207,255) !important;
+}
+
+.machineDataRow{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+
+.removeMargin{
+    margin: 0;
+}
+
+table, td, th {  
+//   border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+.moreWidth{
+    width: 50%;
+}
+
+.textAlignLeft{
+    text-align: left;
+    padding: 0;
+}
+
+.removePadding{
+    padding: 0;
+}
+
+.morePadding{
+    padding-left: 15px;
+}
+
+.grey{
+    background-color: rgba(250,250,248,255) !important;
+    border: 1px solid transparent !important;
+}
+
+.darkDrown{
+    background-color: rgba(169,84,49,255);
+    color: white;
+}
+
+h2{
+    font-weight: 500;
+}
+
+.noWrapping{
+    white-space: pre;
+}
+
+
+.cropIcon{
+    margin: 0 30px;
+    width: 30px;
+}
+
+.fullWidth{
+    width: 100%;
+}
+
+.borderLeftColor{
+    border: 0.5px solid rgb(255,135,66);
+    border-left: 8px solid rgb(255,135,66);
+}
+
+.regionalDataNumber{
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.pieChartLabelTitle{
+    font-size: 1.1rem;
+}
+
+.pieChartLabel{
+    padding-left: 50px;
+    margin-bottom: 20px;
+}
+
+.box {
+  float: left;
+  height: 17px;
+  width: 17px;
+  clear: both;
+  margin-right: 5px;
+}
+
+.pieChartlabelColor{
+    margin-top: 5px;
+    padding-top: 2px;
+}
+
+.addPadding{
+    padding-left: 20px !important; 
+    padding-top: 20px !important; 
+    margin: 0;
+}
+
+.reduceFont{
+    font-size: 0.8rem;
+}
+
+.reducePaddingLeft{
+    padding-left: 15px;
+}

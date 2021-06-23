@@ -1,0 +1,38 @@
+
+.label {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 50%;
+  text-align: center;
+}
+
+.state{
+  color: rgb(255,213,103);
+  margin-right: 5px;
+}
+
+h3{
+  font-size: 1.25rem;
+}
+
+#district{
+  position: absolute;
+}
+
+#chart{
+  position: absolute;
+  z-index: 3;
+}
+
+@media(max-width:1302px){
+  h3{
+    font-size: 1rem; 
+  }
+}
+
+.markerLabel{
+  height: 24.5px;
+  width: 12.5px;
+  margin-right: 5px;
+}

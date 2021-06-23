@@ -1,0 +1,41 @@
+<div class="logoDiv">
+    <img src="../../../../assets/images/logo.png" alt="logo" class="logo">
+</div>
+<!-- <div class="active sideBarItems">
+    <a>
+        <h3><span class="icon"><i class="fas fa-home fa-sm"></i></span> Home</h3>
+    </a>
+</div>
+<div class="sideBarItems">
+    <a>
+        <h3><span class="icon"><i class="fas fa-home fa-sm"></i></span> Regional Data</h3>
+    </a>
+</div>
+<div class="sideBarItems">
+    <a>
+        <h3><span class="icon"><i class="fas fa-home fa-sm"></i></span> Machine</h3>
+    </a>
+</div>
+<div class="sideBarItems">
+    <a>
+        <h3><span class="icon"><i class="fas fa-home fa-sm"></i></span> Crop</h3>
+    </a>
+</div>
+<div class="sideBarItems">
+    <a>
+        <h3><span class="icon"><i class="fas fa-home fa-sm"></i></span> Farmer</h3>
+    </a>
+</div>
+<div class="sideBarItems button">
+    <button class="btn btn-md signOut"><h3>Sign Out</h3></button>
+</div> -->
+<div class="sideBarItems" routerLinkActive="active" *ngFor="let item of sideBarItemsList" #rla="routerLinkActive">
+<a [routerLink]="item.url">
+        <h3><span class="icon"><img src="{{ rla.isActive ? item.active_icon : item.icon }}"></span>{{ item.name }}</h3>
+    </a>
+</div>
+<div class="sideBarItems button">
+    <button class="btn btn-md signOut">
+        <h3>Sign Out</h3>
+    </button>
+</div>

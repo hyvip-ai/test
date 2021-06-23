@@ -1,0 +1,173 @@
+@media(max-width:1088px){
+  h6{
+    font-size: 0.9rem;
+  }
+}
+
+@media(max-width:414px){
+  .col-12{
+    padding: 0 !important;
+  }
+}
+
+@media(max-width:681px) {
+  .mapCardBody {
+    height: 700px !important;
+  }
+}
+
+@media(max-width:703px) {
+  .mapCardBody {
+    height: 600px !important;
+  }
+}
+
+@media(max-width:615px) {
+  .mapCardBody {
+    height: 500px !important;
+  }
+}
+
+@media(max-width:527px) {
+  .mapCardBody {
+    height: 430px !important;
+  }
+}
+
+@media(max-width:442px) {
+  h3 {
+    font-size: 1.1rem !important;
+  }
+}
+
+@media(max-width:385px) {
+  h3 {
+    font-size: 1rem !important;
+  }
+}
+
+.titleContianer {
+  margin: 40px;
+}
+
+
+table,
+td,
+th {
+  //   border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  height: 100%;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+
+h6 {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+
+.cropIcon {
+  margin: 0 30px;
+  width: 30px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+
+.middle {
+  margin-top: 5px;
+  float: left;
+}
+
+
+.paddingLeft {
+  padding-left: 15px;
+}
+
+.graphCardBody {
+  background-color: rgb(247, 247, 247);
+  border-radius: 15px;
+}
+
+.graphCard {
+  border: none;
+  width: 100%;
+}
+
+
+.machineTable {
+  height: 100%;
+  padding-bottom: 1.5rem;
+}
+
+.tableTitle {
+  font-weight: 500;
+  margin: 0;
+}
+
+.extraPadding {
+  padding-top: 25px;
+}
+
+.leftPadding {
+  padding-left: 200px;
+}
+
+.center {
+  text-align: center;
+}
+
+.type {
+  padding-left: 15px;
+}
+
+.mapCardBody {
+  height: 750px;
+}
+
+.moreMargin {
+  margin: 10px 0;
+}
+
+.col-12 {
+  padding: 0;
+}
+
+
+.leftPadding{
+    padding-left: 200px;
+}
+
+.extarMargin{
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.reduceRightMargin{
+  margin-right: 5px;
+}
+
+.reduceleftMargin{
+  margin-left: 5px;
+}
+
+.removeLeftPadding{
+  padding-left: 0;
+}
+
+.removeRightPadding{
+  padding-right: 0;
+}

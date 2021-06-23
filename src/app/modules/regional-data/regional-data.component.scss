@@ -1,0 +1,122 @@
+@media(max-width:414px){
+  .col-12{
+    padding: 0 !important;
+  }
+}
+
+h6{
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.noMargin{
+    margin: 0;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-image: linear-gradient(rgb(246,144,51), rgb(253,200,48));
+  
+  object-fit: scale-down;
+}
+
+.largerTextSize{
+    font-size: 2rem;
+    font-weight: 450;
+    margin-top: 5px;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.middle{
+    margin-top: 5px;
+    float: left;
+}
+
+.smallText{
+    font-size: small;
+}
+
+.paddingLeft{
+    padding-left: 15px;
+}
+
+h6{
+    font-weight: 500;
+}
+
+.graphDiv{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.graphTitle{
+    margin-bottom: 20px;
+}
+
+.grey-bg{
+    background-color: rgb(247,247,247);
+}
+
+.extraPadding{
+    padding-top: 26px;
+}
+
+app-doughnut-chart{
+    position: relative;
+    bottom: 50px;
+}
+
+.lessPadding{
+    padding: 5px;
+}
+
+.card-body{
+    border-radius: 15px;
+}
+
+.verticalAlign{
+    margin: auto;
+}
+
+.moreMargin{
+    margin: 10px 0 ;
+}
+
+.mapHeight{
+    height: 550px;
+}
+
+.removePadding{
+    padding: 5px;
+}
+
+canvas{
+    height: 450px;
+}
+
+app-doughnut-chart{
+    position: static;
+}
+
+.floatLeft{
+    float: left;
+}
+
+.fullWidth{
+    width: 100%;
+}
+
+.leftPadding{
+    padding-left: 25px;
+}

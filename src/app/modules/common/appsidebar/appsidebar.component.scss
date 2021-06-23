@@ -1,0 +1,73 @@
+
+.sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+}
+
+h6 {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+
+mat-sidenav{
+    background-color: rgba(169,84,49,255);
+    border-radius: 0 0 250px 0;
+}
+
+.active{
+    background-color: white;
+}
+
+.active h3{
+    color: rgba(169,84,49,255) !important;
+}
+
+.sideBarItems{
+    margin-left: 15px;
+    padding: 10px;  
+    padding-left: 25px;
+    border-radius: 25px 0 0 25px;
+}
+
+.icon{
+    margin-right: 10px;
+}
+
+h3{
+    margin: 0;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.signOut{
+    background-color: white;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.signOut h3{
+    color: rgba(169,84,49,255) !important;
+}
+
+.button{
+    text-align: center;
+}
+
+.logo {
+  vertical-align: middle;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+
+.logoDiv{
+    text-align: center;
+    margin: 35px 0;
+    margin-bottom: 50px;
+}
+
+a:hover{
+  text-decoration: none !important;
+}

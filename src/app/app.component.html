@@ -1,0 +1,43 @@
+<!-- <app-header *ngIf="enableTheme" (toggleMenuSidebar)="toggleMenuSidebar()"></app-header> -->
+<!-- TODO: need to understand this flag: sidebarMenuOpened -->
+<!-- && sidebarMenuOpened -->
+<!-- <div class="row">
+    <div class="col-2">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-10">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+    </div>
+</div> -->
+<ng-container class="grey" *ngIf="!samllerScreenUI">
+    <mat-sidenav-container>
+        <mat-sidenav #sidenav mode="side" opened class="sidenav" [fixedInViewport]="options.value.fixed"
+            [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom">
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content [formGroup]="options">
+            <app-header></app-header>
+            <div class="titleContianer">
+                <app-component-header></app-component-header>
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</ng-container>
+<ng-container class="grey" *ngIf="samllerScreenUI">
+    <mat-sidenav-container (backdropClick)="close('backdrop')">
+        <mat-sidenav class="sidenav" #sidenav (keydown.escape)="close('escape')" disableClose>
+            <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        <mat-sidenav-content [formGroup]="options">
+            <p><button class="btn" mat-button (click)="sidenav.open()">&#9776;</button></p>
+            <app-header></app-header>
+            <div class="titleContianer">
+                <app-component-header></app-component-header>
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</ng-container>
+<!-- <app-appfooter *ngIf="enableTheme"></app-appfooter> -->

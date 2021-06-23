@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="container">
+                <div class="header">
+                    <h3 class="right"><span>Already a member? <a class="signUpLink brown">Sign In</a></span></h3>
+                </div>
+                <div class="title">
+                    <h1 class="brown">Sign Up</h1>
+                </div>
+                <div class="form" (ngSubit)="onSubmit()">
+                    <form [formGroup]="signUpForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="entityName">Entity Name</label>
+                            <input type="text" class="form-control" formControlName="entityName">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" formControlName="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" formControlName="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Confirm Password</label>
+                            <input type="text" class="form-control noBottomMargin">
+                            <h5 class="red">Verify Email Address through OTP</h5>
+                        </div>
+                        <div class="row">
+                            <button class="btn createButton">Create Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <img src="../../../../assets/images/logo.png" alt="logo" class="logo">
+        </div>
+    </div>
+</div>

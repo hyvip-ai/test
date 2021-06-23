@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.greyText{
+    color: rgba(138,138,138,255);
+}
+
+
+.card{
+    margin-top: 20px;
+    border-radius: 15px;
+    background-color: white !important;
+}
+
+.cardRow{
+    margin-top: 20px;
+}
+
+.cardTitle{
+    text-align: left;
+    padding-left: 10px;
+}
+
+.listing-cards {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.container{
+    margin: 10xp;
+}
+
+
+h6{
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.noPadding{
+    padding: 0;
+}
+
+.tableRowShadow{
+    box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 20%)
+}
+
+.machineTable{
+    height: 100%;
+    padding-bottom: 2.2rem;
+}
+
+.type{
+  padding-left: 25px;
+}
+
+.tableTitle{
+  font-size: 1.18rem !important; 
+  font-weight: 200 !important;
+  margin: 0 !important;
+}
+
+.center{
+  text-align: center !important;
+}
+
+.cardTitle{
+    font-size: 1.1rem !important;
+}
+
+.tableData{
+    font-size: 1.2rem !important;
+}
+
+.graphTitle{
+    font-size: 1.3rem !important;
+    margin: 40px 0 !important;
+}
+
+h2{
+    padding: 0 !important;
+}
+
+html, body {
+  overflow: hidden;
+}
+
+.reducePadding{
+    padding: 0 5px;
+}
+
+.flex{
+    display: flex;
+}

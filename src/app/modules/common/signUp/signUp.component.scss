@@ -1,0 +1,61 @@
+.right{
+    text-align: right;
+}
+
+.header{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.signUpLink{
+    cursor: pointer;
+}
+
+.brown{
+    color: rgb(169,84,49);
+}
+
+.title{
+    margin-bottom: 50px;
+}
+
+.noBottomMargin{
+    margin-bottom: 0;
+}
+
+.form-control{
+    margin-bottom: 20px;
+}
+
+.form-control:active{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.form-control:focus{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.07), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid lightgray;
+}
+
+h1{
+    font-size: xx-large;
+    font-weight: 300;
+}
+
+.red{
+    color: red;
+}
+
+.createButton{
+    background-color: rgb(169,84,49);
+    color: white;
+    width: 100%;
+    border-radius: 50px;
+    margin: 0 40px
+}
+
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+}
