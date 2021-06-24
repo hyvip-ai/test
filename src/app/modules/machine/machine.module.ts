@@ -9,6 +9,8 @@ import { HorizontalBarChartModule } from "../common/horizontal-bar-chart/horizon
 import { BarChartModule } from '../common/bar-chart/bar-chart.module';
 import { DoubleBarChartModule } from "../common/double-bar-chart/double-bar-chart.module";
 import { MachineBarChartComponent } from "./machine-bar-chart/machine-bar-chart.component";
+import { DataService } from 'src/app/services/data.service';
+
 
 @NgModule({
   declarations: [MachineComponent, MachineBarChartComponent],
@@ -29,7 +31,7 @@ import { MachineBarChartComponent } from "./machine-bar-chart/machine-bar-chart.
     BarChartModule,
     DoubleBarChartModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [],
 })
 export class MachineModule {}

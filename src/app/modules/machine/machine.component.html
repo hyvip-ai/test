@@ -1,33 +1,23 @@
 <div class="row">
-    <div *ngFor="let data of machineCardData" [ngClass]="{ 'col-3': innerWidth > 995, 'col-6': innerWidth> 653 && innerWidth < 995,  'col-12': innerWidth < 653 }" class="reducePadding">
+    <div *ngFor="let data of machineCardData;index as i" [ngClass]="{ 'col-3': innerWidth > 995, 'col-6': innerWidth> 653 && innerWidth < 995,  'col-12': innerWidth < 653 }" class="reducePadding">
         <div class="card listing-cards bg-light mb-3 borderLeftColor">
             <div class="card-body">
                 <div class="row cardRow">
                     <div id="title">
-                        <h2>{{ data.name }}</h2>
+                        <h2> Machine {{ i+1 }}</h2>
                     </div>
                     <div>
-                        <h4>No. of Machines: {{ data.no }}</h4>
-                        <h4>Scan by Machine machines: {{ data.scan }}</h4>
-                        <h4>Scan %: {{ data.percentage }}%</h4>
-                        <h4>Scan breakup %:</h4>
+                        <h4>No. of Machines: {{ data.no_of_machines }}</h4>
+                        <h4>Scan by Machine machines: {{ data.total_scans }}</h4>
+                        <h4>Good Scans : {{ data.good_scans }}</h4>
+                        <h4>Average Scans : {{ data.average_scans }}</h4>
+                        <h4>Bad Scans : {{ data.bad_scans }}</h4>
                     </div>
-                    <div class="colorBar">
-                        <div class="row">
-                            <div style="width: 50%;" class="good"></div>
-                            <div style="width: 25%;" class="average"></div>
-                            <div style="width: 25%;" class="poor"></div>
-                        </div>
-                        <div class="row">
-                            <div style="width: 50%;" class="goodColor noWrap">Good</div>
-                            <div style="width: 25%;" class="averageColor noWrap">Average</div>
-                            <div style="width: 25%;" class="poorColor noWrap">Poor</div>
-                        </div>
-                        <div class="row">
-                            <div style="width: 50%;" class="goodColor noWrap">50%</div>
-                            <div style="width: 25%;" class="averageColor noWrap">25%</div>
-                            <div style="width: 25%;" class="poorColor noWrap">25%</div>
-                        </div>
+                    <div class="colorBar"> 
+                        
+                          <app-doughnut-chart [data]="[data.good_percentage,data.average_percentage,data.bad_percentage]" [labels]="['Good','Average','Bad']" postion="inside" smallerUI='true'></app-doughnut-chart>
+
+                     
                     </div>
                 </div>
             </div>
@@ -35,7 +25,7 @@
     </div>
 </div>
 <div class="row addMargin">
-    <div *ngFor="let machine of machineOption;let i=index" (click)="changeMachine(i)">
+    <div *ngFor="let machine of machineOption;index as i" (click)="changeMachine(i)">
         <a>
             <div>
                 <h2 class="floatLeft">{{ machine }}</h2>
@@ -48,7 +38,7 @@
     <div class="col-12" [ngClass]="{'reducePadding': innerWidth < 1220}">
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
-                <app-map [size]="sizeOfMap" [top]="topPercent"></app-map>
+                <app-map [yellowStates]="mymachinestates" [previous]='previousstates' [size]="sizeOfMap" [top]="topPercent"></app-map>
             </div>
         </div>
     </div>
@@ -80,6 +70,8 @@
             <div class="card-body">
                 <h2 class="cardTitle">User-wise distribution</h2>
                 <div class="graph">
+                    {{usernumbers}}
+                    {{noofscans}}
                     <app-double-bar-chart [machineData]="userBarData" [scanData]="scanBarData" [labels]="labels2" [legend]="legend2">
                     </app-double-bar-chart>
                 </div>

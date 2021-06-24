@@ -28,7 +28,10 @@ export class BrokerscandataComponent implements OnInit {
    
       this.data = res;
       for(let key in this.data){
+       if(key!='user_type')
+      {
       this.main.push(this.data[key])
+      }
       }
 
       console.log(this.main)

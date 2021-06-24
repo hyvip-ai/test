@@ -1,13 +1,16 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+import { DataService } from 'src/app/services/data.service';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-machine-data',
   templateUrl: './machine.component.html',
   styleUrls: ['./machine.component.scss'],
 })
 export class MachineComponent implements OnInit{
-  constructor() {}
-
+  constructor(private service:DataService,private router:Router,private aroute:ActivatedRoute) {}
+ temp:any= null;
   selectedMachineIndex = 0;
   machineOption = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
 
@@ -150,17 +153,15 @@ export class MachineComponent implements OnInit{
     },
   ];
 
-  userBarData = [320, 332, 301, 334, 290];
-  scanBarData = [220, 182, 191, 234, 250];
-  labels2 = ['Farmer', 'Broker', 'Trader', 'Inspector', 'Technician'];
+  userBarData = [320, 332, 301];
+  scanBarData = [220, 182, 191];
+  labels2 = ['Farmer', 'Broker', 'Trader'];
   legend2 = ['Number of users', 'Number of scans'];
 
   selectedCropIndex = 0;
   selectUserIndex = 0;
 
-  changeMachine(index) {
-    this.selectedMachineIndex = index;
-  }
+
 
   changeSelectedCrop(index) {
     this.selectedCropIndex = index;
@@ -175,13 +176,73 @@ export class MachineComponent implements OnInit{
   sizeOfMap;
   leftPercent;
   topPercent;
-
+  usernumbers = []
+  noofscans = []
+  usertemp:any = null;
+  numbertemp:Number = 0
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 1302) {
       this.samllerScreenUI = true;
     }
     this.setMapOptions();
+
+ this.service.getmachinedata().subscribe(res=>{
+      this.machineCardData.splice(0,this.machineCardData.length)
+      this.temp = res;
+      for(let item of this.temp){
+        this.machineCardData.push(item.data);
+      }
+      console.log(this.machineCardData)
+    })
+  this.service.getfarmers().subscribe(res=>{
+
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
+    this.service.gettraders().subscribe(res=>{
+this.numbertemp = 0
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
+        this.service.getbrokers().subscribe(res=>{
+          this.numbertemp = 0
+
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+    this.userBarData.splice(0,this.userBarData.length)
+    this.userBarData = this.usernumbers
+    this.scanBarData.push(0,this.scanBarData.length)
+    this.scanBarData = this.noofscans
+    console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
+  })
+  this.service.getmachinestates(1).subscribe(res=>{
+    
+      this.mymachinestatestemp = res;
+      this.mymachinestates.splice(0,this.mymachinestates.length);
+      
+      this.mymachinestates = this.mymachinestatestemp.data.states ;
+       this.previousstates.splice(0,this.previousstates.length);
+     this.previousstates = this.mymachinestates;
+     console.log(this.mymachinestates,this.previousstates)
+      
+    })
+        
+
   }
 
   @HostListener('window:resize', ['$event'])
@@ -214,4 +275,34 @@ export class MachineComponent implements OnInit{
     else if(this.innerWidth < 930){
     }
   }
+  mymachinestates:any = ['Gujarat','Punjab','West Bengal']
+   previousstates:any = ['Gujarat','Punjab','West Bengal']
+
+  mymachinestatestemp:any = null
+
+  
+  changeMachine(i:any) {
+
+    this.selectedMachineIndex = i;
+
+  
+  
+       
+     this.previousstates = this.mymachinestates;
+   
+
+    
+    this.service.getmachinestates(i+1).subscribe(res=>{
+    
+      this.mymachinestatestemp = res;
+    
+      
+      this.mymachinestates = this.mymachinestatestemp.data.states ;
+
+            
+    })
+  }
+
+
+
 }

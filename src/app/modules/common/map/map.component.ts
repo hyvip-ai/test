@@ -13,55 +13,33 @@ export class MapComponent implements OnInit, OnDestroy {
 
   style;
 
-  yellowStates = [
-    'Karnataka',
-    'Maharashtra',
-    'Madhya Pradesh',
-    'Rajasthan',
-    'Uttar Pradesh',
-    'Haryana',
-    'Gujarat',
-  ];
+ @Input() yellowStates = [];
+ @Input() previous = [];
 
-  mark = ['Pune'];
+
+  mark = [];
   offsetY = 0;
   offsetX = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-    this.style = 'height: ' + this.size + ';';
-    setTimeout(() => {
-      if (this.left) {
-        $('#district')[0].style.left = this.left;
-        $('#chart')[0].style.left = this.left;
-        if (this.left != '20px') {
-          var markerList = $('img.marker');
-          for (var i = 0; i < markerList.length; i++) {
-            var value = markerList[i].style.left.substring(
-              0,
-              markerList[i].style.left.length - 2
-            );
-            var value2 = this.left.substring(0, this.left.length - 2);
-            markerList[i].style.left = +value + +value2 - 20 + 'px';
-          }
-        }
+  
+
+    console.log('previous',this.previous)
+    console.log('new',this.yellowStates)
+
+     for (var i = 0; i < this.previous.length; i++) {
+        document.getElementById(this.previous[i])['style']['fill'] = '#fff0e1';
       }
 
-      if (this.top) {
-        $('#district')[0].style.top = this.top;
-        $('#chart')[0].style.top = this.top;
-        if (this.top != '20px') {
-          var markerList = $('img.marker');
-          for (var i = 0; i < markerList.length; i++) {
-            var value = markerList[i].style.top.substring(
-              0,
-              markerList[i].style.top.length - 2
-            );
-            var value2 = this.top.substring(0, this.top.length - 2);
-            markerList[i].style.top = +value + +value2 - 20 + 'px';
-          }
-        }
+    this.style = 'height: ' + this.size + ';';
+ var yellowStates = this.yellowStates;
+
+   for (var i = 0; i < yellowStates.length; i++) {
+        document.getElementById(yellowStates[i])['style']['fill'] = 'rgb(255,213,103)';
       }
-    }, 300);
+  
+   
+
   }
 
   ngOnInit(): void {
@@ -78,28 +56,28 @@ export class MapComponent implements OnInit, OnDestroy {
     var offsetY = this.offsetY;
     var offsetX = this.offsetX;
     setTimeout(function () {
-      for (var i = 0; i < mark.length; i++) {
-        if (this.left) {
-          $('#district')[0].style.left = this.left;
-          $('#chart')[0].style.left = this.left;
-        }
+      // for (var i = 0; i < mark.length; i++) {
+      //   if (this.left) {
+      //     $('#district')[0].style.left = this.left;
+      //     $('#chart')[0].style.left = this.left;
+      //   }
 
-        if (this.top) {
-          $('#district')[0].style.top = this.top;
-          $('#chart')[0].style.top = this.top;
-        }
-        var image = new Image();
-        image.src = url;
-        image.className = 'marker';
-        image.style.position = 'absolute';
-        image.style['z-index'] = 2;
-        image.style.height = '24.5px';
-        image.style.width = '12.5px';
-        var position = $('#' + mark[i] + '')[0].getBoundingClientRect();
-        image.style.top = position.y - offsetY + 'px';
-        image.style.left = position.x - offsetX + 'px';
-        $('body')[0].prepend(image);
-      }
+      //   if (this.top) {
+      //     $('#district')[0].style.top = this.top;
+      //     $('#chart')[0].style.top = this.top;
+      //   }
+      //   var image = new Image();
+      //   image.src = url;
+      //   image.className = 'marker';
+      //   image.style.position = 'absolute';
+      //   image.style['z-index'] = 2;
+      //   image.style.height = '24.5px';
+      //   image.style.width = '12.5px';
+      //   var position = $('#' + mark[i] + '')[0].getBoundingClientRect();
+      //   image.style.top = position.y - offsetY + 'px';
+      //   image.style.left = position.x - offsetX + 'px';
+      //   $('body')[0].prepend(image);
+      // }
 
       for (var i = 0; i < yellowStates.length; i++) {
         document.getElementById(yellowStates[i])['style']['fill'] =
@@ -111,7 +89,7 @@ export class MapComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     var markerList = $('img.marker');
     for (var i = 0; i < markerList.length; i++) {
-      markerList[i].remove();
+      markerList[i].remove(); 
     }
   }
 }

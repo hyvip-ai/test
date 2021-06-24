@@ -28,13 +28,25 @@ export class DataService {
 
   }
   getbrokers(){
-    console.log('asche')
+    // console.log('asche')
   return this.afs.collection('comp_a').doc('Users').collection('Brokers').valueChanges();
 
   }
   getscanresults(id:any){
-  console.log(id);
+  // console.log(id);
     return this.afs.collection('comp_a').doc('Users').collection('scan_data').doc(`${id}`).valueChanges();
+  }
+  getmachinedata(){
+    return this.afs.collection('comp_a').doc('Machines').collection('machine_data').valueChanges();
+  }
+
+  getusernumber(){
+    return this.afs.collection('comp_a').doc('Users').collection('Farmers').valueChanges()
+  }
+
+  getmachinestates(i:any){
+    return this.afs.collection('comp_a').doc('Machines').collection('machine_data').doc(`machine_${i}`).valueChanges();
+
   }
 
 

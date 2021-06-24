@@ -26,8 +26,11 @@ export class ScanDataComponent {
     
    
       this.data = res;
+      console.log(res)
       for(let key in this.data){
-      this.main.push(this.data[key])
+        if(key!='user_type')
+      {
+      this.main.push(this.data[key])}
       }
 
       console.log(this.main)
