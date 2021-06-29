@@ -3,7 +3,7 @@
 		<div class="card listing-cards bg-light mb-3 w-100">
 			<div class="card-body removePadding">
 				<h2 class="cardTitle addPadding">Users Onboard</h2>
-				<app-home-bar-chart [data]="data" [labels]="labels" [barColor]="color"></app-home-bar-chart>
+				<app-home-bar-chart *ngIf='userdata' [data]="userdata" [labels]="labels" [barColor]="color"></app-home-bar-chart>
 			</div>
 		</div>
 		<div [ngClass]="{ 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}" class="card listing-cards bg-light mb-3">
@@ -14,18 +14,18 @@
 						<h6>Total number of scans</h6>
 					</div>
 					<div [ngClass]="{ 'col-3': innerWidth >= 455, 'col-12': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
-						<h6 class="regionalDataNumber"  [ngClass]="{ 'center': innerWidth < 455 }">1290</h6>
+						<h6 class="regionalDataNumber"  [ngClass]="{ 'center': innerWidth < 455 }">{{totalscans}}</h6>
 					</div>
-				</div>
+				</div> 
 				<div>
-					<div class="row innerCardRow borderLeftColor listing-cards">
+					<!-- <div class="row innerCardRow borderLeftColor listing-cards">
 						<div [ngClass]="{ 'col-9':  innerWidth >= 455, 'col-12 center': innerWidth < 455 , 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}">
 							<h6>No. Of District from where scanned</h6>
 						</div> 
 						<div class="col-3" [ngClass]="{ 'col-3': innerWidth >= 455, 'col-12': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
 							<h6 class="regionalDataNumber" [ngClass]="{ 'center': innerWidth < 455 }">140</h6>
 						</div>
-					</div>
+					</div> -->
 					<div class="row innerCardRow borderLeftColor listing-cards">
 						<div [ngClass]="{ 'col-9': innerWidth >= 455, 'col-12 center': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}">
 							<h6>No. Of states from where scanned</h6>
@@ -51,21 +51,21 @@
 		<div class="card listing-cards bg-light mb-3 w-100">
 			<div class="card-body">
 				<h2 class="cardTitle">Types of Machines used for Scanning</h2>
-				<app-dashboard-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels">
+				<app-dashboard-doughnut-chart *ngIf='doughnutChartData' [data]="doughnutChartData" [labels]="doughnutChartLabels">
 				</app-dashboard-doughnut-chart>
 				<div class="row">
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
 						<h6 class="pieChartLabelTitle">{{ doughnutChartLabels[0] }}</h6>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines 1320 <br></span>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans 19222 <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine1}} <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine1scan}} <br></span>
 						<div class="pieChartlabelColor">
 							<div class='box' style="background-color: {{ doughnutColors[0] }}"></div><span>Scan %</span>
 						</div>
 					</div>
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
 						<h6>{{ doughnutChartLabels[1] }}</h6>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines 1320 <br></span>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans 19222 <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine2}} <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine2scan}} <br></span>
 						<div class="pieChartlabelColor">
 							<div class='box' style="background-color: {{ doughnutColors[1] }}"></div><span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">Scan %</span>
 						</div>
@@ -74,16 +74,16 @@
 				<div class="row">
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
 						<h6 class="pieChartLabelTitle">{{ doughnutChartLabels[2] }}</h6>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines 1320 <br></span>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans 19222 <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine3}} <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine3scan}} <br></span>
 						<div class="pieChartlabelColor">
 							<div class='box' style="background-color: {{ doughnutColors[2] }}" ></div><span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">Scan %</span>
 						</div>
 					</div>
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
 						<h6>{{ doughnutChartLabels[3] }}</h6>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines 1320 <br></span>
-						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans 19222 <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine4}} <br></span>
+						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine4scan}} <br></span>
 						<div class="pieChartlabelColor">
 							<div class='box' style="background-color: {{ doughnutColors[3] }}"></div><span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">Scan %</span>
 						</div>

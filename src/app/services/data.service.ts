@@ -23,6 +23,10 @@ export class DataService {
   getfarmers(){
   return this.afs.collection('comp_a').doc('Users').collection('Farmers').valueChanges();
   }
+  getfarmersscans(){
+  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Farmer')).valueChanges();
+
+  }
   gettraders(){
   return this.afs.collection('comp_a').doc('Users').collection('Traders').valueChanges();
 
@@ -30,6 +34,14 @@ export class DataService {
   getbrokers(){
     // console.log('asche')
   return this.afs.collection('comp_a').doc('Users').collection('Brokers').valueChanges();
+
+  }
+  getpolice(){
+  return this.afs.collection('comp_a').doc('Users').collection('Inspector').valueChanges();
+
+  }
+  gettechinician(){
+  return this.afs.collection('comp_a').doc('Users').collection('Technician').valueChanges();
 
   }
   getscanresults(id:any){

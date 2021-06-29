@@ -9,14 +9,14 @@
             </div>
         </div>
     </div>
-    <div class="card listing-cards bg-light mb-3 w-100 noMargin">
-        <div class="card-header">
+    <div class="card listing-cards bg-light mb-3 w-100 noMargin" style="overflow: auto;">
+        <div class="card-header" style="width:100%">
             <div class="row">
                 <div class="col-5 paddingTop inherit">
                     <h3 class="left"><input type="checkbox" id="select_all"> Select All</h3>
                     <h3 class="left"><input type="checkbox"> Message All</h3>
-                    <h3 class="left"><input type="radio" name="show" id="Expand" (change)='onchin()' checked> <label for="Expand">Expand All</label></h3>
-                    <h3 class="left"><input type="radio" name="show" id="Collapse" (change)='onchin()'> <label for="Collapse">Collapse All</label></h3>
+                    <h3 class="left"><input type="radio" (change)='expand($event)' name="show" id="Expand"> <label for="Expand">Expand All</label></h3>
+                    <h3 class="left"><input (change)='collapse($event)' type="radio" name="show" id="Collapse"> <label for="Collapse">Collapse All</label></h3>
                 </div>
                 <div class="col-4 textCenter">
                     <button class="btn grey"> Hide</button>
@@ -36,29 +36,206 @@
             </div>
         </div>
         <div class="card-body removePadding removeTopBorderRadius">
-           <table *ngIf='showingdata' class="table table-hover" style="text-align: center;">
+           <table *ngIf='farmerdatatemp' class="table table-hover" style="text-align: center;">
 	<thead>
 			<th>Farmer's Name</th>
 			<th>Phone No.</th>
 			<th>Message</th>
-			<th>Machine</th>
-			<th>Crop</th>
-			<th>Date of Scan</th>
+            <th>Scan History</th>
+			 <th>Machine</th>
+            <th>Crop</th>
+          <th>Time</th>
+           <th>Location</th>
+        <th>See Results</th>
+        <th>Raw Image</th>
+        <th>Annotated Image</th>
+        <th>Total Kernel</th>
+        <th>Broken Kernel</th>
+        <th>Insect Kernel</th>
+        <th>Mold Kernel</th>
+        <th>No Defect Kernel</th>
+        <th>Non Yellow Kernel</th>
+        <th>Foreign Kernel</th>
 			
 			
 	</thead>
-	<tbody *ngIf='farmerdata'>
-		<tr *ngFor='let item of farmerdata'>
-			<td>{{item.name}}</td>
-			<td>{{item.ph_no}}</td>
-			<td><a routerLink='' style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
-			<td>{{item.machine}}</td>
-			<td>
-                {{item.crop}}       
+ 
+	<tbody *ngFor='let item of farmerdata;index as i'>
+	
+            <tr> 
+            <td><input type="checkbox" name="" id="{{item.name}}"><label for="{{item.name}}">&nbsp; {{item.name}}</label></td>
+            <td>{{item.ph_no}}</td>
+            <td><a routerLink='' style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
+            <td *ngIf='!show[i]'><a (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See History</a>
             </td>
-		    <td ><a (click)='checkscans(item.ph_no)' class="btn btn-outline-info" style="cursor: pointer;">Check Results</a></td>
-		</tr>
+            <td *ngIf='show[i]'><a  (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Close History</a>
+            </td>
+          
+
+            <td *ngIf='show[i]'>
+                 
+                      <table>
+
+
+                          <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue'>
+                             <td>{{key.value.machine}}</td>
+                            
+                             </tr>
+                          </tbody>
+                      </table>
+               
+            </td>
+
+            
+
+
+            <td *ngIf='show[i]'>
+                 
+                      <table>
+
+
+                          <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue'>
+                           
+                             <td>{{key.value.crop}}</td>
+                            
+                             </tr>
+                          </tbody>
+                      </table>
+               
+            </td>
+
+                        <td *ngIf='show[i]'>
+                 
+                      <table>
+
+
+                          <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue'>
+                           
+                             
+                             <td>{{key.value.time}}</td>
+                           
+                             </tr>
+                          </tbody>
+                      </table>
+               
+            </td>
+
+
+
+                        <td *ngIf='show[i]'>
+                 
+                      <table>
+
+
+                          <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue'>
+                           
+                           
+                             <td>{{key.value.location._lat}}<br>{{key.value.location._long}}</td>
+                           
+                             </tr>
+                          </tbody>
+                      </table>
+               
+            </td>
+
+
+                        <td *ngIf='show[i]'>
+                 
+                      <table>
+
+
+                          <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                           
+                             
+                             <td *ngIf='!scanshow[i+z]'><a (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details</a></td>
+                              <td *ngIf='scanshow[i+z]'><a (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Hide Details</a></td>
+                             
+                             </tr>
+                          </tbody>
+                      </table>
+               
+            </td>
+ <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>Image</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+                     <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>Image</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+                <td *ngIf='show[i]'>
+                    <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[0]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[1]}}</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+               
+                <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[2]}}</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+                <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[3]}}</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+                <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[4]}}</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+                <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[5]}}</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+               
+                <td *ngIf='show[i]'>   <table>
+                        <tbody>
+                            <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
+                                <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[6]}}</td>
+                            </tr>
+                        </tbody>
+                    </table></td>
+               
+
+            </tr>
+      
+       
+  
 	</tbody>
+
+
 </table>
         </div>
     </div>

@@ -1,5 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+import { DataService } from 'src/app/services/data.service';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,11 +14,126 @@ export class DashBoardComponent implements OnInit {
   sizeOfMap;
   leftPercent;
   topPercent = '20px';
+  temp:any = null
+  userdata:any = null
+  machinedata:any = []
+  totalscans:number = 0
+  machine1scan:number = 0
+  machine2scan:number = 0
+  machine3scan:number = 0
+  machine4scan:number = 0
+  machine1:number= 0
+  machine2:number = 0
+  machine3:number = 0
+  machine4:number = 0
+  mystate:any = [] 
+  machine1scans:number = 0
+  machine2scans:number = 0
+  machine3scans:number = 0
+  machine4scans:number = 0
 
+  donutcharttemp:any=[]
+  constructor(private service:DataService,private router:Router){}
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
-  }
+
+    this.service.getfarmers().subscribe(res=>{
+      
+      this.temp = res
+      // console.log(this.temp)
+     this.data.splice(0,1,this.temp.length)
+      // console.log(this.data)
+    })
+     this.service.getbrokers().subscribe(res=>{
+        this.temp = res
+      // console.log(this.temp)
+      this.data.splice(1,1,this.temp.length)
+      // console.log(this.data)
+    })
+    this.service.gettraders().subscribe(res=>{
+       this.temp = res
+      // console.log(this.temp)
+      this.data.splice(2,1,this.temp.length)
+      // console.log(this.data)
+    })
+   
+    this.service.gettechinician().subscribe(res=>{
+      this.temp = res
+      // console.log(this.temp)
+      this.data.splice(3,1,this.temp.length)
+      // console.log(this.data)
+    })
+    this.service.getpolice().subscribe(res=>{
+       this.temp = res
+      // console.log(this.temp)
+      this.data.splice(4,1,this.temp.length)
+      // console.log(this.data)
+      this.userdata = this.data
+      console.log(this.userdata)
+    })
+
+
+
+     this.service.getmachinedata().subscribe(res=>{
+        console.log(res)
+
+        this.temp = res;
+        for(let item of this.temp){
+          this.machinedata.push(item.data)
+        }
+       
+        // console.log(this.machinedata)
+        var i = 0
+        for(let item of this.machinedata){
+          // console.log(item)
+          this.totalscans = this.totalscans + item.total_scans
+
+        }
+        console.log(this.totalscans)
+        for(let i=0;i<this.machinedata.length;i++){
+          if(i==0){
+            // console.log(this.machinedata[i].total_scans)
+            this.machine1scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.donutcharttemp.push(this.machine1scan)
+            this.machine1 = this.machinedata[i].no_of_machines
+            this.machine1scan = this.machinedata[i].total_scans
+          }
+          else if(i==1){
+            // console.log(this.machinedata[i].total_scans)
+            this.machine2scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.donutcharttemp.push(this.machine2scan)
+            this.machine2 = this.machinedata[i].no_of_machines
+            this.machine2scan = this.machinedata[i].total_scans
+
+
+          }
+          else if(i==2){
+            // console.log(this.machinedata[i].total_scans)
+            this.machine3scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.donutcharttemp.push(this.machine3scan)
+            this.machine3 = this.machinedata[i].no_of_machines
+            this.machine3scan = this.machinedata[i].total_scans
+
+
+          }else{
+            // console.log(this.machinedata[i].total_scans)
+            this.machine4scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.donutcharttemp.push(this.machine4scan)
+            // console.log(this.machine4scan)
+            this.machine4 = this.machinedata[i].no_of_machines
+            this.machine4scan = this.machinedata[i].total_scans
+
+
+          }
+        }
+
+        this.doughnutChartData = this.donutcharttemp
+
+        console.log(this.doughnutChartData)
+        console.log(this.machine1scan,this.machine2scan,this.machine3scan,this.machine4scan)
+      })
+  } 
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -48,10 +166,10 @@ export class DashBoardComponent implements OnInit {
     },
   ];
 
-  machine1 = '39%';
-  machine2 = '39%';
-  machine3 = '29%';
-  machine4 = '29%';
+  // machine1 = '39%';
+  // machine2 = '39%';
+  // machine3 = '29%';
+  // machine4 = '29%';
 
   cropData = [
     {
@@ -98,10 +216,10 @@ export class DashBoardComponent implements OnInit {
     'rgb(169,84,49)',
     'rgb(248,180,0)',
   ];
-  doughnutChartData = [40, 39, 12, 9];
+  doughnutChartData:any = null;
   doughnutChartLabels = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
 
-  data = [219, 140, 233, 146, 112];
+  data = [];
   labels = ['Farmer', 'Broker', 'Trader', 'Inspector', 'Technician'];
   color = [
     'rgb(215,223,35)',
@@ -170,4 +288,6 @@ export class DashBoardComponent implements OnInit {
       this.leftPercent = '20px';
     }
   }
+
+
 }
