@@ -1,12 +1,27 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { constants } from '../../global/constants';
+import { ActivatedRoute } from '@angular/router';
 
+import { DataService } from 'src/app/services/data.service';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-crop',
   templateUrl: './crop.component.html',
   styleUrls: ['./crop.component.scss'],
 })
 export class CropComponent implements OnInit {
+    constructor(private service:DataService,private router:Router){}
+     usernumbers = []
+  noofscans = []
+  usertemp:any = null;
+  numbertemp:Number = 0
+   statescan:any = 0
+     mystates:any = []
+  machinedata:any = []
+      temp:any= null;
+  state:any = false
+  showmachine:any = false
+  uniquestates:any =[]
   cropData = [
     {
       crop: 'Maize',
@@ -120,9 +135,9 @@ export class CropComponent implements OnInit {
   labels1 = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
   legend1 = ['Number of machine', 'Number of scans'];
 
-  userData = [320, 332, 301, 334, 290];
-  scanData1 = [220, 182, 191, 234, 250];
-  labels2 = ['Farmer', 'Broker', 'Trader', 'Inspector', 'Technician'];
+ userBarData = [320, 332, 301,200,300];
+  scanBarData = [220, 182, 191,150,289];
+  labels2 = ['Farmer', 'Trader','Inspector','Technician','Broker'];
   legend2 = ['Number of users', 'Number of scans'];
 
   userTableData = [
@@ -172,6 +187,99 @@ export class CropComponent implements OnInit {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
+    this.service.getmachinedata().subscribe(res=>{
+      console.log(res)
+
+        this.temp = res;
+        for(let item of this.temp){
+          this.machinedata.push(item.data)
+        }
+       
+        console.log(this.machinedata)
+                for(let item of this.machinedata){
+          console.log(item.states)
+
+          this.mystates = this.mystates.concat(item.states)
+        }
+        console.log(this.mystates)
+        
+        for(let item of this.mystates){
+
+          if(this.uniquestates.includes(item)){
+            continue;
+          }
+            else{
+              this.uniquestates.push(item)
+            }
+        }
+
+        console.log(this.uniquestates)
+        this.statescan = this.uniquestates.length
+        this.state = true
+
+        for(let i=0;i<this.machinedata.length;i++){
+            this.machineData1.splice(i,1,this.machinedata[i].no_of_machines)
+            this.scanData.splice(i,1,this.machinedata[i].total_scans)
+        }
+        console.log(this.machineData1)
+        console.log(this.scanData)
+        this.showmachine = true
+    })
+    this.service.getfarmers().subscribe(res=>{
+
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
+    this.service.gettraders().subscribe(res=>{
+this.numbertemp = 0
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+       this.service.getpolice().subscribe(res=>{
+this.numbertemp = 0
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
+           this.service.gettechinician().subscribe(res=>{
+this.numbertemp = 0
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
+
+        this.service.getbrokers().subscribe(res=>{
+          this.numbertemp = 0
+
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+    this.userBarData.splice(0,this.userBarData.length)
+    this.userBarData = this.usernumbers
+    this.scanBarData.splice(0,this.scanBarData.length)
+    this.scanBarData = this.noofscans
+    console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
+  })
   }
 
   @HostListener('window:resize', ['$event'])

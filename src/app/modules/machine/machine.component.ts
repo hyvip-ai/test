@@ -151,15 +151,15 @@ export class MachineComponent implements OnInit{
       average: '09%',
       bad: '02%',
     },
-  ];
+  ]; 
 
-  userBarData = [320, 332, 301];
-  scanBarData = [220, 182, 191];
-  labels2 = ['Farmer', 'Broker', 'Trader'];
+  userBarData = [320, 332, 301,200,300];
+  scanBarData = [220, 182, 191,150,289];
+  labels2 = ['Farmer', 'Trader','Inspector','Technician','Broker'];
   legend2 = ['Number of users', 'Number of scans'];
 
   selectedCropIndex = 0;
-  selectUserIndex = 0;
+  selectUserIndex = 0; 
 
 
 
@@ -186,7 +186,7 @@ export class MachineComponent implements OnInit{
       this.samllerScreenUI = true;
     }
     this.setMapOptions();
-
+ 
  this.service.getmachinedata().subscribe(res=>{
       this.machineCardData.splice(0,this.machineCardData.length)
       this.temp = res;
@@ -214,6 +214,26 @@ this.numbertemp = 0
     }
     this.noofscans.push(this.numbertemp)
   })
+       this.service.getpolice().subscribe(res=>{
+this.numbertemp = 0
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
+           this.service.gettechinician().subscribe(res=>{
+this.numbertemp = 0
+    this.usertemp = res;
+    this.usernumbers.push(this.usertemp.length);
+    for(let item of this.usertemp){
+      this.numbertemp = this.numbertemp + item.no_of_scans 
+    }
+    this.noofscans.push(this.numbertemp)
+  })
+
 
         this.service.getbrokers().subscribe(res=>{
           this.numbertemp = 0

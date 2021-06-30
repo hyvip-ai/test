@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <div class="card listing-cards bg-light mb-3 w-100 noMargin" style="overflow: auto;">
+    <div class="card listing-cards bg-light mb-3 w-100 noMargin" >
         <div class="card-header" style="width:100%">
             <div class="row">
                 <div class="col-5 paddingTop inherit">
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body removePadding removeTopBorderRadius">
+        <div class="card-body removePadding removeTopBorderRadius" style="overflow: auto;">
            <table *ngIf='farmerdatatemp' class="table table-hover" style="text-align: center;">
 	<thead>
 			<th>Farmer's Name</th>
@@ -154,23 +154,26 @@
                              
                              <td *ngIf='!scanshow[i+z]'><a (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details</a></td>
                               <td *ngIf='scanshow[i+z]'><a (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Hide Details</a></td>
-                             
+                              
                              </tr>
                           </tbody>
                       </table>
                
             </td>
- <td *ngIf='show[i]'>   <table>
+             <td *ngIf='show[i]'>   
+                <table>
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
-                                <td *ngIf='scanshow[i+z]'>Image</td>
+                                <td *ngIf='scanshow[i+z]'><a href="{{this.scandetails[i+z].images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+                                <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
                      <td *ngIf='show[i]'>   <table>
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
-                                <td *ngIf='scanshow[i+z]'>Image</td>
+                                <td *ngIf='scanshow[i+z]'><a href="{{this.scandetails[i+z].images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
@@ -179,6 +182,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[0]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table>
@@ -187,6 +191,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[1]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
@@ -195,6 +200,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[2]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
@@ -202,6 +208,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[3]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
@@ -209,6 +216,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[4]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
@@ -216,6 +224,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[5]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>
@@ -224,6 +233,7 @@
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                                 <td *ngIf='scanshow[i+z]'>{{this.scandetails[i+z].numbers[6]}}</td>
+                                  <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
                     </table></td>

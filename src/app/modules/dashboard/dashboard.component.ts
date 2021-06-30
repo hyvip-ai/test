@@ -26,12 +26,14 @@ export class DashBoardComponent implements OnInit {
   machine2:number = 0
   machine3:number = 0
   machine4:number = 0
-  mystate:any = [] 
+  statescan:any = 0
   machine1scans:number = 0
   machine2scans:number = 0
   machine3scans:number = 0
   machine4scans:number = 0
-
+  mystates:any = []
+  state:any = false
+  uniquestates:any =[]
   donutcharttemp:any=[]
   constructor(private service:DataService,private router:Router){}
   ngOnInit(): void {
@@ -83,7 +85,7 @@ export class DashBoardComponent implements OnInit {
           this.machinedata.push(item.data)
         }
        
-        // console.log(this.machinedata)
+        console.log(this.machinedata)
         var i = 0
         for(let item of this.machinedata){
           // console.log(item)
@@ -132,7 +134,31 @@ export class DashBoardComponent implements OnInit {
 
         console.log(this.doughnutChartData)
         console.log(this.machine1scan,this.machine2scan,this.machine3scan,this.machine4scan)
+
+        
+        for(let item of this.machinedata){
+          console.log(item.states)
+
+          this.mystates = this.mystates.concat(item.states)
+        }
+        console.log(this.mystates)
+        
+        for(let item of this.mystates){
+
+          if(this.uniquestates.includes(item)){
+            continue;
+          }
+            else{
+              this.uniquestates.push(item)
+            }
+        }
+
+        console.log(this.uniquestates)
+        this.statescan = this.uniquestates.length
+        this.state = true
       })
+
+     
   } 
 
   @HostListener('window:resize', ['$event'])

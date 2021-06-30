@@ -38,7 +38,7 @@
     <div class="col-12" [ngClass]="{'reducePadding': innerWidth < 1220}">
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
-                <app-map [yellowStates]="mymachinestates" [previous]='previousstates' [size]="sizeOfMap" [top]="topPercent"></app-map>
+                <app-map [yellowStates]="mymachinestates" [previous]='previousstates' [size]="sizeOfMap" [top]="topPercent"></app-map> 
             </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
                     {{usernumbers}}
                     {{noofscans}}
                     <app-double-bar-chart [machineData]="userBarData" [scanData]="scanBarData" [labels]="labels2" [legend]="legend2">
-                    </app-double-bar-chart>
+                    </app-double-bar-chart> 
                 </div>
             </div>
         </div>

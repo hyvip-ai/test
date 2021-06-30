@@ -121,7 +121,10 @@ getdetails(i:any){
     else{
       this.scanshow[i]=true
     }
+    console.log(this.scanshow)
 }
+
+
 
 }
 
