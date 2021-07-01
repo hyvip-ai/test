@@ -180,10 +180,11 @@ getdetails(i:any){
 
 
 sortingvalue:any = null
-
+nothing:any = null
 sortscan(){
-    console.log(document.getElementById('mysort')!.value)
-    this.sortingvalue = document.getElementById('mysort')!.value
+    // console.log(document.getElementById('mysort')!.value)
+    this.nothing = document.getElementById('mysort')
+    this.sortingvalue = this.nothing.value
     // console.log(this.scandetails)
 
     for(let i=0;i<this.scandetails.length;i++){
