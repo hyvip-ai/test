@@ -12,14 +12,17 @@ import {Router} from '@angular/router'
 export class FarmerDataComponent {
 farmerdata:any = []
 farmerdatatemp:any = null
+sortingdupli:any = []
 farmerscandatatemp:any = []
 farmerscandata:any = []
 visible:boolean = false
 temp:any = []
+showsorted:any = false
 scanshow:any = []
 scandetails:any = []
 numoffarmers:any = null
 show:any = []
+scanlength:any = []
 constructor(private service:DataService,private router:Router){}
   ngOnInit(){
   
@@ -44,11 +47,46 @@ constructor(private service:DataService,private router:Router){}
            
           }
 
+          // for(let item of this.farmerscandata){
+            
+          //   for(let key in item){
+          //     console.log(key)
+          //     this.scandetails.push(item[key])
+          //     this.scanshow.push(false);
+             
+          //   } 
+          //    this.scanlength.push(this.scanshow.length)
+          //   console.log(this.scanlength)
+          // }
+console.log('new approach')
           for(let item of this.farmerscandata){
-            for(let key in item){
-              this.scandetails.push(item[key])
-              this.scanshow.push(false);
-            }
+                for(let key in item){
+                  this.keyarray.push(key)
+                }
+                this.keyarray.sort(this.keyarraysortnum)
+                console.log(this.keyarray)
+                for(let i=0;i<this.keyarray.length;i++){
+                  for(let key in item){
+                   
+                      console.log(this.keyarray[i])
+                      if(this.keyarray[i] == key){
+                        console.log(key)
+                        this.scandetails.push(item[key])
+                        console.log(this.scandetails)
+                        this.scanshow.push(false);
+                      }
+                    }
+                  }
+                
+                if(this.scanlength.length==0){
+                  this.scanlength.push(this.keyarray.length)
+                }
+                else{
+                  this.scanlength.push(this.scanlength[this.scanlength.length-1]+this.keyarray.length)
+                }
+                console.log(this.scanlength)
+                this.keyarray.splice(0,this.keyarray.length)
+
           }
           console.log(this.scandetails)
           console.log(this.scanshow)
@@ -60,6 +98,21 @@ constructor(private service:DataService,private router:Router){}
 
 
         }
+
+keyarray:any = []
+
+keyarraysortnum(a,b){
+  if(a>b){
+    return 1;
+  }
+  else if(a==b){
+    return 0;
+  }
+  else{
+    return -1;
+  }
+
+}
 toogleshow(i:any){
 
   if(this.show[i]){
@@ -122,10 +175,50 @@ getdetails(i:any){
       this.scanshow[i]=true
     }
     console.log(this.scanshow)
+    console.log(this.scanlength)
 }
 
 
+sortingvalue:any = null
 
+sortscan(){
+    console.log(document.getElementById('mysort')!.value)
+    this.sortingvalue = document.getElementById('mysort')!.value
+    // console.log(this.scandetails)
+
+    for(let i=0;i<this.scandetails.length;i++){
+      this.sortingdupli[i] = this.scandetails[i]
+    }
+    // console.log(this.sortingdupli)
+
+   if( this.sortingvalue=='normal'){
+    window.location.reload()
+   }
+    if(this.sortingvalue == 'time'){
+      this.sortingdupli.sort(this.compare)
+    }
+  console.log(this.sortingdupli)
+    this.showsorted = true
+    console.log(this.showsorted)
+}
+
+compare(a,b){
+  // console.log(a,b)
+  if(a.time<b.time){
+    // console.log(a.time,b.time)
+    // console.log('dhukche')
+    return 1;
+  }
+
+  else if(a.time==b.time){
+    return 0
+  }
+
+  else{
+
+  return -1;
+}
+}
 }
 
   

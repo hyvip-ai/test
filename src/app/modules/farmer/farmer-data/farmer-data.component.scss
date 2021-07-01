@@ -112,3 +112,17 @@ td{
 table{
     text-align:center;
 }
+
+select{
+    display:block;
+    width:100%;
+    border:none;
+    height:35px;
+    border:1px solid black;
+
+}
+
+select:focus{
+    border:1px solid black;
+    outline:none;
+}
