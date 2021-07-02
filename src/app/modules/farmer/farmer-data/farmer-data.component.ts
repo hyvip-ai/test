@@ -193,7 +193,7 @@ sortscan(){
     // console.log(this.sortingdupli)
 
    if( this.sortingvalue=='normal'){
-    window.location.reload()
+    this.showsorted = false
    }
     if(this.sortingvalue == 'time'){
       this.sortingdupli.sort(this.compare)
