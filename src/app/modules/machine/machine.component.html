@@ -139,7 +139,7 @@
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body">
                 <h6><img src="../../../assets/images/crops-icon/{{ cropData[selectedCropIndex].crop }}.png" class="cropIcon">{{ cropData[selectedCropIndex].crop }}</h6>
-                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside"></app-doughnut-chart>
+                <app-doughnut-chart [data]="doughcropdata" [labels]="doughnutcropLabels" postion="inside"></app-doughnut-chart>
             </div>
         </div>
     </div>
@@ -150,7 +150,7 @@
             <div class="card-body">
                 <h2 class="cardTitle">User's Data</h2>
                 <div class="tableHeight">
-                    <table>
+                    <table *ngIf='showusers'>
                         <tr>
                             <th>
                                 <h3 class="tableTitle type">User type</h3>
@@ -168,33 +168,31 @@
                                 <h3 class="tableTitle center">Bad %</h3>
                             </th>
                         </tr>
-                        <tr *ngFor="let user of userData, let i=index;" (click)="changeSelectedUser(i)"
+                        <tr *ngFor="let item of myusers;index as i" (click)="changeSelectedUser(i)"
                             [ngClass]="{ 'listing-cards': i==selectUserIndex}" class="">
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1025)" class="row">
+                                    
                                     <div class="col-12 center">
-                                        <img src="../../../assets/images/crops-icon/{{ user.user }}.png" class="cropIcon">
-                                    </div>
-                                    <div class="col-12 center">
-                                        <h6>{{ user.user}}</h6>
+                                        <h6 style="padding-left: 5px;">{{ item.user}}</h6>
                                     </div>
                                 </div>
-                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1025)">
-                                    <img src="../../../assets/images/crops-icon/{{ user.user }}.png" class="cropIcon">
-                                    {{ user.user}}
+                                <h6 style="padding-left: 5px;" *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1025)">
+                                    
+                                    {{ item.user}}
                                 </h6>
                             </td>
                             <td class="center">
-                                <h6><strong>{{ user.scans }}</strong></h6>
+                                <h6><strong>{{item.total }}</strong></h6>
                             </td>
                             <td class="center">
-                                <h6><strong>{{ user.good }}</strong></h6>
+                                <h6><strong>{{ item.good_percentage }}%</strong></h6>
                             </td>
                             <td class="center">
-                                <h6><strong>{{ user.average }}</strong></h6>
+                                <h6><strong>{{ item.average_percentage }}%</strong></h6>
                             </td>
                             <td class="center">
-                                <h6><strong>{{ user.bad }}</strong></h6>
+                                <h6><strong>{{ item.bad_percentage }}%</strong></h6>
                             </td>
                         </tr>
                     </table>
@@ -202,10 +200,10 @@
             </div>
         </div>
     </div>
-    <div [ngClass]="{ 'col-4 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926 ,'reducePadding': innerWidth < 1220 }">
+    <div *ngIf='showgraph' [ngClass]="{ 'col-4 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926 ,'reducePadding': innerWidth < 1220 }">
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body">
-                <h6><img src="../../../assets/images/crops-icon/" class="cropIcon">{{ userData[selectUserIndex].user }}</h6>
+                <h6>{{ myusers[selectUserIndex].user }}</h6>
                 <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside">
                 </app-doughnut-chart>
             </div>

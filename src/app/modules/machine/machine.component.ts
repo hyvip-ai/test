@@ -10,35 +10,16 @@ import {Router} from '@angular/router'
 })
 export class MachineComponent implements OnInit{
   constructor(private service:DataService,private router:Router,private aroute:ActivatedRoute) {}
- temp:any= null;
+ temp:any= null; 
   selectedMachineIndex = 0;
   machineOption = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
-
+  myusers:any = []
+  showusers:any = false
+  badtemp:any = 0
+  averagetemp:any = 0
+  goodtemp:any = 0
   machineCardData = [
-    {
-      name: 'Machine 1',
-      no: '1320',
-      scan: '19222',
-      percentage: '80',
-    },
-    {
-      name: 'Machine 2',
-      no: '1320',
-      scan: '19222',
-      percentage: '80',
-    },
-    {
-      name: 'Machine 3',
-      no: '1320',
-      scan: '19222',
-      percentage: '80',
-    },
-    {
-      name: 'Machine 4',
-      no: '1320',
-      scan: '19222',
-      percentage: '80',
-    },
+   
   ];
 
   cropData = [
@@ -82,8 +63,7 @@ export class MachineComponent implements OnInit{
   cropScanData = [60, 65, 40, 55, 80];
   cropScanLabels = ['Millet', 'Maize', 'Barley', 'Wheat', 'Rice'];
 
-  doughnutChartData = [32, 32, 36];
-  doughnutChartLabels = ['Good', 'Bad', 'Average'];
+  
 
   scansByMonthLabels = [
     'Jan',
@@ -166,26 +146,46 @@ export class MachineComponent implements OnInit{
   changeSelectedCrop(index) {
     this.selectedCropIndex = index;
   }
+doughnutChartData = [10,20,70];
+doughcropdata =[10,50,40]
+doughnutcropLabels = ['Good', 'Bad', 'Average'];
 
-  changeSelectedUser(index) {
+  doughnutChartLabels = ['Good', 'Bad', 'Average'];
+  showgraph:any = false
+  changeSelectedUser(index:any) {
+    let doughnuttemp = []
+    console.log(index)
+     // console.log(this.doughnuttemp)
+    console.log(this.doughnutChartData)
     this.selectUserIndex = index;
+    
+     // console.log(this.doughnuttemp)
+    console.log(this.doughnutChartData)
+    doughnuttemp.push(this.myusers[index].good_percentage)
+   doughnuttemp.push(this.myusers[index].bad_percentage)
+   doughnuttemp.push(this.myusers[index].average_percentage)
+    this.doughnutChartData.splice(0,this.doughnutChartData.length)
+    this.doughnutChartData = doughnuttemp
+    console.log(doughnuttemp)
+    console.log(this.doughnutChartData)
+    
   }
 
   innerWidth;
   samllerScreenUI = false;
   sizeOfMap;
-  leftPercent;
+  leftPercent; 
   topPercent;
   usernumbers = []
   noofscans = []
   usertemp:any = null;
-  numbertemp:Number = 0
+  numbertemp:number = 0
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 1302) {
       this.samllerScreenUI = true;
     }
-    this.setMapOptions();
+    this.setMapOptions(); 
  
  this.service.getmachinedata().subscribe(res=>{
       this.machineCardData.splice(0,this.machineCardData.length)
@@ -194,61 +194,189 @@ export class MachineComponent implements OnInit{
         this.machineCardData.push(item.data);
       }
       console.log(this.machineCardData)
+    for(let item of this.machineCardData){
+        item.good_percentage = Math.floor((item.good_scans/item.total_scans)*100)
+        item.average_percentage = Math.floor((item.average_scans/item.total_scans)*100)
+        item.bad_percentage = Math.floor((item.bad_scans/item.total_scans)*100)
+       }
     })
   this.service.getfarmers().subscribe(res=>{
-
+    let  userersobject={
+      good_percentage:0,
+      average_percentage:0,
+      bad_percentage:0,
+      total:0,
+      user:'person'
+    }
+    console.log(res)
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
       this.numbertemp = this.numbertemp + item.no_of_scans 
+      this.badtemp = this.badtemp + item.bad_scans
+      this.averagetemp = this.averagetemp + item.average_scans
+      this.goodtemp = this.goodtemp + item.good_scans
     }
-    this.noofscans.push(this.numbertemp)
+    console.log(this.goodtemp,this.averagetemp,this.badtemp)
+   this.noofscans.push(this.numbertemp)
+    userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
+    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
+    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+    userersobject.total = this.numbertemp
+   userersobject.user = 'Farmer'
+   this.doughnutChartData.splice(0,this.doughnutChartData.length)
+   this.doughnutChartData.push(userersobject.good_percentage)
+   this.doughnutChartData.push(userersobject.bad_percentage)
+   this.doughnutChartData.push(userersobject.average_percentage)
+    console.log(userersobject)
+    this.myusers.push(userersobject)
+    console.log(this.myusers)
+
+  
   })
 
     this.service.gettraders().subscribe(res=>{
+       let  userersobject={
+      good_percentage:0,
+      average_percentage:0,
+      bad_percentage:0,
+      total:0,
+      user:'person'
+    }
 this.numbertemp = 0
+this.badtemp = 0
+this.goodtemp = 0
+this.averagetemp = 0
+
+
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
+      this.numbertemp = this.numbertemp + item.no_of_scans
+            this.badtemp = this.badtemp + item.bad_scans
+      this.averagetemp = this.averagetemp + item.average_scans
+      this.goodtemp = this.goodtemp + item.good_scans 
+    
     }
+  
+
     this.noofscans.push(this.numbertemp)
+     userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
+    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
+    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+    userersobject.total = this.numbertemp
+
+    userersobject.user = 'Trader'
+    console.log(userersobject)
+    this.myusers.push(userersobject)
+    console.log(this.myusers)
+
   })
        this.service.getpolice().subscribe(res=>{
+          let  userersobject={
+      good_percentage:0,
+      average_percentage:0,
+      bad_percentage:0,
+      total:0,
+      user:'person'
+    }
+           this.numbertemp = 0
+this.badtemp = 0
+this.goodtemp = 0
+this.averagetemp = 0
 this.numbertemp = 0
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
       this.numbertemp = this.numbertemp + item.no_of_scans 
+        this.badtemp = this.badtemp + item.bad_scans
+      this.averagetemp = this.averagetemp + item.average_scans
+      this.goodtemp = this.goodtemp + item.good_scans 
     }
     this.noofscans.push(this.numbertemp)
+      userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
+    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
+    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+    userersobject.total = this.numbertemp
+
+    userersobject.user = 'Inspector'
+    console.log(userersobject)
+    this.myusers.push(userersobject)
+    console.log(this.myusers)
   })
 
            this.service.gettechinician().subscribe(res=>{
 this.numbertemp = 0
+this.badtemp = 0
+this.goodtemp = 0
+this.averagetemp = 0
+
+          let  userersobject={
+      good_percentage:0,
+      average_percentage:0,
+      bad_percentage:0,
+      total:0,
+      user:'person'
+    }
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
       this.numbertemp = this.numbertemp + item.no_of_scans 
+      this.badtemp = this.badtemp + item.bad_scans
+      this.averagetemp = this.averagetemp + item.average_scans
+      this.goodtemp = this.goodtemp + item.good_scans 
     }
     this.noofscans.push(this.numbertemp)
+        userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
+    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
+    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+    userersobject.total = this.numbertemp
+
+    userersobject.user = 'Technician'
+    console.log(userersobject)
+    this.myusers.push(userersobject)
+    console.log(this.myusers)
   })
 
 
         this.service.getbrokers().subscribe(res=>{
           this.numbertemp = 0
+this.badtemp = 0
+this.goodtemp = 0
+this.averagetemp = 0
 
+      let  userersobject={
+      good_percentage:0,
+      average_percentage:0,
+      bad_percentage:0,
+      total:0,
+      user:'person'
+    }
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
+      this.numbertemp = this.numbertemp + item.no_of_scans
+      this.badtemp = this.badtemp + item.bad_scans
+      this.averagetemp = this.averagetemp + item.average_scans
+      this.goodtemp = this.goodtemp + item.good_scans  
     }
     this.noofscans.push(this.numbertemp)
+          userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
+    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
+    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+    userersobject.total = this.numbertemp
+
+    userersobject.user = 'Broker'
+    console.log(userersobject)
+    this.myusers.push(userersobject)
+    console.log(this.myusers)
     this.userBarData.splice(0,this.userBarData.length)
     this.userBarData = this.usernumbers
     this.scanBarData.push(0,this.scanBarData.length)
     this.scanBarData = this.noofscans
     console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
+    this.showusers =true
+    this.showgraph = true
   })
   this.service.getmachinestates(1).subscribe(res=>{
     

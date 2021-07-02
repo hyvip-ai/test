@@ -35,6 +35,7 @@ export class DoughNutChartComponent implements AfterViewInit {
   chartColor = [];
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(this.data)
     this.getChartData();
     this.option = {
       tooltip: {

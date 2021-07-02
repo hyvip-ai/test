@@ -173,11 +173,10 @@
     </div>
     <div [ngClass]="{ 'col-4': innerWidth >= 961, 'col-12': innerWidth < 961 ,'reducePadding': innerWidth < 1220 , 'd-flex': 961 < this.innerWidth && this.innerWidth < 1302 }" class="removeRightPadding">
         <div class="card listing-cards bg-light mb-3 fullWidth">
-            <div class="card-body">
-                <h6>{{
-                    machineData[selectMachineIndex].machine }}</h6>
-                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside">
-                </app-doughnut-chart>
+            <div *ngIf='showmachine' class="card-body">
+                <h6>Machine {{selectMachineIndex+1}}</h6>
+                <app-doughnut-chart [data]="machinechartdata" [labels]="doughnutChartLabels" postion="inside">
+                </app-doughnut-chart> 
             </div>
         </div>
     </div>
@@ -188,7 +187,7 @@
             <div class="card-body">
                 <h2 class="cardTitle">User's Data</h2>
                 <div class="machineTable">
-                    <table>
+                    <table *ngIf='showusers'>
                         <tr>
                             <th>
                                 <h3 [ngClass]="{ 'center': innerWidth >= 575 || ( 960 < innerWidth && innerWidth <=1082) }" class="tableTitle type">User type</h3>
@@ -206,7 +205,7 @@
                                 <h3 class="tableTitle center">Bad %</h3>
                             </th>
                         </tr>
-                        <tr *ngFor="let user of userTableData, let i=index;"
+                        <tr *ngFor="let user of myusers;index as i"
                             [ngClass]="{ 'tableRowShadow': i==selectUserIndex }" (click)="selectUser(i)">
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1082)" class="row">
@@ -215,24 +214,24 @@
                                             class="cropIcon">
                                     </div>
                                     <div class="col-12 center">
-                                        <h6>{{ user.crop }}</h6>
+                                        <h6>{{ user.user }}</h6>
                                     </div>
                                 </div>
                                 <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1082)">{{
-                                    user.crop
+                                    user.user
                                     }}</h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ user.scans }}</strong></h6>
+                                <h6 class="center"><strong>{{ user.total }}</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ user.good }}</strong></h6>
+                                <h6 class="center"><strong>{{ user.good_percentage }}%</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ user.average }}</strong></h6>
+                                <h6 class="center"><strong>{{ user.average_percentage }}%</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ user.bad }}</strong></h6>
+                                <h6 class="center"><strong>{{ user.bad_percentage }}%</strong></h6>
                             </td>
                         </tr>
                     </table>
@@ -241,13 +240,14 @@
         </div>
     </div>
     <div [ngClass]="{ 'col-4': innerWidth >= 961, 'col-12': innerWidth < 961 , 'reducePadding': innerWidth < 1220, 'd-flex': 961 < this.innerWidth && this.innerWidth < 1302 }" class="removeRightPadding">
-        <div class="card listing-cards bg-light mb-3 graphCard">
+        <div *ngIf='graphshow' class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body">
                 <h6>
-                    {{ userTableData[selectUserIndex].crop
+                    {{ 
+                        myusers[selectUserIndex].crop
                     }}
                 </h6>
-                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside">
+                <app-doughnut-chart [data]="userchartdata" [labels]="doughnutChartLabels" postion="inside">
                 </app-doughnut-chart>
             </div>
         </div>
