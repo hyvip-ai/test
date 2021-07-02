@@ -185,7 +185,7 @@ sortscan(){
     // console.log(document.getElementById('mysort')!.value)
     this.nothing = document.getElementById('mysort')
     this.sortingvalue = this.nothing.value
-    // console.log(this.scandetails)
+    // console.log(this.sortingvalue)
 
     for(let i=0;i<this.scandetails.length;i++){
       this.sortingdupli[i] = this.scandetails[i]
@@ -193,13 +193,17 @@ sortscan(){
     // console.log(this.sortingdupli)
 
    if( this.sortingvalue=='normal'){
+    console.log('normal')
     this.showsorted = false
+    // console.log(this.showsorted)
    }
     if(this.sortingvalue == 'time'){
+
       this.sortingdupli.sort(this.compare)
+      this.showsorted = true
     }
   console.log(this.sortingdupli)
-    this.showsorted = true
+    
     console.log(this.showsorted)
 }
 
