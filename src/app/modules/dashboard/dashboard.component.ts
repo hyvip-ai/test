@@ -42,7 +42,7 @@ export class DashBoardComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
     this.service.getrice().subscribe(res=>{
-      let croptemp = res
+      let croptemp = res 
       croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)

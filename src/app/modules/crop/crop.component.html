@@ -4,7 +4,7 @@
             <div class="card-body">
                 <h2 class="cardTitle">Crop Data</h2>
                 <div class="machineTable">
-                    <table>
+                    <table *ngIf='cropData'> 
                         <tr>
                             <th>
                                 <h3 class="tableTitle">Crop Name</h3>
@@ -22,11 +22,11 @@
                                 <h3 class="tableTitle center">Bad %</h3>
                             </th>
                         </tr>
-                        <tr *ngFor="let crop of cropData, let i=index;" [ngClass]="{ 'tableRowShadow': i%2==0 }">
+                        <tr *ngFor="let crop of cropArray;index as i" [ngClass]="{ 'tableRowShadow': i%2==0 }">
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575" class="row">
                                     <div class="col-12 center">
-                                        <img src="../../../assets/images/crops-icon/{{ crop.crop }}.png"
+                                        <img src="../../../assets/images/crops-icon/{{ crop.name }}.png"
                                             class="cropIcon">
                                     </div>
                                     <div class="col-12 center">
@@ -34,21 +34,21 @@
                                     </div>
                                 </div>
                                 <h6 *ngIf="innerWidth >= 575"> <img
-                                        src="../../../assets/images/crops-icon/{{ crop.crop }}.png" class="cropIcon">{{
-                                    crop.crop
+                                        src="../../../assets/images/crops-icon/{{ crop.name }}.png" class="cropIcon">{{
+                                    crop.name
                                     }}</h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.scans }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.total_scans }}</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.good }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.good_percentage }}</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.average }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.average_percentage }}</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.bad }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.bad_percentage }}</strong></h6>
                             </td>
                         </tr>
                     </table>
@@ -82,7 +82,7 @@
             <div class="row">
                 <div [ngClass]="{ 'extarMargin': innerWidth > 414 }" class="card listing-cards mb-3 graphCard">
                     <div *ngIf='state' [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
-                        <app-map [yellowStates]="uniquestates" [size]="sizeOfMap" [top]="topPercent"></app-map>
+                        <app-map [yellowStates]="uniquestates" [size]="sizeOfMap" [top]="topPercent" [mark]='uniquedistricts'></app-map>
                     </div>
                 </div>
             </div>
