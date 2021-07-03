@@ -43,7 +43,7 @@
                     <div class="col-8 verticalAlign">
                         <div>
                             <span class="greyText">No of district from where scanned</span>
-                            <h1 class="noMargin largerTextSize">12</h1>
+                            <h1 class="noMargin largerTextSize">{{numofdistricts}}</h1>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
     <div [ngClass]="{ 'col-6 d-flex': innerWidth >= 960, 'col-12': innerWidth < 960, 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
         <div [ngClass]="{'mapHeight': innerWidth < 960 }" class="card listing-cards bg-light mb-3 w-100">
             <div class="card-body extraPadding" *ngIf='state'>
-                <app-map [yellowStates]='uniquestates' [size]="this.sizeOfMap" [top]="topPercent"></app-map>
+                <app-map [yellowStates]='uniquestates' [size]="this.sizeOfMap" [top]="topPercent" [mark]='uniquedistricts'></app-map>
             </div>
         </div>
     </div>

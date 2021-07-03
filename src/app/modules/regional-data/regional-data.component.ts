@@ -17,6 +17,8 @@ export class RegionalDataComponent implements OnInit {
   mystates:any = []
   state:any = false
   uniquestates:any =[]
+  numofdistricts:any = 0
+  uniquedistricts:any = []
   temp:any = null
 totalscans:any = 0
     statescan:any = 0
@@ -132,13 +134,25 @@ this.numbertemp = 0
           this.totalscans = this.totalscans + item.total_scans
 
         }
+        let mydistrict = []
+
                 for(let item of this.machinedata){
           console.log(item.states)
 
           this.mystates = this.mystates.concat(item.states)
+          mydistrict = mydistrict.concat(item.districts)
         }
         console.log(this.mystates)
-        
+           for(let item of mydistrict){
+          if(this.uniquedistricts.includes(item)){
+            continue;
+          }
+          else{
+            this.uniquedistricts.push(item)
+          }
+        }
+        this.numofdistricts = this.uniquedistricts.length
+
         for(let item of this.mystates){
 
           if(this.uniquestates.includes(item)){
