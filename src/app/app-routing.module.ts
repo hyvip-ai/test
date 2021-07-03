@@ -8,6 +8,15 @@ import { BrokersComponent } from './modules/brokers/brokers.component';
 import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component';
 
 const routes: Routes = [
+{
+  path:'',
+  pathMatch:'full',
+  redirectTo:'home'
+},
+ {
+    path: 'signUp',
+    component: SignUpComponent,
+  },
   {
     path: 'home',
     loadChildren: () =>
@@ -43,10 +52,7 @@ const routes: Routes = [
       (farmerModule)=>farmerModule.FarmerModule
     )
   },
-  {
-    path: 'signUp',
-    component: SignUpComponent,
-  },
+ 
   {
     path: 'users',
     component:UsersComponent
@@ -57,20 +63,13 @@ const routes: Routes = [
    
   },
    
-      {
-        path:'Traders/:id',
-        component:TraderscandataComponent
-      },
-             {
+    {
     path:'Brokers',
     component:BrokersComponent
    
   },
    
-      {
-        path:'Brokers/:id',
-        component:BrokerscandataComponent
-      }
+      
 ];
 
 @NgModule({

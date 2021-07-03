@@ -57,7 +57,7 @@
 <div class="row">
     <div [ngClass]="{ 'col-6 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926,'reducePadding': innerWidth < 1220 }">
         <div class="card listing-cards bg-light mb-3 graphCard">
-            <div class="card-body extraPadding">
+            <div class="card-body extraPadding" *ngIf='showcropgraph'>
                 <h2 class="cardTitle">Crop-wise scan distribution</h2>
                 <div class="graph">
                     <app-machine-bar-chart [data]="cropScanData" [labels]="cropScanLabels"></app-machine-bar-chart>
@@ -85,7 +85,7 @@
             <div class="card-body">
                 <h2 class="cardTitle">Crop Data</h2>
                 <div class="tableHeight">
-                    <table>
+                    <table *ngIf='showcropgraph'>
                         <tr>
                             <th>
                                 <h3 class="tableTitle type">Crop type</h3>
@@ -103,31 +103,31 @@
                                 <h3 class="tableTitle center">Bad %</h3>
                             </th>
                         </tr>
-                        <tr *ngFor="let crop of cropData, let i=index;" (click)="changeSelectedCrop(i)"
+                        <tr *ngFor="let crop of cropArray;index as i" (click)="changeSelectedCrop(i)"
                             [ngClass]="{ 'tableRowShadow': i==selectedCropIndex}" class="">
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1025)" class="row">
                                     <div class="col-12 center">
-                                        <img src="../../../assets/images/crops-icon/{{ crop.crop }}.png" class="cropIcon">
+                                        <img src="../../../assets/images/crops-icon/{{ crop.name }}.png" class="cropIcon">
                                     </div>
                                     <div class="col-12 center">
-                                        <h6>{{ crop.crop }}</h6>
+                                        <h6>{{ crop.name }}</h6>
                                     </div>
                                 </div>
-                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1025)"> <img src="../../../assets/images/crops-icon/{{ crop.crop }}.png" class="cropIcon">{{ crop.crop
+                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1025)"> <img src="../../../assets/images/crops-icon/{{ crop.name }}.png" class="cropIcon">{{ crop.name
                                     }}</h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.scans }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.total_scans }}</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.good }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.good_percentage }}%</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.average }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.average_percentage }}%</strong></h6>
                             </td>
                             <td>
-                                <h6 class="center"><strong>{{ crop.bad }}</strong></h6>
+                                <h6 class="center"><strong>{{ crop.bad_percentage }}%</strong></h6>
                             </td>
                         </tr>
                     </table>
@@ -137,8 +137,8 @@
     </div>
     <div [ngClass]="{ 'col-4 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926,'reducePadding': innerWidth < 1220 }">
         <div class="card listing-cards bg-light mb-3 graphCard">
-            <div class="card-body">
-                <h6><img src="../../../assets/images/crops-icon/{{ cropData[selectedCropIndex].crop }}.png" class="cropIcon">{{ cropData[selectedCropIndex].crop }}</h6>
+            <div class="card-body" *ngIf='showcropgraph'>
+                <h6><img src="../../../assets/images/crops-icon/{{ cropArray[selectedCropIndex].name }}.png" class="cropIcon">{{ cropArray[selectedCropIndex].name }}</h6>
                 <app-doughnut-chart [data]="doughcropdata" [labels]="doughnutcropLabels" postion="inside"></app-doughnut-chart>
             </div>
         </div>

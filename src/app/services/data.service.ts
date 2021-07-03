@@ -61,6 +61,21 @@ export class DataService {
 
   }
 
+  getrice(){
+    return this.afs.collection('comp_a').doc('Crop').collection('Rice').doc('rice').valueChanges()
+  }
+   
+  getmillet(){
+    return this.afs.collection('comp_a').doc('Crop').collection('Millet').doc('millet').valueChanges()
+  }
+   getbarley(){
+    return this.afs.collection('comp_a').doc('Crop').collection('Barley').doc('barley').valueChanges()
+  } getwheat(){
+    return this.afs.collection('comp_a').doc('Crop').collection('Wheat').doc('wheat').valueChanges()
+  } getmaize(){
+    return this.afs.collection('comp_a').doc('Crop').collection('Maize').doc('maize').valueChanges()
+  }
+
 
 }
  

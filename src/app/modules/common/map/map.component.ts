@@ -17,7 +17,7 @@ export class MapComponent implements OnInit, OnDestroy {
  @Input() previous = [];
 
 
-  mark = [];
+  @Input() mark = [];
   offsetY = 0;
   offsetX = 0;
 
@@ -56,28 +56,28 @@ export class MapComponent implements OnInit, OnDestroy {
     var offsetY = this.offsetY;
     var offsetX = this.offsetX;
     setTimeout(function () {
-      // for (var i = 0; i < mark.length; i++) {
-      //   if (this.left) {
-      //     $('#district')[0].style.left = this.left;
-      //     $('#chart')[0].style.left = this.left;
-      //   }
+      for (var i = 0; i < mark.length; i++) {
+        if (this.left) {
+          $('#district')[0].style.left = this.left;
+          $('#chart')[0].style.left = this.left;
+        }
 
-      //   if (this.top) {
-      //     $('#district')[0].style.top = this.top;
-      //     $('#chart')[0].style.top = this.top;
-      //   }
-      //   var image = new Image();
-      //   image.src = url;
-      //   image.className = 'marker';
-      //   image.style.position = 'absolute';
-      //   image.style['z-index'] = 2;
-      //   image.style.height = '24.5px';
-      //   image.style.width = '12.5px';
-      //   var position = $('#' + mark[i] + '')[0].getBoundingClientRect();
-      //   image.style.top = position.y - offsetY + 'px';
-      //   image.style.left = position.x - offsetX + 'px';
-      //   $('body')[0].prepend(image);
-      // }
+        if (this.top) {
+          $('#district')[0].style.top = this.top;
+          $('#chart')[0].style.top = this.top;
+        }
+        var image = new Image();
+        image.src = url;
+        image.className = 'marker';
+        image.style.position = 'absolute';
+        image.style['z-index'] = 2;
+        image.style.height = '24.5px';
+        image.style.width = '12.5px';
+        var position = $('#' + mark[i] + '')[0].getBoundingClientRect();
+        image.style.top = position.y - offsetY + 'px';
+        image.style.left = position.x - offsetX + 'px';
+        $('body')[0].prepend(image);
+      }
 
       for (var i = 0; i < yellowStates.length; i++) {
         document.getElementById(yellowStates[i])['style']['fill'] =

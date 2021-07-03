@@ -18,6 +18,7 @@ export class MachineComponent implements OnInit{
   badtemp:any = 0
   averagetemp:any = 0
   goodtemp:any = 0
+
   machineCardData = [
    
   ];
@@ -60,9 +61,8 @@ export class MachineComponent implements OnInit{
     },
   ];
 
-  cropScanData = [60, 65, 40, 55, 80];
-  cropScanLabels = ['Millet', 'Maize', 'Barley', 'Wheat', 'Rice'];
-
+ 
+  showcropgraph = false
   
 
   scansByMonthLabels = [
@@ -143,11 +143,16 @@ export class MachineComponent implements OnInit{
 
 
 
-  changeSelectedCrop(index) {
+  changeSelectedCrop(index:any) {
+    let graphdata = []
     this.selectedCropIndex = index;
+     graphdata.push(this.cropArray[index].good_percentage)
+      graphdata.push(this.cropArray[index].bad_percentage)
+      graphdata.push(this.cropArray[index].average_percentage)
+      this.doughcropdata = graphdata
   }
 doughnutChartData = [10,20,70];
-doughcropdata =[10,50,40]
+doughcropdata =[]
 doughnutcropLabels = ['Good', 'Bad', 'Average'];
 
   doughnutChartLabels = ['Good', 'Bad', 'Average'];
@@ -180,13 +185,72 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
   noofscans = []
   usertemp:any = null;
   numbertemp:number = 0
+   cropScanData = [];
+  cropScanLabels = [];
+  cropArray = []
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 1302) {
       this.samllerScreenUI = true;
     }
     this.setMapOptions(); 
- 
+ this.service.getrice().subscribe(res=>{
+      let croptemp = res
+      let graphdata = []
+      croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+            this.cropScanLabels.push(croptemp.name)
+      this.cropScanData.push(croptemp.total_scans)
+      graphdata.push(croptemp.good_percentage)
+      graphdata.push(croptemp.bad_percentage)
+      graphdata.push(croptemp.average_percentage)
+      this.doughcropdata = graphdata
+
+    })
+
+      this.service.getmaize().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+            this.cropScanLabels.push(croptemp.name)
+      this.cropScanData.push(croptemp.total_scans)
+    })
+
+        this.service.getwheat().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+            this.cropScanLabels.push(croptemp.name)
+      this.cropScanData.push(croptemp.total_scans)
+    })
+
+          this.service.getbarley().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+            this.cropScanLabels.push(croptemp.name)
+      this.cropScanData.push(croptemp.total_scans)
+    })
+
+            this.service.getmillet().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      console.log(this.cropArray)
+            this.cropScanLabels.push(croptemp.name)
+      this.cropScanData.push(croptemp.total_scans)
+      this.showcropgraph = true
+    })
  this.service.getmachinedata().subscribe(res=>{
       this.machineCardData.splice(0,this.machineCardData.length)
       this.temp = res;

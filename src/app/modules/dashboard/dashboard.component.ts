@@ -13,6 +13,8 @@ export class DashBoardComponent implements OnInit {
   samllerScreenUI = false;
   sizeOfMap;
   leftPercent;
+  districtscan:any = 0
+  uniquedistricts:any = []
   topPercent = '20px';
   temp:any = null
   userdata:any = null
@@ -39,7 +41,47 @@ export class DashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
+    this.service.getrice().subscribe(res=>{
+      let croptemp = res
+      croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+    })
 
+      this.service.getmaize().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+    })
+
+        this.service.getwheat().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+    })
+
+          this.service.getbarley().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+    })
+
+            this.service.getmillet().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      console.log(this.cropArray)
+      this.cropData = true
+    })
     this.service.getfarmers().subscribe(res=>{
       
       this.temp = res
@@ -135,14 +177,23 @@ export class DashBoardComponent implements OnInit {
         console.log(this.doughnutChartData)
         console.log(this.machine1scan,this.machine2scan,this.machine3scan,this.machine4scan)
 
-        
+        let mydistrict = []
         for(let item of this.machinedata){
           console.log(item.states)
 
           this.mystates = this.mystates.concat(item.states)
+          mydistrict = mydistrict.concat(item.districts)
         }
+        console.log(mydistrict)
         console.log(this.mystates)
-        
+        for(let item of mydistrict){
+          if(this.uniquedistricts.includes(item)){
+            continue;
+          }
+          else{
+            this.uniquedistricts.push(item)
+          }
+        }
         for(let item of this.mystates){
 
           if(this.uniquestates.includes(item)){
@@ -152,8 +203,9 @@ export class DashBoardComponent implements OnInit {
               this.uniquestates.push(item)
             }
         }
-
+        this.districtscan = this.uniquedistricts.length
         console.log(this.uniquestates)
+        console.log(this.uniquedistricts)
         this.statescan = this.uniquestates.length
         this.state = true
       })
@@ -197,43 +249,8 @@ export class DashBoardComponent implements OnInit {
   // machine3 = '29%';
   // machine4 = '29%';
 
-  cropData = [
-    {
-      crop: 'Maize',
-      scans: '123',
-      good: '89%',
-      average: '09%',
-      bad: '02%',
-    },
-    {
-      crop: 'Wheat',
-      scans: '45',
-      good: '89%',
-      average: '09%',
-      bad: '02%',
-    },
-    {
-      crop: 'Rice',
-      scans: '323',
-      good: '89%',
-      average: '09%',
-      bad: '02%',
-    },
-    {
-      crop: 'Barley',
-      scans: '232',
-      good: '89%',
-      average: '09%',
-      bad: '02%',
-    },
-    {
-      crop: 'Millet',
-      scans: '415',
-      good: '89%',
-      average: '09%',
-      bad: '02%',
-    },
-  ];
+  cropData = false
+  cropArray = []
 
   doughnutColors = [
     'rgb(97,97,97)',
