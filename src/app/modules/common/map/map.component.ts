@@ -22,7 +22,7 @@ export class MapComponent implements OnInit, OnDestroy {
   offsetX = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-  
+  console.log('ngonchanges call hocche')
 
     console.log('previous',this.previous)
     console.log('new',this.yellowStates)

@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
     this.service.getusers().subscribe(res=>{
       this.users = res
       // console.log(this.users)
-      this.usernames = this.users[2].users
+      this.usernames = this.users[3].users
       console.log(this.users)
     })
   }

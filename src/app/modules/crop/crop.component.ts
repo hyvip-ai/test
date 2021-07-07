@@ -12,6 +12,14 @@ import {Router} from '@angular/router'
 export class CropComponent implements OnInit {
   showmachine:any = false
   graphshow:any = false
+  selectedcropmonthdata:any = []
+  selectedcropmachinedata:any = []
+  selectedcroppreviousstate:any = []
+  selecetedmachine:any = false
+  selectedcropuserdata:any = []
+  selectedcropuserlabel:any = []
+  selecteduserdata:any=false
+  monthdata:any = false
   cropArray:any = []
   showusers:any = false
   uniquedistricts:any = []
@@ -189,6 +197,36 @@ export class CropComponent implements OnInit {
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
       this.cropArray.push(croptemp);
+      this.selectedcropmonthdata = croptemp.months
+      this.uniquedistricts = croptemp.district
+      this.previousstaetemp = croptemp.states
+      this.uniquestates = croptemp.states
+      // this.selectedcroppreviousstate = croptemp.states
+      this.monthdata = true
+      this.state = true
+      let userlabeltemp=[]
+      let userdatatemp = []
+      let machinedatatemp = []
+      userlabeltemp.push('Farmer')
+      userdatatemp.push(croptemp.farmer)
+      userlabeltemp.push('Broker')
+      userdatatemp.push(croptemp.broker)
+      userlabeltemp.push('Technician')
+      userdatatemp.push(croptemp.technician)
+      userlabeltemp.push('Inspector')
+      userdatatemp.push(croptemp.inspector)
+      userlabeltemp.push('Trader')
+      userdatatemp.push(croptemp.trader)
+      machinedatatemp.push(croptemp.machine1)
+      machinedatatemp.push(croptemp.machine2)
+      machinedatatemp.push(croptemp.machine3)
+      machinedatatemp.push(croptemp.machine4)
+        this.selectedcropuserdata=userdatatemp
+        this.selectedcropuserlabel=userlabeltemp
+        this.selecteduserdata=true
+        this.selectedcropmachinedata = machinedatatemp
+        this.selecetedmachine = true
+      // console.log(this.selectedcropmonthdata)
     })
 
             this.service.getmillet().subscribe(res=>{
@@ -197,11 +235,11 @@ export class CropComponent implements OnInit {
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
       this.cropArray.push(croptemp);
-      console.log(this.cropArray)
+      //console.log(this.cropArray)
       this.cropData = true
     })
     this.service.getmachinedata().subscribe(res=>{
-      console.log(res)
+      //console.log(res)
 
         this.temp = res;
         for(let item of this.temp){
@@ -217,47 +255,24 @@ export class CropComponent implements OnInit {
        machinetempbardata.push(this.machinedata[0].bad_percentage)
        machinetempbardata.push(this.machinedata[0].average_percentage)
        this.machinechartdata = machinetempbardata
-        console.log(this.machinedata)
-        console.log(this.machinechartdata)
+        //console.log(this.machinedata)
+        //console.log(this.machinechartdata)
         this.showmachine = true
-        let mydistrict = []
-                for(let item of this.machinedata){
-          console.log(item.states) 
-
-          this.mystates = this.mystates.concat(item.states)
-          mydistrict = mydistrict.concat(item.districts)
-
-        }
-        console.log(this.mystates)
-        for(let item of mydistrict){
-          if(this.uniquedistricts.includes(item)){
-            continue;
-          }
-          else{
-            this.uniquedistricts.push(item)
-          }
-        }
+       
+            
+      
+      
         
-        for(let item of this.mystates){
+   
 
-          if(this.uniquestates.includes(item)){
-            continue;
-          }
-            else{
-              this.uniquestates.push(item)
-            }
-        }
-
-        console.log(this.uniquestates)
-        this.statescan = this.uniquestates.length
-        this.state = true
+       
 
         for(let i=0;i<this.machinedata.length;i++){
             this.machineData1.splice(i,1,this.machinedata[i].no_of_machines)
             this.scanData.splice(i,1,this.machinedata[i].total_scans)
         }
-        console.log(this.machineData1)
-        console.log(this.scanData)
+        //console.log(this.machineData1)
+        //console.log(this.scanData)
         this.showmachine = true
     })
     this.service.getfarmers().subscribe(res=>{
@@ -283,15 +298,15 @@ export class CropComponent implements OnInit {
     userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
     userersobject.total = this.numbertemp
    userersobject.user = 'Farmer'
-     console.log(userersobject)
+     //console.log(userersobject)
      userbartempdata.push(userersobject.good_percentage)
      userbartempdata.push(userersobject.bad_percentage)
      userbartempdata.push(userersobject.average_percentage)
      this.userchartdata = userbartempdata
      this.graphshow = true
-     console.log(this.userchartdata)
+     //console.log(this.userchartdata)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    //console.log(this.myusers)
   })
 
     this.service.gettraders().subscribe(res=>{
@@ -322,9 +337,9 @@ this.numbertemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Trader'
-    console.log(userersobject)
+    //console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    //console.log(this.myusers)
   })
        this.service.getpolice().subscribe(res=>{
                let  userersobject={
@@ -354,9 +369,9 @@ this.numbertemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Inspector'
-    console.log(userersobject)
+    //console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    //console.log(this.myusers)
   })
 
            this.service.gettechinician().subscribe(res=>{
@@ -387,9 +402,9 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Technician'
-    console.log(userersobject)
+    //console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    //console.log(this.myusers)
   })
 
 
@@ -421,14 +436,14 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Broker'
-    console.log(userersobject)
+    //console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    //console.log(this.myusers)
     this.userBarData.splice(0,this.userBarData.length)
     this.userBarData = this.usernumbers
     this.scanBarData.splice(0,this.scanBarData.length)
     this.scanBarData = this.noofscans
-    console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
+    //console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
      this.showusers =true
   })
   }
@@ -476,5 +491,98 @@ machinechartdata=[]
      userbartempdata.push(this.myusers[index].average_percentage)
      this.userchartdata = userbartempdata
   }
+crop:any = null
+  cropselected(){
+    this.crop = document.getElementById('crop')
+    // console.log(crop.value)
+    if(this.crop.value == 'Barley'){
+      this.service.getbarley().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      this.selectedcropmonthdata = croptemp.months
+      this.uniquedistricts = croptemp.district
+      
+      // console.log(this.selectedcroppreviousstate)
+      this.uniquestates = croptemp.states 
+     
+       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
+     this.selectedcroppreviousstate = this.previousstaetemp
+     console.log(this.selectedcroppreviousstate)
+       this.previousstaetemp = this.uniquestates
+      this.monthdata = true
+      this.state = true
+      let userlabeltemp=[]
+      let userdatatemp = []
+      let machinedatatemp = []
+      userlabeltemp.push('Farmer')
+      userdatatemp.push(croptemp.farmer)
+      userlabeltemp.push('Broker')
+      userdatatemp.push(croptemp.broker)
+      userlabeltemp.push('Technician')
+      userdatatemp.push(croptemp.technician)
+      userlabeltemp.push('Inspector')
+      userdatatemp.push(croptemp.inspector)
+      userlabeltemp.push('Trader')
+      userdatatemp.push(croptemp.trader)
+      machinedatatemp.push(croptemp.machine1)
+      machinedatatemp.push(croptemp.machine2)
+      machinedatatemp.push(croptemp.machine3)
+      machinedatatemp.push(croptemp.machine4)
+        this.selectedcropuserdata=userdatatemp
+        this.selectedcropuserlabel=userlabeltemp
+        this.selecteduserdata=true
+        this.selectedcropmachinedata = machinedatatemp
+        this.selecetedmachine = true
+      // console.log(this.selectedcropmonthdata)
+    })
+    }
+    if(this.crop.value=='Rice'){
+      console.log('asche')
+          this.service.getrice().subscribe(res=>{
+      let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      this.selectedcropmonthdata = croptemp.months
+      
+      this.selectedcroppreviousstate = this.previousstaetemp
+      console.log(this.selectedcroppreviousstate)
+      this.uniquedistricts = croptemp.district
+      this.uniquestates = croptemp.states
+      this.previousstaetemp = this.uniquestates
+      console.log(this.previousstaetemp)
+      let userlabeltemp=[]
+      let userdatatemp = []
+      let machinedatatemp = []
+      userlabeltemp.push('Farmer')
+      userdatatemp.push(croptemp.farmer)
+      userlabeltemp.push('Broker')
+      userdatatemp.push(croptemp.broker)
+      userlabeltemp.push('Technician')
+      userdatatemp.push(croptemp.technician)
+      userlabeltemp.push('Inspector')
+      userdatatemp.push(croptemp.inspector)
+      userlabeltemp.push('Trader')
+      userdatatemp.push(croptemp.trader)
+      machinedatatemp.push(croptemp.machine1)
+      machinedatatemp.push(croptemp.machine2)
+      machinedatatemp.push(croptemp.machine3)
+      machinedatatemp.push(croptemp.machine4)
+      this.selectedcropuserdata.splice(0,this.selectedcropuserdata.length)
+      this.selectedcropuserdata=userdatatemp
+      this.selectedcropuserlabel.splice(0,this.selectedcropuserlabel.length)
+      this.selectedcropuserlabel=userlabeltemp
+      this.selectedcropmachinedata.splice(0,this.selectedcropmachinedata.length)
+      this.selectedcropmachinedata = machinedatatemp
+        console.log(machinedatatemp,userdatatemp,userlabeltemp)
+      console.log(this.selectedcropmachinedata,this.selectedcropuserlabel,this.selectedcropuserdata)
+    })
+    }
+  }
+  previousstaetemp:any = []
 }
 

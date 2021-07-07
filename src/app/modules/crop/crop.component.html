@@ -63,17 +63,20 @@
             <div class="row paddingLeft">
                 <h3 [ngClass]="{ 'middle': innerWidth >= 741}" class="greyText">Showing For :</h3>
                 <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12 moreMargin': innerWidth < 741 }" class="col-3">
-                    <select class="form-control" name="crop" id="crop">
-                        <option value="all">Select Crop</option>
-                        <option *ngFor="let crop of crops" value="{{crop}}">{{crop}}</option>
+                    <select class="form-control" name="crop" id="crop" (change)='cropselected()'>
+                        <option value="Barley">Barley</option>
+                        <option value="Rice">Rice</option>
+                        <option value="Maize">Maize</option>
+                        <option value="Wheat">Wheat</option>
+                        <option value="Millet">Millet</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div [ngClass]="{ 'extarMargin': innerWidth > 414 }" class="card listing-cards graphCard">
-                    <div class="card-body graphCardBody">
+                    <div class="card-body graphCardBody" *ngIf='monthdata'>
                         <h2 class="cardTitle">Scans by month</h2>
-                        <app-bar-chart [data]="scansByMonthData" [labels]="scansByMonthLabels" size="400px"
+                        <app-bar-chart [data]="selectedcropmonthdata" [labels]="scansByMonthLabels" size="400px"
                             barColor="rgb(112,212,224)">
                         </app-bar-chart>
                     </div>
@@ -82,7 +85,7 @@
             <div class="row">
                 <div [ngClass]="{ 'extarMargin': innerWidth > 414 }" class="card listing-cards mb-3 graphCard">
                     <div *ngIf='state' [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
-                        <app-map [yellowStates]="uniquestates" [size]="sizeOfMap" [top]="topPercent" [mark]='uniquedistricts'></app-map>
+                        <app-map [yellowStates]="uniquestates" [previous]='selectedcroppreviousstate' [size]="sizeOfMap" [top]="topPercent"></app-map>
                     </div>
                 </div>
             </div>
@@ -90,21 +93,23 @@
                 <div
                     [ngClass]="{ 'col-6 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926 ,'reducePadding': innerWidth < 1271 }">
                     <div [ngClass]="{ 'reduceRightMargin': innerWidth < 1271  }" class="card listing-cards bg-light mb-3 w-100">
-                        <div *ngIf='showmachine' class="card-body grey-bg lessPadding">
+                        <div *ngIf='selecetedmachine' class="card-body grey-bg lessPadding">
                             <h2 class="cardTitle">Machine-wise scans distribution</h2>
-                            <app-double-bar-chart [machineData]="machineData1" [scanData]="scanData" [labels]="labels1" [legend]="legend1">
-                            </app-double-bar-chart>
+                           <!--  <app-double-bar-chart [machineData]="machineData1" [scanData]="scanData" [labels]="labels1" [legend]="legend1">
+                            </app-double-bar-chart> -->
+                             <app-horizontal-bar-chart [data]="selectedcropmachinedata" [labels]="labels1"></app-horizontal-bar-chart>
                         </div>
                     </div>
                 </div>
                 <div
                     [ngClass]="{ 'col-6 d-flex': innerWidth >= 926, 'col-12': innerWidth < 926 ,'reducePadding': innerWidth < 1271}">
                     <div [ngClass]="{ 'reduceleftMargin': innerWidth < 1271 }" class="card listing-cards bg-light mb-3 w-100">
-                        <div class="card-body grey-bg lessPadding">
-                            <h2 class="cardTitle">User wise distribution</h2>
-                            <app-double-bar-chart [machineData]="userBarData" [scanData]="scanBarData" [labels]="labels2"
+                        <div *ngIf='selecteduserdata' class="card-body grey-bg lessPadding">
+                            <h2 class="cardTitle">User wise Scan distribution</h2>
+                           <!--  <app-double-bar-chart [machineData]="userBarData" [scanData]="scanBarData" [labels]="labels2"
                                 [legend]="legend2">
-                            </app-double-bar-chart>
+                            </app-double-bar-chart> -->
+                            <app-horizontal-bar-chart [data]="selectedcropuserdata" [labels]="selectedcropuserlabel"></app-horizontal-bar-chart>
                         </div>
                     </div>
                 </div>
