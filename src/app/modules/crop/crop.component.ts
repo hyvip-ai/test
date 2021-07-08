@@ -198,7 +198,7 @@ export class CropComponent implements OnInit {
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
       this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
-      this.uniquedistricts = croptemp.district
+      // this.uniquedistricts = croptemp.district
       this.previousstaetemp = croptemp.states
       this.uniquestates = croptemp.states
       // this.selectedcroppreviousstate = croptemp.states
@@ -495,6 +495,138 @@ crop:any = null
   cropselected(){
     this.crop = document.getElementById('crop')
     // console.log(crop.value)
+    if(this.crop.value == 'Wheat'){
+      this.service.getwheat().subscribe(res=>{
+        let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      this.selectedcropmonthdata = croptemp.months
+      // this.uniquedistricts = croptemp.district
+      
+      // console.log(this.selectedcroppreviousstate)
+      this.uniquestates = croptemp.states 
+     
+       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
+     this.selectedcroppreviousstate = this.previousstaetemp
+     console.log(this.selectedcroppreviousstate)
+       this.previousstaetemp = this.uniquestates
+      this.monthdata = true
+      this.state = true
+      let userlabeltemp=[]
+      let userdatatemp = []
+      let machinedatatemp = []
+      userlabeltemp.push('Farmer')
+      userdatatemp.push(croptemp.farmer)
+      userlabeltemp.push('Broker')
+      userdatatemp.push(croptemp.broker)
+      userlabeltemp.push('Technician')
+      userdatatemp.push(croptemp.technician)
+      userlabeltemp.push('Inspector')
+      userdatatemp.push(croptemp.inspector)
+      userlabeltemp.push('Trader')
+      userdatatemp.push(croptemp.trader)
+      machinedatatemp.push(croptemp.machine1)
+      machinedatatemp.push(croptemp.machine2)
+      machinedatatemp.push(croptemp.machine3)
+      machinedatatemp.push(croptemp.machine4)
+        this.selectedcropuserdata=userdatatemp
+        this.selectedcropuserlabel=userlabeltemp
+        this.selecteduserdata=true
+        this.selectedcropmachinedata = machinedatatemp
+        this.selecetedmachine = true
+      
+      })
+    }
+    if(this.crop.value == 'Millet'){
+      this.service.getmillet().subscribe(res=>{
+        let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      this.selectedcropmonthdata = croptemp.months
+      // this.uniquedistricts = croptemp.district
+      
+      // console.log(this.selectedcroppreviousstate)
+      this.uniquestates = croptemp.states 
+     
+       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
+     this.selectedcroppreviousstate = this.previousstaetemp
+     console.log(this.selectedcroppreviousstate)
+       this.previousstaetemp = this.uniquestates
+      this.monthdata = true
+      this.state = true
+      let userlabeltemp=[]
+      let userdatatemp = []
+      let machinedatatemp = []
+      userlabeltemp.push('Farmer')
+      userdatatemp.push(croptemp.farmer)
+      userlabeltemp.push('Broker')
+      userdatatemp.push(croptemp.broker)
+      userlabeltemp.push('Technician')
+      userdatatemp.push(croptemp.technician)
+      userlabeltemp.push('Inspector')
+      userdatatemp.push(croptemp.inspector)
+      userlabeltemp.push('Trader')
+      userdatatemp.push(croptemp.trader)
+      machinedatatemp.push(croptemp.machine1)
+      machinedatatemp.push(croptemp.machine2)
+      machinedatatemp.push(croptemp.machine3)
+      machinedatatemp.push(croptemp.machine4)
+        this.selectedcropuserdata=userdatatemp
+        this.selectedcropuserlabel=userlabeltemp
+        this.selecteduserdata=true
+        this.selectedcropmachinedata = machinedatatemp
+        this.selecetedmachine = true
+      
+      })
+    }
+    if(this.crop.value=='Maize'){
+      this.service.getmaize().subscribe(res=>{
+        let croptemp = res
+            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+      this.cropArray.push(croptemp);
+      this.selectedcropmonthdata = croptemp.months
+      // this.uniquedistricts = croptemp.district
+      
+      // console.log(this.selectedcroppreviousstate)
+      this.uniquestates = croptemp.states 
+     
+       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
+     this.selectedcroppreviousstate = this.previousstaetemp
+     console.log(this.selectedcroppreviousstate)
+       this.previousstaetemp = this.uniquestates
+      this.monthdata = true
+      this.state = true
+      let userlabeltemp=[]
+      let userdatatemp = []
+      let machinedatatemp = []
+      userlabeltemp.push('Farmer')
+      userdatatemp.push(croptemp.farmer)
+      userlabeltemp.push('Broker')
+      userdatatemp.push(croptemp.broker)
+      userlabeltemp.push('Technician')
+      userdatatemp.push(croptemp.technician)
+      userlabeltemp.push('Inspector')
+      userdatatemp.push(croptemp.inspector)
+      userlabeltemp.push('Trader')
+      userdatatemp.push(croptemp.trader)
+      machinedatatemp.push(croptemp.machine1)
+      machinedatatemp.push(croptemp.machine2)
+      machinedatatemp.push(croptemp.machine3)
+      machinedatatemp.push(croptemp.machine4)
+        this.selectedcropuserdata=userdatatemp
+        this.selectedcropuserlabel=userlabeltemp
+        this.selecteduserdata=true
+        this.selectedcropmachinedata = machinedatatemp
+        this.selecetedmachine = true
+      
+      })
+    }
     if(this.crop.value == 'Barley'){
       this.service.getbarley().subscribe(res=>{
       let croptemp = res
@@ -503,7 +635,7 @@ crop:any = null
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
       this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
-      this.uniquedistricts = croptemp.district
+      // this.uniquedistricts = croptemp.district
       
       // console.log(this.selectedcroppreviousstate)
       this.uniquestates = croptemp.states 
@@ -551,7 +683,7 @@ crop:any = null
       
       this.selectedcroppreviousstate = this.previousstaetemp
       console.log(this.selectedcroppreviousstate)
-      this.uniquedistricts = croptemp.district
+      // this.uniquedistricts = croptemp.district
       this.uniquestates = croptemp.states
       this.previousstaetemp = this.uniquestates
       console.log(this.previousstaetemp)
