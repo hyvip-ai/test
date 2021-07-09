@@ -492,7 +492,7 @@ machinechartdata=[]
      this.userchartdata = userbartempdata
   }
 crop:any = null
-  cropselected(){
+  cropselected(){ 
     this.crop = document.getElementById('crop')
     // console.log(crop.value)
     if(this.crop.value == 'Wheat'){
@@ -501,7 +501,7 @@ crop:any = null
             croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
+      // this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
       // this.uniquedistricts = croptemp.district
       
@@ -545,7 +545,7 @@ crop:any = null
             croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
+      // this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
       // this.uniquedistricts = croptemp.district
       
@@ -589,7 +589,7 @@ crop:any = null
             croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
+      // this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
       // this.uniquedistricts = croptemp.district
       
@@ -633,7 +633,7 @@ crop:any = null
             croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
+      // this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
       // this.uniquedistricts = croptemp.district
       
@@ -678,7 +678,7 @@ crop:any = null
             croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
+      // this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
       
       this.selectedcroppreviousstate = this.previousstaetemp

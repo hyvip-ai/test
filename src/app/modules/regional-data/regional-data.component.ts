@@ -15,7 +15,7 @@ export class RegionalDataComponent implements OnInit {
   username = 'Pranav';
   machinegraph:any = false
   mystates:any = []
-  state:any = false
+  state:any = false 
   uniquestates:any =[]
   numofdistricts:any = 0
   uniquedistricts:any = []
