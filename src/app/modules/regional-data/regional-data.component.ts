@@ -13,8 +13,9 @@ import { constants } from "../../global/constants";
 export class RegionalDataComponent implements OnInit {
    constructor(private service:DataService,private router:Router,private aroute:ActivatedRoute) {}
   username = 'Pranav';
-  machinegraph:any = false
+  showmygraph:any = false
   mystates:any = []
+
   state:any = false 
   uniquestates:any =[]
   numofdistricts:any = 0
@@ -24,32 +25,34 @@ totalscans:any = 0
     statescan:any = 0
   crops = constants.crops;
   machineType = constants.machineType;
-
+  mainstatedata:any = []
   indiaStates = constants.indiaState;
   userType = constants.userType
-   usernumbers = []
-  noofscans = []
+  
   machinedata:any = []
 
-  usertemp:any = null;
-  numbertemp:Number = 0
-  userBarData = [320, 332, 301];
-  scanBarData = [220, 182, 191];
+
+ 
   data = [72, 72, 72, 72, 72];
   labels = ['Punjab', 'Bihar', 'Uttar Pradesh', 'Maharashtra', 'Gujarat'];
 
-  cropData = [267, 190, 200, 210, 225, 145, 180, 140];
-  cropLabels = ['Rice', 'Wheat', 'Barley', 'Maize', 'Millet', 'Jowar'];
 
-  mymachineData = [320, 332, 301, 334];
-  scanData = [220, 182, 191, 234];
-  labels1 = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
-  legend1 = ['Number of machine', 'Number of scans'];
 
-  userData = [320, 332, 301];
-  scanData1 = [220, 182, 191];
-  labels2 = ['Farmer','Trader','Inspector','Technician','Broker'];
-  legend2 = ['Number of users', 'Number of scans'];
+  mymachineData:any = [];
+  machinescanData:any = [];
+  machinelabels:any = ['Machine 1','Machine 2','Machine 3','Machine 4'];
+  machinelegend:any = ['Number of machine', 'Number of scans'];
+
+  userData:any = [];
+  userscanData:any = [];
+  userlabels:any = [];
+  userlegend:any = ['Number of users', 'Number of scans'];
+
+  cropData:any = [];
+  cropLabels:any = [];
+
+  totalscandata:any = []
+  totalscanlabels:any = ['Good','Average','Bad']
 
   innerWidth;
   sizeOfMap;
@@ -57,78 +60,36 @@ totalscans:any = 0
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
-     this.service.getfarmers().subscribe(res=>{
-
-    this.usertemp = res;
-    this.usernumbers.push(this.usertemp.length);
-    for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
-    }
-    this.noofscans.push(this.numbertemp)
-  })
-
-    this.service.gettraders().subscribe(res=>{
-this.numbertemp = 0
-    this.usertemp = res;
-    this.usernumbers.push(this.usertemp.length);
-    for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
-    }
-    this.noofscans.push(this.numbertemp)
-  })
-    this.service.getpolice().subscribe(res=>{
-this.numbertemp = 0
-    this.usertemp = res;
-    this.usernumbers.push(this.usertemp.length);
-    for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
-    }
-    this.noofscans.push(this.numbertemp)
-  })
-
-           this.service.gettechinician().subscribe(res=>{
-this.numbertemp = 0
-    this.usertemp = res;
-    this.usernumbers.push(this.usertemp.length);
-    for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
-    }
-    this.noofscans.push(this.numbertemp)
-  })
-
-
-        this.service.getbrokers().subscribe(res=>{
-          this.numbertemp = 0
-
-    this.usertemp = res;
-    this.usernumbers.push(this.usertemp.length);
-    for(let item of this.usertemp){
-      this.numbertemp = this.numbertemp + item.no_of_scans 
-    }
-    this.noofscans.push(this.numbertemp)
-    this.userBarData.splice(0,this.userBarData.length)
-    this.userBarData = this.usernumbers
-    this.scanBarData.splice(0,this.scanBarData.length)
-    this.scanBarData = this.noofscans
-    console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
-  })
-
+    this.service.getallstate().subscribe(res=>{
+      console.log(res)
+     this.mainstatedata = res
+     
+      this.mymachineData = this.mainstatedata[0].machine_num;
+      this.machinescanData = this.mainstatedata[0].machine_scan;
+      this.cropData = this.mainstatedata[0].crop_scan
+      this.cropLabels = this.mainstatedata[0].crop_type
+      this.userData = this.mainstatedata[0].user_num
+      this.userscanData = this.mainstatedata[0].user_scan
+      this.userlabels = this.mainstatedata[0].user_type
+     
+      this.totalscandata.push(Math.floor((this.mainstatedata[0].good_scan/this.mainstatedata[0].total_scan)*100))
+      this.totalscandata.push(Math.floor((this.mainstatedata[0].average_scan/this.mainstatedata[0].total_scan)*100))
+      this.totalscandata.push(Math.floor((this.mainstatedata[0].bad_scan/this.mainstatedata[0].total_scan)*100))
+      this.showmygraph = true;
+    })
+      
         this.service.getmachinedata().subscribe(res=>{
              console.log(res)
 
-        this.temp = res;
-        for(let item of this.temp){
-          this.machinedata.push(item.data)
-        }
+        this.machinedata = res;
+        // for(let item of this.temp){
+        //   this.machinedata.push(item.data)
+        // }
        
         console.log(this.machinedata)
-        for(let i=0;i<this.machinedata.length;i++){
-          this.mymachineData[i] = this.machinedata[i].no_of_machines
-          this.scanData[i] = this.machinedata[i].total_scans
-        }
-        this.machinegraph = true
-        console.log(this.mymachineData)
-        console.log(this.scanData)
+    
+        // console.log(this.mymachineData)
+        // console.log(this.scanData)
          for(let item of this.machinedata){
           // console.log(item)
           this.totalscans = this.totalscans + item.total_scans
@@ -202,6 +163,38 @@ this.numbertemp = 0
       this.sizeOfMap = '400px';
       this.topPercent = '40px';
     }
+  }
+
+  selectedcrop:any = null
+  statechange(){
+    this.selectedcrop = document.getElementById('selectcrop')
+    console.log(this.selectedcrop.value)
+    this.service.getselectedstate(this.selectedcrop.value).subscribe(res=>{
+      console.log(res)
+      let temp = res;
+      this.showmygraph = false;
+      this.mymachineData.splice(0,this.mymachineData.length)
+      this.mymachineData = temp.machine_num;
+      this.machinescanData.splice(0,this.machinescanData.length)
+      this.machinescanData = temp.machine_scan;
+      this.cropData.splice(0,this.cropData.length)
+      this.cropData = temp.crop_scan
+      this.cropLabels.splice(0,this.cropLabels.length)
+      this.cropLabels = temp.crop_type
+      this.userData.splice(0,this.userData.length)
+      this.userData = temp.user_num
+      this.userscanData.splice(0,this.userscanData.length)
+      this.userscanData = temp.user_scan
+      this.userlabels.splice(0,this.userlabels.length)
+      this.userlabels = temp.user_type
+      let tottalscandatatemp =[]
+      tottalscandatatemp.push(Math.floor((temp.good_scan/temp.total_scan)*100))
+      tottalscandatatemp.push(Math.floor((temp.average_scan/temp.total_scan)*100))
+      tottalscandatatemp.push(Math.floor((temp.bad_scan/temp.total_scan)*100))
+      this.totalscandata.splice(0,this.totalscandata.length)
+      this.totalscandata = tottalscandatatemp
+      this.showmygraph = true;
+    })
   }
 
 }

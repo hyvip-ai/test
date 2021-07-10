@@ -41,48 +41,58 @@ export class DashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
-    this.service.getrice().subscribe(res=>{
-      console.log(res) 
-      let croptemp = res 
-      croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+     this.service.getcrops().subscribe(res=>{
+      this.cropArray = res
+      for(let croptemp of this.cropArray){
+         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
+      }
+        this.cropData = true
+        console.log(this.cropArray)
+     })
+    // this.service.getrice().subscribe(res=>{
+    //   console.log(res) 
+    //   let croptemp = res 
+    //   croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
 
-      this.service.getmaize().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
+    //   this.service.getmaize().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
 
-        this.service.getwheat().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
+    //     this.service.getwheat().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
 
-          this.service.getbarley().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
+    //       this.service.getbarley().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
 
-            this.service.getmillet().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-      console.log(this.cropArray)
-      this.cropData = true
-    })
+    //         this.service.getmillet().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    //   console.log(this.cropArray)
+    //   this.cropData = true
+    // })
     this.service.getfarmers().subscribe(res=>{
       
       this.temp = res
@@ -123,10 +133,10 @@ export class DashBoardComponent implements OnInit {
      this.service.getmachinedata().subscribe(res=>{
         console.log(res)
 
-        this.temp = res;
-        for(let item of this.temp){
-          this.machinedata.push(item.data)
-        }
+        this.machinedata = res;
+        // for(let item of this.temp){
+        //   this.machinedata.push(item.data)
+        // }
        
         console.log(this.machinedata)
         var i = 0

@@ -13,7 +13,7 @@ export class CropComponent implements OnInit {
   showmachine:any = false
   graphshow:any = false
   selectedcropmonthdata:any = []
-  selectedcropmachinedata:any = []
+  selectedcropmachinedata:any = [] 
   selectedcroppreviousstate:any = []
   selecetedmachine:any = false
   selectedcropuserdata:any = []
@@ -167,40 +167,18 @@ export class CropComponent implements OnInit {
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
-    this.service.getrice().subscribe(res=>{
-      let croptemp = res 
-      croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+  this.service.getcrops().subscribe(res=>{
+    this.cropArray = res;
+    for(let croptemp of this.cropArray){
+        croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
-
-      this.service.getmaize().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
-
-        this.service.getwheat().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-    })
-
-          this.service.getbarley().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-      this.selectedcropmonthdata = croptemp.months
+    }
+    this.cropData = true
+       this.selectedcropmonthdata = this.cropArray[0].months
       // this.uniquedistricts = croptemp.district
-      this.previousstaetemp = croptemp.states
-      this.uniquestates = croptemp.states
+      this.previousstaetemp = this.cropArray[0].states
+      this.uniquestates = this.cropArray[0].states
       // this.selectedcroppreviousstate = croptemp.states
       this.monthdata = true
       this.state = true
@@ -208,43 +186,100 @@ export class CropComponent implements OnInit {
       let userdatatemp = []
       let machinedatatemp = []
       userlabeltemp.push('Farmer')
-      userdatatemp.push(croptemp.farmer)
+      userdatatemp.push(this.cropArray[0].farmer)
       userlabeltemp.push('Broker')
-      userdatatemp.push(croptemp.broker)
+      userdatatemp.push(this.cropArray[0].broker)
       userlabeltemp.push('Technician')
-      userdatatemp.push(croptemp.technician)
+      userdatatemp.push(this.cropArray[0].technician)
       userlabeltemp.push('Inspector')
-      userdatatemp.push(croptemp.inspector)
+      userdatatemp.push(this.cropArray[0].inspector)
       userlabeltemp.push('Trader')
-      userdatatemp.push(croptemp.trader)
-      machinedatatemp.push(croptemp.machine1)
-      machinedatatemp.push(croptemp.machine2)
-      machinedatatemp.push(croptemp.machine3)
-      machinedatatemp.push(croptemp.machine4)
+      userdatatemp.push(this.cropArray[0].trader)
+      machinedatatemp.push(this.cropArray[0].machine1)
+      machinedatatemp.push(this.cropArray[0].machine2)
+      machinedatatemp.push(this.cropArray[0].machine3)
+      machinedatatemp.push(this.cropArray[0].machine4)
         this.selectedcropuserdata=userdatatemp
         this.selectedcropuserlabel=userlabeltemp
         this.selecteduserdata=true
         this.selectedcropmachinedata = machinedatatemp
         this.selecetedmachine = true
-      // console.log(this.selectedcropmonthdata)
-    })
 
-            this.service.getmillet().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-      //console.log(this.cropArray)
-      this.cropData = true
-    })
+  })
+    // this.service.getrice().subscribe(res=>{
+    //   let croptemp = res 
+    //   croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
+
+    //   this.service.getmaize().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
+
+    //     this.service.getwheat().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    // })
+
+    //       this.service.getbarley().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    //   this.selectedcropmonthdata = croptemp.months
+    //   // this.uniquedistricts = croptemp.district
+    //   this.previousstaetemp = croptemp.states
+    //   this.uniquestates = croptemp.states
+    //   // this.selectedcroppreviousstate = croptemp.states
+    //   this.monthdata = true
+    //   this.state = true
+    //   let userlabeltemp=[]
+    //   let userdatatemp = []
+    //   let machinedatatemp = []
+    //   userlabeltemp.push('Farmer')
+    //   userdatatemp.push(croptemp.farmer)
+    //   userlabeltemp.push('Broker')
+    //   userdatatemp.push(croptemp.broker)
+    //   userlabeltemp.push('Technician')
+    //   userdatatemp.push(croptemp.technician)
+    //   userlabeltemp.push('Inspector')
+    //   userdatatemp.push(croptemp.inspector)
+    //   userlabeltemp.push('Trader')
+    //   userdatatemp.push(croptemp.trader)
+    //   machinedatatemp.push(croptemp.machine1)
+    //   machinedatatemp.push(croptemp.machine2)
+    //   machinedatatemp.push(croptemp.machine3)
+    //   machinedatatemp.push(croptemp.machine4)
+    //     this.selectedcropuserdata=userdatatemp
+    //     this.selectedcropuserlabel=userlabeltemp
+    //     this.selecteduserdata=true
+    //     this.selectedcropmachinedata = machinedatatemp
+    //     this.selecetedmachine = true
+    //   // console.log(this.selectedcropmonthdata)
+    // })
+
+    //         this.service.getmillet().subscribe(res=>{
+    //   let croptemp = res
+    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
+    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+    //   this.cropArray.push(croptemp);
+    //   //console.log(this.cropArray)
+    //   this.cropData = true
+    // })
     this.service.getmachinedata().subscribe(res=>{
-      //console.log(res)
-
-        this.temp = res;
-        for(let item of this.temp){
-          this.machinedata.push(item.data)
-        }
+      
+        this.machinedata = res;
        for(let item of this.machinedata){
         item.good_percentage = Math.floor((item.good_scans/item.total_scans)*100)
         item.average_percentage = Math.floor((item.average_scans/item.total_scans)*100)
@@ -255,18 +290,8 @@ export class CropComponent implements OnInit {
        machinetempbardata.push(this.machinedata[0].bad_percentage)
        machinetempbardata.push(this.machinedata[0].average_percentage)
        this.machinechartdata = machinetempbardata
-        //console.log(this.machinedata)
-        //console.log(this.machinechartdata)
+     
         this.showmachine = true
-       
-            
-      
-      
-        
-   
-
-       
-
         for(let i=0;i<this.machinedata.length;i++){
             this.machineData1.splice(i,1,this.machinedata[i].no_of_machines)
             this.scanData.splice(i,1,this.machinedata[i].total_scans)
@@ -494,10 +519,9 @@ machinechartdata=[]
 crop:any = null
   cropselected(){ 
     this.crop = document.getElementById('crop')
-    // console.log(crop.value)
-    if(this.crop.value == 'Wheat'){
-      this.service.getwheat().subscribe(res=>{
-        let croptemp = res
+    console.log(this.crop.value)
+    this.service.getselectedcrop(this.crop.value).subscribe(res=>{
+       let croptemp = res
             croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
@@ -536,184 +560,8 @@ crop:any = null
         this.selecteduserdata=true
         this.selectedcropmachinedata = machinedatatemp
         this.selecetedmachine = true
-      
-      })
-    }
-    if(this.crop.value == 'Millet'){
-      this.service.getmillet().subscribe(res=>{
-        let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      // this.cropArray.push(croptemp);
-      this.selectedcropmonthdata = croptemp.months
-      // this.uniquedistricts = croptemp.district
-      
-      // console.log(this.selectedcroppreviousstate)
-      this.uniquestates = croptemp.states 
-     
-       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
-     this.selectedcroppreviousstate = this.previousstaetemp
-     console.log(this.selectedcroppreviousstate)
-       this.previousstaetemp = this.uniquestates
-      this.monthdata = true
-      this.state = true
-      let userlabeltemp=[]
-      let userdatatemp = []
-      let machinedatatemp = []
-      userlabeltemp.push('Farmer')
-      userdatatemp.push(croptemp.farmer)
-      userlabeltemp.push('Broker')
-      userdatatemp.push(croptemp.broker)
-      userlabeltemp.push('Technician')
-      userdatatemp.push(croptemp.technician)
-      userlabeltemp.push('Inspector')
-      userdatatemp.push(croptemp.inspector)
-      userlabeltemp.push('Trader')
-      userdatatemp.push(croptemp.trader)
-      machinedatatemp.push(croptemp.machine1)
-      machinedatatemp.push(croptemp.machine2)
-      machinedatatemp.push(croptemp.machine3)
-      machinedatatemp.push(croptemp.machine4)
-        this.selectedcropuserdata=userdatatemp
-        this.selectedcropuserlabel=userlabeltemp
-        this.selecteduserdata=true
-        this.selectedcropmachinedata = machinedatatemp
-        this.selecetedmachine = true
-      
-      })
-    }
-    if(this.crop.value=='Maize'){
-      this.service.getmaize().subscribe(res=>{
-        let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      // this.cropArray.push(croptemp);
-      this.selectedcropmonthdata = croptemp.months
-      // this.uniquedistricts = croptemp.district
-      
-      // console.log(this.selectedcroppreviousstate)
-      this.uniquestates = croptemp.states 
-     
-       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
-     this.selectedcroppreviousstate = this.previousstaetemp
-     console.log(this.selectedcroppreviousstate)
-       this.previousstaetemp = this.uniquestates
-      this.monthdata = true
-      this.state = true
-      let userlabeltemp=[]
-      let userdatatemp = []
-      let machinedatatemp = []
-      userlabeltemp.push('Farmer')
-      userdatatemp.push(croptemp.farmer)
-      userlabeltemp.push('Broker')
-      userdatatemp.push(croptemp.broker)
-      userlabeltemp.push('Technician')
-      userdatatemp.push(croptemp.technician)
-      userlabeltemp.push('Inspector')
-      userdatatemp.push(croptemp.inspector)
-      userlabeltemp.push('Trader')
-      userdatatemp.push(croptemp.trader)
-      machinedatatemp.push(croptemp.machine1)
-      machinedatatemp.push(croptemp.machine2)
-      machinedatatemp.push(croptemp.machine3)
-      machinedatatemp.push(croptemp.machine4)
-        this.selectedcropuserdata=userdatatemp
-        this.selectedcropuserlabel=userlabeltemp
-        this.selecteduserdata=true
-        this.selectedcropmachinedata = machinedatatemp
-        this.selecetedmachine = true
-      
-      })
-    }
-    if(this.crop.value == 'Barley'){
-      this.service.getbarley().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      // this.cropArray.push(croptemp);
-      this.selectedcropmonthdata = croptemp.months
-      // this.uniquedistricts = croptemp.district
-      
-      // console.log(this.selectedcroppreviousstate)
-      this.uniquestates = croptemp.states 
-     
-       this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
-     this.selectedcroppreviousstate = this.previousstaetemp
-     console.log(this.selectedcroppreviousstate)
-       this.previousstaetemp = this.uniquestates
-      this.monthdata = true
-      this.state = true
-      let userlabeltemp=[]
-      let userdatatemp = []
-      let machinedatatemp = []
-      userlabeltemp.push('Farmer')
-      userdatatemp.push(croptemp.farmer)
-      userlabeltemp.push('Broker')
-      userdatatemp.push(croptemp.broker)
-      userlabeltemp.push('Technician')
-      userdatatemp.push(croptemp.technician)
-      userlabeltemp.push('Inspector')
-      userdatatemp.push(croptemp.inspector)
-      userlabeltemp.push('Trader')
-      userdatatemp.push(croptemp.trader)
-      machinedatatemp.push(croptemp.machine1)
-      machinedatatemp.push(croptemp.machine2)
-      machinedatatemp.push(croptemp.machine3)
-      machinedatatemp.push(croptemp.machine4)
-        this.selectedcropuserdata=userdatatemp
-        this.selectedcropuserlabel=userlabeltemp
-        this.selecteduserdata=true
-        this.selectedcropmachinedata = machinedatatemp
-        this.selecetedmachine = true
-      // console.log(this.selectedcropmonthdata)
     })
-    }
-    if(this.crop.value=='Rice'){
-      console.log('asche')
-          this.service.getrice().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      // this.cropArray.push(croptemp);
-      this.selectedcropmonthdata = croptemp.months
-      
-      this.selectedcroppreviousstate = this.previousstaetemp
-      console.log(this.selectedcroppreviousstate)
-      // this.uniquedistricts = croptemp.district
-      this.uniquestates = croptemp.states
-      this.previousstaetemp = this.uniquestates
-      console.log(this.previousstaetemp)
-      let userlabeltemp=[]
-      let userdatatemp = []
-      let machinedatatemp = []
-      userlabeltemp.push('Farmer')
-      userdatatemp.push(croptemp.farmer)
-      userlabeltemp.push('Broker')
-      userdatatemp.push(croptemp.broker)
-      userlabeltemp.push('Technician')
-      userdatatemp.push(croptemp.technician)
-      userlabeltemp.push('Inspector')
-      userdatatemp.push(croptemp.inspector)
-      userlabeltemp.push('Trader')
-      userdatatemp.push(croptemp.trader)
-      machinedatatemp.push(croptemp.machine1)
-      machinedatatemp.push(croptemp.machine2)
-      machinedatatemp.push(croptemp.machine3)
-      machinedatatemp.push(croptemp.machine4)
-      this.selectedcropuserdata.splice(0,this.selectedcropuserdata.length)
-      this.selectedcropuserdata=userdatatemp
-      this.selectedcropuserlabel.splice(0,this.selectedcropuserlabel.length)
-      this.selectedcropuserlabel=userlabeltemp
-      this.selectedcropmachinedata.splice(0,this.selectedcropmachinedata.length)
-      this.selectedcropmachinedata = machinedatatemp
-        console.log(machinedatatemp,userdatatemp,userlabeltemp)
-      console.log(this.selectedcropmachinedata,this.selectedcropuserlabel,this.selectedcropuserdata)
-    })
-    }
+  
   }
   previousstaetemp:any = []
 }

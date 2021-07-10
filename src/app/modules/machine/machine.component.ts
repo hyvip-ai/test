@@ -159,20 +159,20 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
   showgraph:any = false
   changeSelectedUser(index:any) {
     let doughnuttemp = []
-    console.log(index)
+    // console.log(index)
      // console.log(this.doughnuttemp)
-    console.log(this.doughnutChartData)
+    // console.log(this.doughnutChartData)
     this.selectUserIndex = index;
     
      // console.log(this.doughnuttemp)
-    console.log(this.doughnutChartData)
+    // console.log(this.doughnutChartData)
     doughnuttemp.push(this.myusers[index].good_percentage)
    doughnuttemp.push(this.myusers[index].bad_percentage)
    doughnuttemp.push(this.myusers[index].average_percentage)
     this.doughnutChartData.splice(0,this.doughnutChartData.length)
     this.doughnutChartData = doughnuttemp
-    console.log(doughnuttemp)
-    console.log(this.doughnutChartData)
+    // console.log(doughnuttemp)
+    // console.log(this.doughnutChartData)
     
   }
 
@@ -194,70 +194,35 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       this.samllerScreenUI = true;
     }
     this.setMapOptions(); 
- this.service.getrice().subscribe(res=>{
-      let croptemp = res
+    this.service.getcrops().subscribe(res=>{
+      console.log(res)
+      let temp = res;
+      this.cropArray = temp
       let graphdata = []
-      croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
+      for(let croptemp of temp){
+        croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
       croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
       croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-            this.cropScanLabels.push(croptemp.name)
+      
+      this.cropScanLabels.push(croptemp.name)
       this.cropScanData.push(croptemp.total_scans)
-      graphdata.push(croptemp.good_percentage)
-      graphdata.push(croptemp.bad_percentage)
-      graphdata.push(croptemp.average_percentage)
+     
+      }
+      graphdata.push(temp[0].good_percentage)
+      graphdata.push(temp[0].bad_percentage)
+      graphdata.push(temp[0].average_percentage)
       this.doughcropdata = graphdata
-
-    })
-
-      this.service.getmaize().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-            this.cropScanLabels.push(croptemp.name)
-      this.cropScanData.push(croptemp.total_scans)
-    })
-
-        this.service.getwheat().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-            this.cropScanLabels.push(croptemp.name)
-      this.cropScanData.push(croptemp.total_scans)
-    })
-
-          this.service.getbarley().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-            this.cropScanLabels.push(croptemp.name)
-      this.cropScanData.push(croptemp.total_scans)
-    })
-
-            this.service.getmillet().subscribe(res=>{
-      let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-      this.cropArray.push(croptemp);
-      console.log(this.cropArray)
-            this.cropScanLabels.push(croptemp.name)
-      this.cropScanData.push(croptemp.total_scans)
       this.showcropgraph = true
     })
  this.service.getmachinedata().subscribe(res=>{
       this.machineCardData.splice(0,this.machineCardData.length)
       this.temp = res;
-      for(let item of this.temp){
-        this.machineCardData.push(item.data);
-      }
-      console.log(this.machineCardData)
+      this.machineCardData = res
+      // console.log(res)
+      // for(let item of this.temp){
+      //   this.machineCardData.push(item.data);
+      // }
+      // console.log(this.machineCardData)
     for(let item of this.machineCardData){
         item.good_percentage = Math.floor((item.good_scans/item.total_scans)*100)
         item.average_percentage = Math.floor((item.average_scans/item.total_scans)*100)
@@ -272,7 +237,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       total:0,
       user:'person'
     }
-    console.log(res)
+    // console.log(res)
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
@@ -281,7 +246,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       this.averagetemp = this.averagetemp + item.average_scans
       this.goodtemp = this.goodtemp + item.good_scans
     }
-    console.log(this.goodtemp,this.averagetemp,this.badtemp)
+    // console.log(this.goodtemp,this.averagetemp,this.badtemp)
    this.noofscans.push(this.numbertemp)
     userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
     userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
@@ -292,9 +257,9 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
    this.doughnutChartData.push(userersobject.good_percentage)
    this.doughnutChartData.push(userersobject.bad_percentage)
    this.doughnutChartData.push(userersobject.average_percentage)
-    console.log(userersobject)
+    // console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    // console.log(this.myusers)
 
   
   })
@@ -331,9 +296,9 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Trader'
-    console.log(userersobject)
+    // console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    // console.log(this.myusers)
 
   })
        this.service.getpolice().subscribe(res=>{
@@ -364,9 +329,9 @@ this.numbertemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Inspector'
-    console.log(userersobject)
+    // console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    // console.log(this.myusers)
   })
 
            this.service.gettechinician().subscribe(res=>{
@@ -397,9 +362,9 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Technician'
-    console.log(userersobject)
+    // console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    // console.log(this.myusers)
   })
 
 
@@ -431,26 +396,26 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Broker'
-    console.log(userersobject)
+    // console.log(userersobject)
     this.myusers.push(userersobject)
-    console.log(this.myusers)
+    // console.log(this.myusers)
     this.userBarData.splice(0,this.userBarData.length)
     this.userBarData = this.usernumbers
     this.scanBarData.push(0,this.scanBarData.length)
     this.scanBarData = this.noofscans
-    console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
+    // console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
     this.showusers =true
     this.showgraph = true
   })
   this.service.getmachinestates(1).subscribe(res=>{
-    
+    // console.log(res)
       this.mymachinestatestemp = res;
       this.mymachinestates.splice(0,this.mymachinestates.length);
       
-      this.mymachinestates = this.mymachinestatestemp.data.states ;
+      this.mymachinestates = this.mymachinestatestemp.states ;
        this.previousstates.splice(0,this.previousstates.length);
      this.previousstates = this.mymachinestates;
-     console.log(this.mymachinestates,this.previousstates)
+     // console.log(this.mymachinestates,this.previousstates)
       
     })
         
@@ -509,7 +474,7 @@ this.averagetemp = 0
       this.mymachinestatestemp = res;
     
       
-      this.mymachinestates = this.mymachinestatestemp.data.states ;
+      this.mymachinestates = this.mymachinestatestemp.states ;
 
             
     })

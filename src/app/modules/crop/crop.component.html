@@ -64,11 +64,7 @@
                 <h3 [ngClass]="{ 'middle': innerWidth >= 741}" class="greyText">Showing For :</h3>
                 <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12 moreMargin': innerWidth < 741 }" class="col-3">
                     <select class="form-control" name="crop" id="crop" (change)='cropselected()'>
-                        <option value="Barley">Barley</option>
-                        <option value="Rice">Rice</option>
-                        <option value="Maize">Maize</option>
-                        <option value="Wheat">Wheat</option>
-                        <option value="Millet">Millet</option>
+                       <option *ngFor='let item of cropArray' value="{{item.name}}">{{item.name}}</option>
                     </select>
                 </div>
             </div>

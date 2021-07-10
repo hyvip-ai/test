@@ -55,7 +55,7 @@
     <div [ngClass]="{ 'col-6 d-flex': innerWidth >= 960, 'col-12': innerWidth < 960, 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
         <div [ngClass]="{'mapHeight': innerWidth < 960 }" class="card listing-cards bg-light mb-3 w-100">
             <div class="card-body extraPadding" *ngIf='state'>
-                <app-map [yellowStates]='uniquestates' [size]="this.sizeOfMap" [top]="topPercent" [mark]='uniquedistricts'></app-map>
+                <app-map [yellowStates]='uniquestates' [size]="this.sizeOfMap" [top]="topPercent"></app-map>
             </div>
         </div>
     </div>
@@ -158,26 +158,26 @@
                 <h2 class="cardTitle">Data by States</h2>
                 <div class="row paddingLeft">
                     <h3  [ngClass]="{ 'middle': innerWidth >= 741}" class="greyText">Showing For :</h3>
-                    <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12': innerWidth < 741}" class="">
-                        <select class="form-control" name="crop" id="crop">
-                            <option value="all">Select States</option>
-                            <option *ngFor="let state of indiaStates" value="{{state.id}}">{{state.name}}</option>
+                    <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12': innerWidth < 741}" *ngIf='showmygraph'>
+                        <select class="form-control" name="crop" id="selectcrop" (change)='statechange()'>
+                            <option *ngFor='let item of mainstatedata' value="{{item.name}}">{{item.name}}</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div  [ngClass]="{ 'col-6': innerWidth >= 975, 'col-12': innerWidth < 975 }">
-                            <h6 class="graphTitle">Time wise scans</h6>
+                            <h6 class="graphTitle">Scan History</h6>
                             <div class="card listing-cards bg-light mb-3">
-                                <div class="card-body  grey-bg lessPadding">
-                                    <app-line-chart></app-line-chart>
+                                <div *ngIf='showmygraph' class="card-body  grey-bg lessPadding">
+                                     <app-doughnut-chart [data]="totalscandata" [labels]="totalscanlabels" postion='inside' smallerUI="false">
+                                        </app-doughnut-chart>
                                 </div>
                             </div>
                     </div>
                     <div  [ngClass]="{ 'col-6': innerWidth >= 975, 'col-12': innerWidth < 975 }">
                             <h6 class="graphTitle">Crop-wise scans distribution</h6>
                             <div class="card listing-cards bg-light mb-3">
-                                <div class="card-body grey-bg lessPadding">
+                                <div *ngIf='showmygraph' class="card-body grey-bg lessPadding">
                                     <app-bar-chart [data]="cropData" [labels]="cropLabels"
                                         [barColor]="'rgb(112,212,224)'" size="400px">
                                     </app-bar-chart>
@@ -191,9 +191,9 @@
                         <div class="graphDiv">
                             <h6 class="graphTitle">Machine-wise scans distribution</h6>
                             <div class="card listing-cards bg-light mb-3">
-                                <div *ngIf='machinegraph' class="card-body grey-bg lessPadding">
-                                    <app-double-bar-chart [machineData]="mymachineData" [scanData]="scanData"
-                                        [labels]="labels1" [legend]="legend1">
+                                <div *ngIf='showmygraph' class="card-body grey-bg lessPadding">
+                                    <app-double-bar-chart [machineData]="mymachineData" [scanData]="machinescanData"
+                                        [labels]="machinelabels" [legend]="machinelegend">
                                     </app-double-bar-chart>
                                 </div>
                             </div>
@@ -203,8 +203,8 @@
                         <div class="graphDiv">
                             <h6 class="graphTitle">User wise distribution</h6>
                             <div class="card listing-cards bg-light mb-3">
-                                <div class="card-body grey-bg lessPadding">
-                                   <app-double-bar-chart [machineData]="userBarData" [scanData]="scanBarData" [labels]="labels2" [legend]="legend2">
+                                <div *ngIf='showmygraph' class="card-body grey-bg lessPadding">
+                                   <app-double-bar-chart [machineData]="userData" [scanData]="userscanData" [labels]="userlabels" [legend]="userlegend">
                     </app-double-bar-chart>
                                 </div>
                             </div>

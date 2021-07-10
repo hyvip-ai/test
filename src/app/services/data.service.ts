@@ -60,22 +60,23 @@ export class DataService {
     return this.afs.collection('comp_a').doc('Machines').collection('machine_data').doc(`machine_${i}`).valueChanges();
 
   }
+  getcrops(){
+    return this.afs.collection('comp_a').doc('Crops').collection('crop').valueChanges()
+  }
+  getselectedcrop(crop:any){
+    return this.afs.collection('comp_a').doc('Crops').collection('crop').doc(crop).valueChanges()
+  }
+ 
 
-  getrice(){
-    return this.afs.collection('comp_a').doc('Crop').collection('Rice').doc('rice').valueChanges()
-  }
-   
-  getmillet(){
-    return this.afs.collection('comp_a').doc('Crop').collection('Millet').doc('millet').valueChanges()
-  }
-   getbarley(){
-    return this.afs.collection('comp_a').doc('Crop').collection('Barley').doc('barley').valueChanges()
-  } getwheat(){
-    return this.afs.collection('comp_a').doc('Crop').collection('Wheat').doc('wheat').valueChanges()
-  } getmaize(){
-    return this.afs.collection('comp_a').doc('Crop').collection('Maize').doc('maize').valueChanges()
-  }
+getallstate(){
+    return this.afs.collection('comp_a').doc('States').collection('states').valueChanges()
 
+}
+
+getselectedstate(state:any){
+ return this.afs.collection('comp_a').doc('States').collection('states').doc(state).valueChanges()
+
+}
 
 }
  
