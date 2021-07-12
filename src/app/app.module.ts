@@ -28,6 +28,7 @@ import { TraderComponent } from './modules/trader/trader.component';
 import { TraderscandataComponent } from './modules/trader/traderscandata/traderscandata.component';
 import { BrokersComponent } from './modules/brokers/brokers.component';
 import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +59,7 @@ import { BrokerscandataComponent } from './modules/brokers/brokerscandata/broker
     FarmerModule,
     AngularFirestoreModule,
       HttpClientModule,
+    
     AngularFireModule.initializeApp(environment.firebase)
 
   ],

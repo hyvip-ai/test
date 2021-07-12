@@ -119,14 +119,12 @@
 							[ngClass]="{ 'tableRowShadow': i%2==0}" class="">
 							<td class="textAlignLeft morePadding">
 								<div *ngIf="innerWidth < 575 ||( 960 < innerWidth && innerWidth <= 1395)" class="row">
-									<div class="col-12 center">
-										<img src="../../../assets/images/crops-icon/{{ crop.name }}.png" class="cropIcon">
-									</div>
+									
 									<div class="col-12 center">
 										<h6>{{ crop.name }}</h6>
 									</div>
 								</div>
-								<h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1395)"> <img src="../../../assets/images/crops-icon/{{ crop.name }}.png" class="cropIcon">{{
+								<h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1395)">{{
 									crop.name
 									}}</h6>
 							</td>

@@ -25,16 +25,12 @@
                         <tr *ngFor="let crop of cropArray;index as i" [ngClass]="{ 'tableRowShadow': i%2==0 }">
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575" class="row">
-                                    <div class="col-12 center">
-                                        <img src="../../../assets/images/crops-icon/{{ crop.name }}.png"
-                                            class="cropIcon">
-                                    </div>
+                                   
                                     <div class="col-12 center">
                                         <h6>{{ crop.crop }}</h6>
                                     </div>
                                 </div>
-                                <h6 *ngIf="innerWidth >= 575"> <img
-                                        src="../../../assets/images/crops-icon/{{ crop.name }}.png" class="cropIcon">{{
+                                <h6 *ngIf="innerWidth >= 575">{{
                                     crop.name
                                     }}</h6>
                             </td>
@@ -143,16 +139,13 @@
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1082)" class="row">
                                     <div class="col-12 center">
-                                        <img src="../../../assets/images/machine-icon/machine-icon/Machine {{ i+1}}.png"
-                                            class="cropIcon">
+                                       
                                     </div>
                                     <div class="col-12 center">
-                                        <h6></h6> 
+                                        <h6>Machine {{i+1}}</h6> 
                                     </div>
                                 </div>
-                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1082)"> <img
-                                        src="../../../assets/images/machine-icon/Machine {{ i+1}}.png"
-                                        class="cropIcon">Machine {{i+1}}</h6>
+                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1082)">Machine {{i+1}}</h6>
                             </td>
                             <td>
                                 <h6 class="center"><strong>{{ machine.total_scans }}</strong></h6>
@@ -210,10 +203,7 @@
                             [ngClass]="{ 'tableRowShadow': i==selectUserIndex }" (click)="selectUser(i)">
                             <td class="textAlignLeft morePadding">
                                 <div *ngIf="innerWidth < 575 || ( 960 < innerWidth && innerWidth <= 1082)" class="row">
-                                    <div class="col-12 center">
-                                        <img src="../../../assets/images/crops-icon/{{ user.crop }}.png"
-                                            class="cropIcon">
-                                    </div>
+                                    
                                     <div class="col-12 center">
                                         <h6>{{ user.user }}</h6>
                                     </div>
@@ -245,7 +235,7 @@
             <div class="card-body">
                 <h6>
                     {{ 
-                        myusers[selectUserIndex].crop
+                        myusers[selectUserIndex].user
                     }}
                 </h6>
                 <app-doughnut-chart [data]="userchartdata" [labels]="doughnutChartLabels" postion="inside">

@@ -463,7 +463,7 @@ this.averagetemp = 0
     userersobject.user = 'Broker'
     //console.log(userersobject)
     this.myusers.push(userersobject)
-    //console.log(this.myusers)
+    console.log(this.myusers)
     this.userBarData.splice(0,this.userBarData.length)
     this.userBarData = this.usernumbers
     this.scanBarData.splice(0,this.scanBarData.length)

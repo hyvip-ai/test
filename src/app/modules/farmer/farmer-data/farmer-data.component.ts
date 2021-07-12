@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import {Router} from '@angular/router'
 
+
 @Component({
   selector: 'app-farmer-data',
   templateUrl: './farmer-data.component.html',
@@ -202,13 +203,27 @@ sortscan(){
       this.sortingdupli.sort(this.compare)
       this.showsorted = true
     }
+    if(this.sortingvalue == 'name'){
+      this.sortingdupli.sort(this.namecompare)
+      this.showsorted = true
+    }
   console.log(this.sortingdupli)
     
     console.log(this.showsorted)
 }
+namecompare(a, b){
+  console.log('name compare hocche')
+    if(a.name < b.name) { 
+      return -1;
+       }
+    if(a.name > b.name) { 
+      return 1;
+       }
+    return 0;
+}
 
 compare(a,b){
-  // console.log(a,b)
+  console.log('time compare hocche')
   if(a.time<b.time){
     // console.log(a.time,b.time)
     // console.log('dhukche')
@@ -224,6 +239,15 @@ compare(a,b){
   return -1;
 }
 }
+
+  addData(){
+      console.log('asche')
+    
+      this.service.addscanresults() 
+
+
+}
+
 }
 
   
