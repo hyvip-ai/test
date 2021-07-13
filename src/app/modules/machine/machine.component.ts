@@ -81,18 +81,18 @@ export class MachineComponent implements OnInit{
   ];
 
   scansByMonthData = [
-    257,
-    190,
-    210,
-    220,
-    230,
-    175,
-    135,
-    245,
-    225,
-    230,
-    235,
-    240,
+    82,
+    65,
+    88,
+    65,
+    72,
+    56,
+    34,
+    0,
+    0,
+    0,
+    0,
+    0,
   ];
 
   userData = [

@@ -28,7 +28,7 @@ constructor(private service:DataService,private router:Router){}
   ngOnInit(){
   
       this.service.getfarmers().subscribe(res=>{
-        console.log(res)
+        // console.log(res)
         this.farmerdatatemp = res
         this.numoffarmers = this.farmerdatatemp.length
         for(let item of this.farmerdatatemp){
@@ -44,7 +44,7 @@ constructor(private service:DataService,private router:Router){}
             delete item.user_type
             
             this.farmerscandata.push(item)
-            console.log(this.farmerscandata);
+            // console.log(this.farmerscandata);
            
           }
 
@@ -65,15 +65,15 @@ console.log('new approach')
                   this.keyarray.push(key)
                 }
                 this.keyarray.sort(this.keyarraysortnum)
-                console.log(this.keyarray)
+                // console.log(this.keyarray)
                 for(let i=0;i<this.keyarray.length;i++){
                   for(let key in item){
                    
-                      console.log(this.keyarray[i])
+                      // console.log(this.keyarray[i])
                       if(this.keyarray[i] == key){
-                        console.log(key)
+                        // console.log(key)
                         this.scandetails.push(item[key])
-                        console.log(this.scandetails)
+                        // console.log(this.scandetails)
                         this.scanshow.push(false);
                       }
                     }
@@ -85,12 +85,11 @@ console.log('new approach')
                 else{
                   this.scanlength.push(this.scanlength[this.scanlength.length-1]+this.keyarray.length)
                 }
-                console.log(this.scanlength)
+                // console.log(this.scanlength)
                 this.keyarray.splice(0,this.keyarray.length)
 
           }
-          console.log(this.scandetails)
-          console.log(this.scanshow)
+
 
         })
         
@@ -125,7 +124,7 @@ toogleshow(i:any){
 }
 
 expand(e:any){
-  console.log(e.target.checked)
+
 
  if(e.target.checked){
    for(let i=0;i<this.show.length;i++){
@@ -147,7 +146,7 @@ expand(e:any){
 }
 
 collapse(e:any){
-    console.log(e.target.checked)
+    // console.log(e.target.checked)
 
  if(e.target.checked){
    for(let i=0;i<this.show.length;i++){
@@ -168,15 +167,15 @@ collapse(e:any){
 }
 getdetails(i:any){
  
-  console.log(i)
+  // console.log(i)
   if(this.scanshow[i]){
     this.scanshow[i]=false
   }
     else{
       this.scanshow[i]=true
     }
-    console.log(this.scanshow)
-    console.log(this.scanlength)
+    // console.log(this.scanshow)
+    // console.log(this.scanlength)
 }
 
 
@@ -194,7 +193,7 @@ sortscan(){
     // console.log(this.sortingdupli)
 
    if( this.sortingvalue=='normal'){
-    console.log('normal')
+    // console.log('normal')
     this.showsorted = false
     // console.log(this.showsorted)
    }
@@ -207,9 +206,9 @@ sortscan(){
       this.sortingdupli.sort(this.namecompare)
       this.showsorted = true
     }
-  console.log(this.sortingdupli)
+  // console.log(this.sortingdupli)
     
-    console.log(this.showsorted)
+  //   console.log(this.showsorted)
 }
 namecompare(a, b){
   console.log('name compare hocche')
@@ -239,16 +238,25 @@ compare(a,b){
   return -1;
 }
 }
-
+ph_no:any = null
   addData(){
+      for(let i=0;i<5;i++){
       console.log('asche')
     
-      this.service.addscanresults() 
+      
+        this.ph_no =  this.service.addfarmer()
+    
+      
+        console.log(this.ph_no)
+      }
 
 
 }
-
+addscan(){
+  console.log('hocche')
 }
 
+}    
+  
   
 

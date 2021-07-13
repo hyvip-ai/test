@@ -6,6 +6,7 @@ import {randomLocation,randomCirclePoint} from 'random-location'
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,13 +19,17 @@ export class DataService {
 
 
   getusers(){
-  return this.afs.collection('comp_a').valueChanges(); 
+  return this.afs.collection('comp_a').valueChanges();  
   }
   getfarmers(){
   return this.afs.collection('comp_a').doc('Users').collection('Farmers').valueChanges();
   }
   getfarmersscans(){
   return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Farmer')).valueChanges();
+
+  }
+   gettradersscans(){
+  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Trader')).valueChanges();
 
   }
   gettraders(){
@@ -36,12 +41,24 @@ export class DataService {
   return this.afs.collection('comp_a').doc('Users').collection('Brokers').valueChanges();
 
   }
+    getbrokersscans(){
+  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Broker')).valueChanges();
+
+  }
   getpolice(){
   return this.afs.collection('comp_a').doc('Users').collection('Inspector').valueChanges();
 
   }
+    getinspectorsscans(){
+  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Inspector')).valueChanges();
+
+  }
   gettechinician(){
   return this.afs.collection('comp_a').doc('Users').collection('Technician').valueChanges();
+
+  }
+    gettechnicianscans(){
+  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Technician')).valueChanges();
 
   }
   getscanresults(id:any){
@@ -78,35 +95,44 @@ getselectedstate(state:any){
 
 }
 
+
 addfarmer(){
+
+ 
   var ph = Math.floor(Math.random() * 10000000000);
   var ph_no = ph.toString()
-  var good = Math.floor(Math.random() * 100)
-  var bad = Math.floor(Math.random() * 100)
-  var average = Math.floor(Math.random() * 100)
+  
+  
+  var good =1
+  var bad = 1
+  var average = 1
+ 
+
+  console.log(good,bad,average)
   var name = this.generateName()
   var day = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
   var month = [1,2,3,4,5,6,7,8,9,10,11,12]
   var year = [2020,2021]
-
-  // var b = new Date()
   var date = `${month[Math.floor(Math.random()*month.length)]}/${day[Math.floor(Math.random()*day.length)]}/${year[Math.floor(Math.random()*year.length)]}`
+ 
+   
 
-  console.log(String(ph_no),name,date,good,average,bad,good+bad+average)
-
-  this.afs.collection("comp_a").doc("Users").collection('Farmers').doc(`${ph_no}`).set({
+  this.afs.collection("comp_a").doc("Users").collection('Technician').doc(`${ph_no}`).set({
     name: name,
     ph_no:ph_no,
     date:date,
-    good_scans:good,
+    good_scans:good, 
     bad_scans:bad,
     average_scans:average,
     no_of_scans:good+bad+average
 })
-   var crop=['Rice','Wheat','Corn','Barley','Maize','Millet']
+
+  
+  var date = `${month[Math.floor(Math.random()*month.length)]}/${day[Math.floor(Math.random()*day.length)]}/${year[Math.floor(Math.random()*year.length)]}`
+  var crop=['Rice','Wheat','Corn','Barley','Maize','Millet']
   var machine = ['Machine 1','Machine 2','Machine 3','Machine 4']
   var timestamp = new Date(date).getTime();
-  var broken = Math.floor(Math.random() * 100)
+  var broken = Math.floor(Math.random() * 100)  
   var insect = Math.floor(Math.random() * 100)
   var mold = Math.floor(Math.random() * 100)
   var nodefect = Math.floor(Math.random() * 100)
@@ -115,17 +141,21 @@ addfarmer(){
   var cropindex = (Math.floor(Math.random() * crop.length))
   var machineindex = (Math.floor(Math.random() * machine.length))
   var count = broken + insect + mold + nodefect + nonyellow + foreign
-   const p ={
+  const p ={
         latitude:23.5120,
         longitude:80.32900,
       }
       const r = 500000
       const randomPoint = randomCirclePoint(p,r)
-    
+     
 
   var img = 'https://firebasestorage.googleapis.com/v0/b/upjaoconsumer-1f03d.appspot.com/o/upjao_consumer%2Fupload_19_June_2021_1624096490560%2Fprocessed.png?alt=media&token=28726010-5067-4a43-b341-ee97923c52b1'
   var finalcrop = crop[cropindex]
   var finalmachine = machine[machineindex]
+  console.log(finalcrop)
+ 
+  console.log(String(ph_no),name,date,good,average,bad,good+bad+average)
+  console.log(finalcrop,finalmachine)
   console.log(date)
   console.log(timestamp,finalcrop,finalmachine,broken,insect,mold,nodefect,nonyellow,foreign,count)
     console.log(randomPoint.latitude,randomPoint.longitude,timestamp)
@@ -146,13 +176,69 @@ addfarmer(){
           numbers:[count,broken,insect,mold,nodefect,nonyellow,foreign]
     
         },
-        user_type:'Farmer'
+        user_type:'Technician'
     })
+ 
+ 
+    for(let i=0;i<2;i++){
+        console.log(i)
+  var date = `${month[Math.floor(Math.random()*month.length)]}/${day[Math.floor(Math.random()*day.length)]}/${year[Math.floor(Math.random()*year.length)]}`
+  var crop=['Rice','Wheat','Corn','Barley','Maize','Millet']
+  var machine = ['Machine 1','Machine 2','Machine 3','Machine 4']
+  var timestamp = new Date(date).getTime();
+  var broken = Math.floor(Math.random() * 100)  
+  var insect = Math.floor(Math.random() * 100)
+  var mold = Math.floor(Math.random() * 100)
+  var nodefect = Math.floor(Math.random() * 100)
+  var nonyellow = Math.floor(Math.random() * 100)
+  var foreign = Math.floor(Math.random() * 100)
+  var cropindex = (Math.floor(Math.random() * crop.length))
+  var machineindex = (Math.floor(Math.random() * machine.length))
+  var count = broken + insect + mold + nodefect + nonyellow + foreign
+  const p ={
+        latitude:23.5120,
+        longitude:80.32900,
+      }
+      const r = 500000
+      const randomPoint = randomCirclePoint(p,r)
+     
 
+  var img = 'https://firebasestorage.googleapis.com/v0/b/upjaoconsumer-1f03d.appspot.com/o/upjao_consumer%2Fupload_19_June_2021_1624096490560%2Fprocessed.png?alt=media&token=28726010-5067-4a43-b341-ee97923c52b1'
+  var finalcrop = crop[cropindex]
+  var finalmachine = machine[machineindex]
+  console.log(finalcrop)
+ 
+  console.log(String(ph_no),name,date,good,average,bad,good+bad+average)
+  console.log(finalcrop,finalmachine)
+  console.log(date)
+  console.log(timestamp,finalcrop,finalmachine,broken,insect,mold,nodefect,nonyellow,foreign,count)
+    console.log(randomPoint.latitude,randomPoint.longitude,timestamp)
+    this.afs.collection("comp_a").doc("Users").collection('scan_data').doc(ph_no).update({
+        [timestamp]:{
+          location:{
+            _lat:randomPoint.latitude,
+            _long:randomPoint.longitude
+          },
+          name : name,
+          count:count,
+          ph_no:ph_no,
+          time:timestamp,
+          details:['Total Kernel Count','Broken Kernel','Insect Kernel','Mold Kernel','No Defect Kernel','Non Yellow kernel','Foreign Kernel'],
+          images:[img,img],
+          machine:finalmachine,
+          crop:finalcrop,
+          numbers:[count,broken,insect,mold,nodefect,nonyellow,foreign]
+    
+        }
+    })
+    }
+
+  
+    return ph_no
 }
 
  capFirst(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string;
 }
 
  getRandomInt(min, max) {
@@ -168,57 +254,6 @@ addfarmer(){
 
 }
 
-addscanresults(){
-  var crop=['Rice','Wheat','Corn','Barley','Maize','Millet']
-  var machine = ['Machine 1','Machine 2','Machine 3','Machine 4']
-   var day = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
-  var month = [1,2,3,4,5,6,7,8,9,10,11,12]
-  var year = [2020,2021]
-
-  // var b = new Date()
-  var date = `${month[Math.floor(Math.random()*month.length)]}/${day[Math.floor(Math.random()*day.length)]}/${year[Math.floor(Math.random()*year.length)]}`
-  var timestamp = new Date(date).getTime()
-  var broken = Math.floor(Math.random() * 100)
-  var insect = Math.floor(Math.random() * 100)
-  var mold = Math.floor(Math.random() * 100)
-  var nodefect = Math.floor(Math.random() * 100)
-  var nonyellow = Math.floor(Math.random() * 100)
-  var foreign = Math.floor(Math.random() * 100)
-  var cropindex = (Math.floor(Math.random() * crop.length))
-  var machineindex = (Math.floor(Math.random() * machine.length))
-  var count = broken + insect + mold + nodefect + nonyellow + foreign
-  var ph_no= '9549495842'
-  var name = 'Accomplished Total'
-  var img = 'https://firebasestorage.googleapis.com/v0/b/upjaoconsumer-1f03d.appspot.com/o/upjao_consumer%2Fupload_19_June_2021_1624096490560%2Fprocessed.png?alt=media&token=28726010-5067-4a43-b341-ee97923c52b1'
-  var finalcrop = crop[cropindex]
-  var finalmachine = machine[machineindex]
-     const p ={
-        latitude:23.5120,
-        longitude:80.32900,
-      }
-      const r = 500000
-      const randomPoint = randomCirclePoint(p,r)
-  console.log(timestamp,date,randomPoint,finalcrop,finalmachine,broken,insect,mold,nodefect,nonyellow,foreign,count)
-  
-    // this.afs.collection("comp_a").doc("Users").collection('scan_data').doc('9549495842').update({
-    //     [timestamp]:{
-    //       location:{ 
-    //         _lat:randomPoint.latitude,
-    //         _long:randomPoint.longitude
-    //       },
-    //       name : name,
-    //       count:count,
-    //       ph_no:ph_no,
-    //       time:timestamp,
-    //       details:['Total Kernel Count','Broken Kernel','Insect Kernel','Mold Kernel','No Defect Kernel','Non Yellow kernel','Foreign Kernel'],
-    //       images:[img,img],
-    //       machine:finalmachine,
-    //       crop:finalcrop,
-    //       numbers:[count,broken,insect,mold,nodefect,nonyellow,foreign]
-    
-    //     }
-    // })
-}
 
 
 }

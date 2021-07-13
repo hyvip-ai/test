@@ -6,6 +6,8 @@ import { TraderComponent } from './modules/trader/trader.component';
 import { TraderscandataComponent } from './modules/trader/traderscandata/traderscandata.component';
 import { BrokersComponent } from './modules/brokers/brokers.component';
 import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component';
+import { TechnicianComponent } from './modules/technician/technician.component';
+import { InspectorComponent } from './modules/inspector/inspector.component';
 
 const routes: Routes = [
 {
@@ -62,7 +64,15 @@ const routes: Routes = [
     component:TraderComponent
    
   },
+      {
+    path:'Technician',
+    component:TechnicianComponent
    
+  },{
+    path:'Inspector',
+    component:InspectorComponent
+  }
+   ,
     {
     path:'Brokers',
     component:BrokersComponent

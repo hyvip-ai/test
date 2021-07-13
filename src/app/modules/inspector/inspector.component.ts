@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 import { DataService } from 'src/app/services/data.service';
+import {Router} from '@angular/router'
 @Component({
-  selector: 'app-brokers',
-  templateUrl: './brokers.component.html',
-  styleUrls: ['./brokers.component.scss']
+  selector: 'app-inspector',
+  templateUrl: './inspector.component.html',
+  styleUrls: ['./inspector.component.scss']
 })
-export class BrokersComponent implements OnInit {
-  farmerdata:any = []
+export class InspectorComponent implements OnInit {
+
+ farmerdata:any = []
 farmerdatatemp:any = null
 sortingdupli:any = []
 farmerscandatatemp:any = []
@@ -23,7 +26,7 @@ scanlength:any = []
 constructor(private service:DataService,private router:Router){}
   ngOnInit(){
   
-      this.service.getbrokers().subscribe(res=>{
+      this.service.getpolice().subscribe(res=>{
         // console.log(res)
         this.farmerdatatemp = res
         this.numoffarmers = this.farmerdatatemp.length
@@ -34,7 +37,7 @@ constructor(private service:DataService,private router:Router){}
 
        
         
-        this.service.getbrokersscans().subscribe(res=>{
+        this.service.getinspectorsscans().subscribe(res=>{
           
           for(let item of res){
             delete item.user_type

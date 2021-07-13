@@ -27,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { TraderComponent } from './modules/trader/trader.component';
 import { TraderscandataComponent } from './modules/trader/traderscandata/traderscandata.component';
 import { BrokersComponent } from './modules/brokers/brokers.component';
-import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component'
+import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component';
+import { InspectorComponent } from './modules/inspector/inspector.component';
+import { TechnicianComponent } from './modules/technician/technician.component'
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { BrokerscandataComponent } from './modules/brokers/brokerscandata/broker
     TraderscandataComponent,
     BrokersComponent,
     BrokerscandataComponent,
-    TraderComponent
+    TraderComponent,
+    InspectorComponent,
+    TechnicianComponent
   ],
   imports: [
     BrowserModule,
