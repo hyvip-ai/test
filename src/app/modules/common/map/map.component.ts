@@ -22,10 +22,11 @@ export class MapComponent implements OnInit, OnDestroy {
   offsetX = 0;
 
   ngOnChanges(changes: SimpleChanges) {
-  console.log('ngonchanges call hocche')
+    console.log(`style:${this.size}`)
+  // console.log('ngonchanges call hocche')
 
-    console.log('previous',this.previous)
-    console.log('new',this.yellowStates)
+    // console.log('previous',this.previous)
+    // console.log('new',this.yellowStates)
 
      for (var i = 0; i < this.previous.length; i++) {
         document.getElementById(this.previous[i])['style']['fill'] = '#fff0e1';
@@ -43,6 +44,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('firsttime ',this.size)
     this.style = 'height: ' + this.size + ';';
 
     if (this.size == '650px') {

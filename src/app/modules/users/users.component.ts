@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
@@ -12,6 +12,8 @@ export class UsersComponent implements OnInit {
   constructor(private service:DataService,private router:Router) { }
   users:any = null
   usernames:any = null
+  samllerScreenUI:boolean = false
+  innerWidth:any = 0;
   ngOnInit(): void {
     this.service.getusers().subscribe(res=>{
       this.users = res
@@ -24,5 +26,14 @@ export class UsersComponent implements OnInit {
     console.log(item);
     this.router.navigate([`/${item}`])
   }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event) {
+  //   this.innerWidth = window.innerWidth;
+  //   if (this.innerWidth <= 596) {
+  //     this.samllerScreenUI = true; 
+  //   } else {
+  //     this.samllerScreenUI = false;
+  //   }
+  // }
 
 }

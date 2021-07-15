@@ -60,6 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   close(reason: string) {
+    console.log('closehocche')
     this.sidenav.close();
   }
 }

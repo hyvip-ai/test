@@ -1,3 +1,7 @@
+h6{
+    font-size: 1rem;
+}
+
 @media(max-width:414px){
   .col-12{
     padding: 0 !important;
@@ -50,15 +54,14 @@
 }
 
 .innerCardRow{
-    padding: 10px;
+    padding: 7px;
     margin: 0;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 h6{
     margin-bottom: 0;
-    font-size: 1rem;
 }
 
 .green{
@@ -183,7 +186,7 @@ h2{
 
 .addPadding{
     padding-left: 20px !important; 
-    padding-top: 20px !important; 
+    padding-top: 10px !important; 
     margin: 0;
 }
 

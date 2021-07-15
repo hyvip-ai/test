@@ -4,9 +4,6 @@ import * as echarts from 'echarts/dist/echarts.js';
 @Component({
   selector: 'app-home-bar-chart',
   template: `
-    <div class="header">
-      <h2 class="h4">{{ text }}</h2>
-    </div>
     <div
       echarts
       [options]="option"

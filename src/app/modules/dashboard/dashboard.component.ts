@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit,ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from 'src/app/services/data.service';
@@ -7,11 +7,12 @@ import {Router} from '@angular/router'
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
+  encapsulation:ViewEncapsulation.None
 })
 export class DashBoardComponent implements OnInit {
   innerWidth;
   samllerScreenUI = false;
-  sizeOfMap;
+  sizeOfMap
   leftPercent;
   districtscan:any = 0
   uniquedistricts:any = []
@@ -51,48 +52,7 @@ export class DashBoardComponent implements OnInit {
         this.cropData = true
         console.log(this.cropArray)
      })
-    // this.service.getrice().subscribe(res=>{
-    //   console.log(res) 
-    //   let croptemp = res 
-    //   croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-    //   this.cropArray.push(croptemp);
-    // })
-
-    //   this.service.getmaize().subscribe(res=>{
-    //   let croptemp = res
-    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-    //   this.cropArray.push(croptemp);
-    // })
-
-    //     this.service.getwheat().subscribe(res=>{
-    //   let croptemp = res
-    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-    //   this.cropArray.push(croptemp);
-    // })
-
-    //       this.service.getbarley().subscribe(res=>{
-    //   let croptemp = res
-    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-    //   this.cropArray.push(croptemp);
-    // })
-
-    //         this.service.getmillet().subscribe(res=>{
-    //   let croptemp = res
-    //         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-    //   croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-    //   croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
-    //   this.cropArray.push(croptemp);
-    //   console.log(this.cropArray)
-    //   this.cropData = true
-    // })
+  
     this.service.getfarmers().subscribe(res=>{
       
       this.temp = res
@@ -190,7 +150,7 @@ export class DashBoardComponent implements OnInit {
 
         let mydistrict = []
         for(let item of this.machinedata){
-          console.log(item.states)
+          console.log(item.districts)
 
           this.mystates = this.mystates.concat(item.states)
           mydistrict = mydistrict.concat(item.districts)
@@ -292,7 +252,7 @@ export class DashBoardComponent implements OnInit {
     }
     this.sizeOfMap = this.innerWidth / 2 - 70;
 
-    console.log(this.sizeOfMap, this.innerWidth);
+   
     
     if(this.sizeOfMap < 300){
       this.sizeOfMap = 400
@@ -311,9 +271,15 @@ export class DashBoardComponent implements OnInit {
     } else if (this.innerWidth < 1236) {
       this.sizeOfMap = 500;
     } else if (this.innerWidth < 1302) {
+      // console.log('1302') 
       this.sizeOfMap = 550;
-    } else if (this.innerWidth > 1510) {
-      this.sizeOfMap = 685;
+    } else if (this.innerWidth < 1510) {
+      // console.log('1510')
+      this.sizeOfMap = 550;
+    }
+    else if (this.innerWidth > 1510) {
+      // console.log('1510')
+      this.sizeOfMap = 550;
     }
 
     if (336 > this.innerWidth) {
@@ -341,6 +307,7 @@ export class DashBoardComponent implements OnInit {
       this.topPercent = '120px';
       this.leftPercent = '20px';
     }
+     console.log(this.sizeOfMap, this.innerWidth);
   }
 
 

@@ -1,0 +1,40 @@
+.buttons{
+	height:565px;
+	padding-top:25px;
+}
+
+.parent1 button,
+.parent2 button,
+.parent3 button{
+	display:block;
+	width:103px;
+	height:40px;
+}
+.parent1,
+.parent2,
+.parent3{
+	display:flex;
+	margin-bottom:25px;
+}
+.parent1,
+.parent2{
+	justify-content:space-evenly;
+}
+.parent3{
+	justify-content:center;
+}
+.big{
+	display:block;
+	}
+	.small{
+	display:none;
+	}
+
+@media(max-width:596px){
+	.big{
+	display:none;
+	}
+	.small{
+	display:block;
+	}
+}
