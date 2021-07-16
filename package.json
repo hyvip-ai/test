@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
+    "@types/google.maps": "^3.45.6",
     "bootstrap": "^4.6.0",
     "echarts": "^5.0.2",
     "firebase": "^8.6.8",

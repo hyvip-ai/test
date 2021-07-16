@@ -10,13 +10,13 @@
             <option value="time">Time</option>
             <option value="name">Name</option>
         </select>
-       
+       <button class="btn btn-outline-info" style='margin:15px 0px' (click)="download()"> Download </button>
     </div> 
 
 
     <div class="col-4 ml-auto removeRightPadding">
         <div class="card listing-cards bg-light w-100 header noMargin removeBottomBorderRadius">
-            <div class="card-body removePadding">
+            <div class="card-body removePadding" style="height: 101px;">
                 <span>
                     <h3 class="left" id='ftsz'>Total No of Farmers  {{numoffarmers}}</h3> 
                 </span>
@@ -31,14 +31,17 @@
                     <h3 class="left"><input type="checkbox"> Message All</h3>
                     <h3 class="left"><input type="radio" (change)='expand($event)' name="show" id="Expand"> <label for="Expand">Expand All</label></h3>
                     <h3 class="left"><input (change)='collapse($event)' type="radio" name="show" id="Collapse"> <label for="Collapse">Collapse All</label></h3>
+
                 </div>
-                <div class="col-4 textCenter">
+                <div class="col-4">
+                
                    <!--  <button class="btn grey"> Hide</button>
                     <button class="btn marginLeft grey"> Unhide</button>
                     <button (click)='changevisibility()' class="btn marginLeft grey">Scan Results</button> -->
                 </div>
                 <div class="col-3" id='searchbar'>
                     <div class="row">
+
                         <div class="col-4 textCenter noPadding">
                             <h3>Search:</h3>
                         </div>
