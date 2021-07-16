@@ -15,7 +15,7 @@ export class RegionalDataComponent implements OnInit {
   username = 'Pranav';
   showmygraph:any = false
   mystates:any = []
-
+  showhigestgraph:boolean = false
   state:any = false 
   uniquestates:any =[]
   numofdistricts:any = 0
@@ -30,24 +30,14 @@ totalscans:any = 0
   userType = constants.userType
   
   machinedata:any = []
-
-
- 
-  data = [72, 72, 72, 72, 72];
-  labels = ['Punjab', 'Bihar', 'Uttar Pradesh', 'Maharashtra', 'Gujarat'];
-
-
-
   mymachineData:any = [];
   machinescanData:any = [];
   machinelabels:any = ['Machine 1','Machine 2','Machine 3','Machine 4'];
   machinelegend:any = ['Number of machine', 'Number of scans'];
-
   userData:any = [];
   userscanData:any = [];
   userlabels:any = [];
   userlegend:any = ['Number of users', 'Number of scans'];
-
   cropData:any = [];
   cropLabels:any = [];
 
@@ -57,13 +47,35 @@ totalscans:any = 0
   innerWidth;
   sizeOfMap;
   topPercent;
+  data = [72, 72, 72, 72, 72];
+  labels = ['Punjab', 'Bihar', 'Uttar Pradesh', 'Maharashtra', 'Gujarat'];
+  higesttotal:any = []
+  higesttotallabels:any = []
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
     this.service.getallstate().subscribe(res=>{
       console.log(res)
      this.mainstatedata = res
-     
+     for(let item of this.mainstatedata){
+      this.higesttotal.push(item.total_scan)
+     }
+     console.log(this.higesttotal)
+     this.higesttotal.sort(this.compare)
+     this.higesttotal.pop()
+    
+     for(let number of this.higesttotal){
+      for(let item of this.mainstatedata){
+        if(item.total_scan==number && !this.higesttotallabels.includes(item.name)){
+          this.higesttotallabels.push(item.name)
+          break;
+        }
+
+      }
+     }
+      console.log(this.higesttotal)
+      console.log(this.higesttotallabels)
+      this.showhigestgraph = true
       this.mymachineData = this.mainstatedata[0].machine_num;
       this.machinescanData = this.mainstatedata[0].machine_scan;
       this.cropData = this.mainstatedata[0].crop_scan
@@ -79,14 +91,14 @@ totalscans:any = 0
     })
       
         this.service.getmachinedata().subscribe(res=>{
-             console.log(res)
+             // console.log(res)
 
         this.machinedata = res;
         // for(let item of this.temp){
         //   this.machinedata.push(item.data)
         // }
        
-        console.log(this.machinedata)
+        // console.log(this.machinedata)
     
         // console.log(this.mymachineData)
         // console.log(this.scanData)
@@ -98,12 +110,12 @@ totalscans:any = 0
         let mydistrict = []
 
                 for(let item of this.machinedata){
-          console.log(item.states)
+          //console.log(item.states)
 
           this.mystates = this.mystates.concat(item.states)
           mydistrict = mydistrict.concat(item.districts)
         }
-        console.log(this.mystates)
+        //console.log(this.mystates)
            for(let item of mydistrict){
           if(this.uniquedistricts.includes(item)){
             continue;
@@ -124,7 +136,7 @@ totalscans:any = 0
             }
         }
 
-        console.log(this.uniquestates)
+        //console.log(this.uniquestates)
         this.statescan = this.uniquestates.length
         this.state = true
         })
@@ -135,7 +147,17 @@ totalscans:any = 0
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
   }
-
+compare(a,b){
+  if(a>b){
+    return -1
+  }
+  if(a<b){
+    return 1;
+  }
+  else{
+    return 0
+  }
+}
   setMapOptions(){
     this.sizeOfMap = '450px';
     this.topPercent = '25px';
@@ -168,9 +190,9 @@ totalscans:any = 0
   selectedcrop:any = null
   statechange(){
     this.selectedcrop = document.getElementById('selectcrop')
-    console.log(this.selectedcrop.value)
+    //console.log(this.selectedcrop.value)
     this.service.getselectedstate(this.selectedcrop.value).subscribe(res=>{
-      console.log(res)
+      //console.log(res)
       let temp = res;
       this.showmygraph = false;
       this.mymachineData.splice(0,this.mymachineData.length)

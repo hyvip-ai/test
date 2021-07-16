@@ -2,36 +2,36 @@
 	<div [ngClass]="{ 'col-5':  this.innerWidth > 961, 'col-12': 961 > this.innerWidth ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
 		<div class="card listing-cards bg-light mb-3 w-100">
 			<div class="card-body removePadding">
-				<h2 class="cardTitle addPadding">Users Onboard</h2>
+				<h2 style="margin-bottom: 0px;" class="cardTitle addPadding">Users Onboard</h2>
 				<app-home-bar-chart *ngIf='userdata' [data]="userdata" [labels]="labels" [barColor]="color"></app-home-bar-chart>
 			</div> 
 		</div>
 		<div [ngClass]="{ 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}" class="card listing-cards bg-light mb-3">
-			<div class="card-body">
-				<h2 class="cardTitle">Regional Data Scanned</h2>
+			<div class="card-body" style="padding-top: 3px;">
+				<h2 class="cardTitle" style="margin-bottom: 5px;">Regional Data Scanned</h2>
 				<div class="row innerCardRow borderLeftColor listing-cards">
 					<div [ngClass]="{ 'col-9': innerWidth >= 455, 'col-12 center': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}">
-						<h6 style="font-size: 1rem;">Total number of scans</h6>
+						<h6 style="font-size: 0.75rem;margin-bottom:5px;">Total number of scans</h6> 
 					</div>
 					<div [ngClass]="{ 'col-3': innerWidth >= 455, 'col-12': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
-						<h6 style="font-size: 1rem;" class="regionalDataNumber"  [ngClass]="{ 'center': innerWidth < 455 }">{{totalscans}}</h6>
+						<h6 style="font-size: 0.75rem;margin-bottom:5px;" class="regionalDataNumber"  [ngClass]="{ 'center': innerWidth < 455 }">{{totalscans}}</h6>
 					</div>
 				</div> 
 				<div>
 					<div class="row innerCardRow borderLeftColor listing-cards">
 						<div [ngClass]="{ 'col-9':  innerWidth >= 455, 'col-12 center': innerWidth < 455 , 'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}">
-							<h6 style="font-size: 1rem;">No. Of District from where scanned</h6>
+							<h6 style="font-size: 0.75rem;margin-bottom:5px;">No. Of District from where scanned</h6>
 						</div> 
 						<div class="col-3" [ngClass]="{ 'col-3': innerWidth >= 455, 'col-12': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
-							<h6 style="font-size: 1rem;" class="regionalDataNumber" [ngClass]="{ 'center': innerWidth < 455 }">{{districtscan}}</h6>
+							<h6 style="font-size: 0.75rem;margin-bottom:5px;" class="regionalDataNumber" [ngClass]="{ 'center': innerWidth < 455 }">{{districtscan}}</h6>
 						</div>
 					</div>
 					<div class="row innerCardRow borderLeftColor listing-cards">
 						<div [ngClass]="{ 'col-9': innerWidth >= 455, 'col-12 center': innerWidth < 455 ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302}">
-							<h6 style="font-size: 1rem;">No. Of states from where scanned</h6>
+							<h6 style="font-size: 0.75rem;margin-bottom:5px;">No. Of states from where scanned</h6>
 						</div>
 						<div class="col-3" [ngClass]="{ 'col-3': innerWidth >= 455, 'col-12': innerWidth < 455 }">
-							<h6 style="font-size: 1rem;" class="regionalDataNumber"  [ngClass]="{ 'center': innerWidth < 455 }">{{statescan}}</h6>
+							<h6 style="font-size: 0.75rem;margin-bottom:5px;" class="regionalDataNumber"  [ngClass]="{ 'center': innerWidth < 455 }">{{statescan}}</h6>
 						</div>
 					</div>
 				</div>

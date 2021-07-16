@@ -272,14 +272,14 @@ export class DashBoardComponent implements OnInit {
       this.sizeOfMap = 500;
     } else if (this.innerWidth < 1302) {
       // console.log('1302') 
-      this.sizeOfMap = 550;
+      this.sizeOfMap = 500;
     } else if (this.innerWidth < 1510) {
       // console.log('1510')
-      this.sizeOfMap = 550;
+      this.sizeOfMap = 500;
     }
     else if (this.innerWidth > 1510) {
       // console.log('1510')
-      this.sizeOfMap = 550;
+      this.sizeOfMap = 500;
     }
 
     if (336 > this.innerWidth) {

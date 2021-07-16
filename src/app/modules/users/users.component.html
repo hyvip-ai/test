@@ -1,8 +1,8 @@
-<div class="buttons big">
+<div class="buttons big" *ngIf='readusers'>
     <button class="btn btn-outline-info" *ngFor='let item of usernames' (click)='redir(item)' style="margin-right: 20px;">{{item}}</button> 
 
 </div>
-<div class="buttons small">
+<div class="buttons small" *ngIf='readusers'>
     <div class="parent1">
         <button class="btn btn-outline-info" (click)='redir(usernames[0])'>
             {{usernames[0]}}

@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth <= 900) {
+    if (this.innerWidth <992) {
       this.samllerScreenUI = true;
     } else {
       this.samllerScreenUI = false;
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth <= 900) {
+    if (this.innerWidth <992) {
       this.samllerScreenUI = true;
     }
 

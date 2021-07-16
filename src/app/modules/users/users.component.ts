@@ -13,6 +13,7 @@ export class UsersComponent implements OnInit {
   users:any = null
   usernames:any = null
   samllerScreenUI:boolean = false
+  readusers:boolean = false
   innerWidth:any = 0;
   ngOnInit(): void {
     this.service.getusers().subscribe(res=>{
@@ -20,6 +21,7 @@ export class UsersComponent implements OnInit {
       // console.log(this.users)
       this.usernames = this.users[3].users
       console.log(this.users)
+      this.readusers = true
     })
   }
   redir(item:any){
