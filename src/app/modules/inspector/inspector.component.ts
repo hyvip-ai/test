@@ -15,6 +15,7 @@ farmerdatatemp:any = null
 sortingdupli:any = []
 farmerscandatatemp:any = []
 farmerscandata:any = []
+jsonData:any = []
 visible:boolean = false
 temp:any = []
 showsorted:any = false
@@ -23,6 +24,8 @@ scandetails:any = []
 numoffarmers:any = null
 show:any = []
 scanlength:any = []
+jsonstring:any = null
+
 constructor(private service:DataService,private router:Router){}
   ngOnInit(){
   
@@ -43,22 +46,56 @@ constructor(private service:DataService,private router:Router){}
             delete item.user_type
             
             this.farmerscandata.push(item)
-            // console.log(this.farmerscandata);
+          
            
           }
+    let jsonstring = []
+          for(let item of this.farmerscandata){
+        
+            for(let key in item){
+              jsonstring.push(item[key])
+            }
+          }
+          for(let item of jsonstring){
+            let tempobject = {
+              Name:"no name",
+              Phone:"45", 
+              Machine:"Machine2",
+              Crop:"rice",
+              date:"0",
+              }
 
-          // for(let item of this.farmerscandata){
-            
-          //   for(let key in item){
-          //     console.log(key)
-          //     this.scandetails.push(item[key])
-          //     this.scanshow.push(false);
-             
-          //   } 
-          //    this.scanlength.push(this.scanshow.length)
-          //   console.log(this.scanlength)
-          // }
-console.log('new approach')
+            tempobject.Name = item.name;
+            tempobject.Crop = item.crop;
+            tempobject.Machine = item.machine;
+            tempobject.Phone = item.ph_no;
+            var b = new Date(item.time)
+            tempobject.date =`${b.getDate()}/${b.getMonth()+1}/${b.getFullYear()}` 
+            for(let i=0;i<item.details.length;i++){
+              tempobject[item.details[i]] = item.numbers[i]
+            }
+            this.jsonData.push(tempobject)
+          }
+          
+
+          // console.log(this.jsonData)
+          
+          for(let item of this.farmerscandata){
+           // console.log(item)
+           for(let key in item){
+            // console.log()
+            // console.log(item.location)
+            var lat = item[key].location._lat
+            var long = item[key].location._long
+            this.getreversegeocoding(lat,long,item[key])
+           
+            // item[key].location_name = sname
+            // console.log(item[key]);
+           }
+          
+          }
+          
+          // console.log(this.locationdone)
           for(let item of this.farmerscandata){
                 for(let key in item){
                   this.keyarray.push(key)
@@ -97,6 +134,29 @@ console.log('new approach')
 
 
         }
+b :any = null
+getreversegeocoding(lat:number,long:number,newitem:any){
+this.service.getlocationname(lat,long).subscribe(res=>{
+  this.b = res;
+  // console.log(lat,long);
+  for(let item of this.b.localityInfo.administrative){
+    if(item.description){
+      var a = item.description
+      var b = a.split(' ')
+      if(b.includes('district')){
+         var district = item.name
+      // console.log(district);
+      }
+     
+    }
+  }
+  var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
+  // console.log(locationName)
+ newitem.location_name = locationName
+ // console.log(newitem)
+})
+}
+ 
 
 keyarray:any = []
 
@@ -254,5 +314,9 @@ ph_no:any = null
 addscan(){
   console.log('hocche')
 }
+  download(){
+    this.service.downloadFile(this.jsonData, 'Farmer Scan Data');
+  }
+
 
 }
