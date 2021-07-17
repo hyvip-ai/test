@@ -294,8 +294,12 @@ addfarmer(){
          }
          return str;
      }
+// f0d389d93d0b4a8da900b30a395f4698
+getlocationname(lat:any,long:any){
+  return this.http.get(`https://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=276def1cf9d3461aa9d3e7c53774935c`)
 
-
+  //276def1cf9d3461aa9d3e7c53774935c
+}
 
 }
  

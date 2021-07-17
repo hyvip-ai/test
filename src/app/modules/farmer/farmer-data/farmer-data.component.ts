@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from 'src/app/services/data.service';
 import {Router} from '@angular/router'
-// import {} from 'google.maps'
+
 
 @Component({ 
   selector: 'app-farmer-data',
@@ -26,6 +26,7 @@ numoffarmers:any = null
 show:any = []
 scanlength:any = []
 jsonstring:any = null
+
 constructor(private service:DataService,private router:Router){}
   ngOnInit(){
   
@@ -79,6 +80,7 @@ constructor(private service:DataService,private router:Router){}
           
 
           // console.log(this.jsonData)
+          
           for(let item of this.farmerscandata){
            // console.log(item)
            for(let key in item){
@@ -86,10 +88,15 @@ constructor(private service:DataService,private router:Router){}
             // console.log(item.location)
             var lat = item[key].location._lat
             var long = item[key].location._long
-            this.getreversegeocoding(lat,long)
+            this.getreversegeocoding(lat,long,item[key])
+           
+            // item[key].location_name = sname
+            // console.log(item[key]);
            }
+          
           }
           
+          // console.log(this.locationdone)
           for(let item of this.farmerscandata){
                 for(let key in item){
                   this.keyarray.push(key)
@@ -128,19 +135,27 @@ constructor(private service:DataService,private router:Router){}
 
 
         }
-getreversegeocoding(lat:number,long:number){
-  console.log(`Lat:${lat},long:${long}`)
-  // var latlng = new google.maps.LatLng(lat,long)
-  // console.log(latlng)
-  // var geocoder = new google.maps.Geocoder();
-  // geocoder.geocode({latLng : latlng},(result,status)=>{
-  //   if(status != google.maps.GeocoderStatus.OK){
-  //     console.log('errpr')
-  //   }
-  //   if(status == google.maps.GeocoderStatus.OK){
-  //     console.log(result)
-  //   }
-  // })
+b :any = null
+getreversegeocoding(lat:number,long:number,newitem:any){
+this.service.getlocationname(lat,long).subscribe(res=>{
+  this.b = res;
+  // console.log(lat,long);
+  for(let item of this.b.localityInfo.administrative){
+    if(item.description){
+      var a = item.description
+      var b = a.split(' ')
+      if(b.includes('district')){
+         var district = item.name
+      // console.log(district);
+      }
+     
+    }
+  }
+  var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
+  // console.log(locationName)
+ newitem.location_name = locationName
+ // console.log(newitem)
+})
 }
  
 

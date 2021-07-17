@@ -63,7 +63,7 @@
             <th>Crop</th>
           <th>Time</th>
            <th>Location</th>
-        <th>See Results</th>
+        <th style="text-align:center;">See Results</th>
         <th>Raw Image</th>
         <th>Annotated Image</th>
         <th>Total Kernel</th>
@@ -153,7 +153,7 @@
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue'>
                            
                            
-                             <td>{{key.value.location._lat}}<br>{{key.value.location._long}}</td>
+                             <td>{{key.value.location_name}}</td>
                            
                              </tr>
                           </tbody>
