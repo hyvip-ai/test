@@ -317,7 +317,7 @@ addscan(){
   console.log('hocche')
 }
   download(){
-    this.service.downloadFile(this.jsonData, 'Farmer Scan Data');
+    this.service.downloadFile(this.jsonData, 'Technician Scan Data');
   }
 
 }
