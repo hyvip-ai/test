@@ -109,6 +109,7 @@ export class SignUpComponent implements OnInit{
                         this.small.style.display = 'block'
                       }
                       location.reload()
+                      alert('Password Updated')
                   }
                   else{
                     alert('Wrong Phone Number');
