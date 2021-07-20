@@ -39,6 +39,15 @@ export class AppComponent implements OnInit{
 
   showlogin:boolean = false
   ngOnInit(): void {
+    console.log(window.location.href)
+    var b = window.location.href.split('/');
+    console.log(b);
+    if( !b.includes('home') && !b.includes('regional-data')&& !b.includes('machine')&& !b.includes('crop') && !b.includes('users') && !b.includes('Farmers') && !b.includes('Traders') && !b.includes('Technician') && !b.includes('Inspector') && !b.includes('Brokers')){
+      console.log('asche ekhane')
+      if(localStorage.getItem('loggedin')){
+        localStorage.removeItem('loggedin')
+      }
+    }
    if(localStorage.getItem('loggedin')){
     this.showlogin = false
    }
