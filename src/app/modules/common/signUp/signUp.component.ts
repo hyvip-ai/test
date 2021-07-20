@@ -57,13 +57,13 @@ export class SignUpComponent implements OnInit{
                       }
                       else{
                         alert('Wrong Password')
-                        this.service.getmainadmins(this.signUpForm.value.phone).unsubscribe();
+                      
                       }
 
                 }
                 else{
                   alert('Wrong Phone Number')
-                  
+
                 }
               })
             }
