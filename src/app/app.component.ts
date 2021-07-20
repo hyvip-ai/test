@@ -9,7 +9,7 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   title = 'dashboard';
   options: FormGroup;
   showSideBar = true;
@@ -72,4 +72,12 @@ export class AppComponent implements OnInit {
     console.log('closehocche')
     this.sidenav.close();
   }
+// @HostListener('window:beforeunload',['$event'])
+// onWindowClose(event){
+//   console.log('call hocche')
+//   alert('Please log out')
+//   event.preventDefault();
+//   event.returnValue = false
+// }
+
 }
