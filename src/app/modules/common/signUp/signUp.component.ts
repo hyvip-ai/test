@@ -95,7 +95,7 @@ export class SignUpComponent implements OnInit{
               this.service.getmainadmins(this.signUpForm.value.phone).subscribe(res=>{
                   if(res){
                     this.chngpassuser = res;
-                    console.log(res)
+                    // console.log(res)
                     this.service.updateadminpass(this.signUpForm.value.phone,this.signUpForm.value.password)
                       this.pass = document.getElementById('forpassword');
                       this.pass.style.display = 'none';
@@ -108,8 +108,7 @@ export class SignUpComponent implements OnInit{
                       else{
                         this.small.style.display = 'block'
                       }
-                      location.reload()
-                      alert('Password Updated')
+                      
                   }
                   else{
                     alert('Wrong Phone Number');
