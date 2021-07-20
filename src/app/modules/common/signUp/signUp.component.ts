@@ -63,7 +63,7 @@ export class SignUpComponent implements OnInit{
                 }
                 else{
                   alert('Wrong Phone Number')
-                  this.service.getmainadmins(this.signUpForm.value.phone).unsubscribe();
+                  
                 }
               })
             }
