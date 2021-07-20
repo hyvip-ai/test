@@ -16,6 +16,10 @@ export class UsersComponent implements OnInit {
   readusers:boolean = false
   innerWidth:any = 0;
   ngOnInit(): void {
+      if(!localStorage.getItem('loggedin')){
+      localStorage.setItem('loginmessege','Log In to Access The Page')
+      this.router.navigate(['/signin'])
+    }
     this.service.getusers().subscribe(res=>{
       this.users = res
       // console.log(this.users)

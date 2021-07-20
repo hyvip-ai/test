@@ -25,6 +25,10 @@ export class BarChartComponent implements AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     this.option = {
+      legend: {
+        show: true,
+        right: 'top',
+      },
       xAxis: {
         type: 'category',
         data: this.labels,
@@ -69,8 +73,9 @@ export class BarChartComponent implements AfterViewInit {
           },
         },
       },
-      series: [
+     series: [
         {
+          name: 'No of scan',
           data: this.data,
           type: 'bar',
           color: this.barColor,

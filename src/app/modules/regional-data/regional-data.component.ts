@@ -52,6 +52,11 @@ totalscans:any = 0
   higesttotal:any = []
   higesttotallabels:any = []
   ngOnInit(): void {
+    
+      if(!localStorage.getItem('loggedin')){
+      localStorage.setItem('loginmessege','Log In to Access The Page')
+      this.router.navigate(['/signin'])
+    }
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
     this.service.getallstate().subscribe(res=>{

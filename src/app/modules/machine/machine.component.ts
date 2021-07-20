@@ -18,7 +18,7 @@ export class MachineComponent implements OnInit{
   badtemp:any = 0
   averagetemp:any = 0
   goodtemp:any = 0
-
+ 
   machineCardData = [
    
   ];
@@ -65,35 +65,7 @@ export class MachineComponent implements OnInit{
   showcropgraph = false
   
 
-  scansByMonthLabels = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec',
-  ];
 
-  scansByMonthData = [
-    82,
-    65,
-    88,
-    65,
-    72,
-    56,
-    34,
-    0,
-    0,
-    0,
-    0,
-    0,
-  ];
 
   userData = [
     {
@@ -188,12 +160,52 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
    cropScanData = [];
   cropScanLabels = [];
   cropArray = []
+    scansByMonthLabels = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  scansByMonthData:any = [
+  ];
+  selectionarray:any = []
+  showyeargraph:boolean = false
+  myyeardata:any = {}
   ngOnInit(): void {
+      if(!localStorage.getItem('loggedin')){
+      localStorage.setItem('loginmessege','Log In to Access The Page')
+      this.router.navigate(['/signin'])
+    }
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <= 1302) {
       this.samllerScreenUI = true;
     }
     this.setMapOptions(); 
+    this.service.getyeardata().subscribe(res=>{
+        console.log(res)
+       
+       this.myyeardata = res
+       for(let key in this.myyeardata){
+          this.selectionarray.push(key)
+
+       }
+       for(let key in this.myyeardata){
+          if(key == this.selectionarray[0]){
+            this.scansByMonthData = this.myyeardata[key];
+          }
+       }
+       this.showyeargraph = true
+       // console.log(this.selectionarray);
+    })
     this.service.getcrops().subscribe(res=>{
       console.log(res)
       let temp = res;
@@ -479,7 +491,15 @@ this.averagetemp = 0
             
     })
   }
-
+  yearvalue:any = null
+selectyear(){
+  this.yearvalue  = document.getElementById('year')!
+   for(let key in this.myyeardata){
+          if(key == this.yearvalue.value){
+            this.scansByMonthData = this.myyeardata[key];
+          }
+       }
+}
 
 
 }

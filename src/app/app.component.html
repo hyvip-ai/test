@@ -1,16 +1,7 @@
-<!-- <app-header *ngIf="enableTheme" (toggleMenuSidebar)="toggleMenuSidebar()"></app-header>  -->
-<!-- TODO: need to understand this flag: sidebarMenuOpened -->
-<!-- && sidebarMenuOpened -->
-<!-- <div class="row">
-    <div class="col-2">
-        <app-sidebar></app-sidebar>
-    </div>
-    <div class="col-10">
-        <app-header></app-header>
-        <router-outlet></router-outlet>
-    </div>
-</div> --> 
-<ng-container class="grey" *ngIf="!samllerScreenUI">
+<ng-container *ngIf="showlogin">
+    <app-signUp></app-signUp>
+</ng-container>
+<ng-container class="grey" *ngIf="!samllerScreenUI && !showlogin">
     <mat-sidenav-container>
         <mat-sidenav #sidenav mode="side" opened class="sidenav" [fixedInViewport]="options.value.fixed"
             [fixedTopGap]="options.value.top" [fixedBottomGap]="options.value.bottom">
@@ -25,7 +16,7 @@
         </mat-sidenav-content>
     </mat-sidenav-container>
 </ng-container>
-<ng-container class="grey" *ngIf="samllerScreenUI">
+<ng-container class="grey" *ngIf="samllerScreenUI && !showlogin">
     <mat-sidenav-container (backdropClick)="close('backdrop')">
         <mat-sidenav class="sidenav" #sidenav (keydown.escape)="close('escape')" disableClose>
             <app-sidebar></app-sidebar>

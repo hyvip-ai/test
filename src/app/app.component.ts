@@ -1,7 +1,8 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router , ActivatedRoute} from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,10 @@ export class AppComponent implements OnInit {
   title = 'dashboard';
   options: FormGroup;
   showSideBar = true;
+
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  constructor(fb: FormBuilder, private router: Router) {
+  constructor(fb: FormBuilder, private router: Router,private ar:ActivatedRoute,private service:DataService) {
     this.options = fb.group({
       bottom: 0,
       fixed: true,
@@ -35,7 +37,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  showlogin:boolean = false
   ngOnInit(): void {
+   if(localStorage.getItem('loggedin')){
+    this.showlogin = false
+   }
+   else{
+    this.showlogin = true
+   }
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <992) {
       this.samllerScreenUI = true;
@@ -43,7 +52,7 @@ export class AppComponent implements OnInit {
 
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        if (event.url == '/signUp') {
+        if (event.url == '/signin') {
           this.showSideBar = false;
         }
       }

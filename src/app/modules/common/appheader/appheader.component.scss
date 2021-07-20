@@ -54,3 +54,9 @@ h6 {
   background: rgba(55,122,69,255);
   color: white;
 }
+
+@media(max-width:1155px){
+  .search{
+  display:none;
+  }
+}

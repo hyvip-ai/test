@@ -1,45 +1,126 @@
-<div class="container">
+<div id="big" class="container-fluid noshow">
     <div class="row">
         <div class="col-6">
-            <div class="container">
-                <div class="header">
+            <div class="container" style="height: 100%;">
+               <!--  <div class="header">
                     <h3 class="right"><span>Already a member? <a class="signUpLink brown">Sign In</a></span></h3>
-                </div>
-                <div class="title">
-                    <h1 class="brown">Sign Up</h1>
-                </div>
-                <div class="form" (ngSubit)="onSubmit()">
-                    <form [formGroup]="signUpForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" formControlName="name">
-                        </div>
-                        <div class="form-group">
+                </div> -->
+                    <!--  <div class="form-group">
                             <label for="entityName">Entity Name</label>
                             <input type="text" class="form-control" formControlName="entityName">
+                        </div> -->
+                   <!--      <div class="form-group">
+                            <label for="email">Phone Number</label>
+                            <input type="text" class="form-control" formControlName="email">
+                        </div> -->
+                         <!--    <div class="form-group">
+                            <label for="email">Confirm Password</label>
+                            <input type="text" class="form-control noBottomMargin">
+                            <h5 class="red">Verify Email Address through OTP</h5>
+                        </div> -->
+          
+                   
+                <div class="myformdiv">
+                      <div class="title">
+                    <h1 class="brown">Sign In</h1>
+                </div>
+                    <form [formGroup]="signUpForm">
+                        <div class="form-group">
+                            <label for="comp">Company Name</label>
+                            <input type="text" class="form-control" formControlName="company">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" formControlName="email">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" formControlName="phone">
                         </div>
+                   
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="text" class="form-control" formControlName="password">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Confirm Password</label>
-                            <input type="text" class="form-control noBottomMargin">
-                            <h5 class="red">Verify Email Address through OTP</h5>
-                        </div>
-                        <div class="row">
-                            <button class="btn createButton">Create Account</button>
+                    <p class="brown" style="cursor:pointer; text-align:right;" (click)='passfor()'>Forgot Password?</p>
+
+                    
+                        <div class="row" style="height:auto;">
+                            <button class="btn createButton" (click)="onSubmit()">Log In</button>
                         </div>
                     </form>
                 </div>
+              
             </div>
         </div>
         <div class="col-6">
+            <img src="../../../../assets/images/signin.jpg" class='background' alt="crop">
             <img src="../../../../assets/images/logo.png" alt="logo" class="logo">
         </div>
     </div>
+</div>
+
+<div class="show container-fluid" id="small" style="height:100vh;">
+         <div class="container" style="height:100%;">
+               <div class="myformdiv">
+                      <div class="title">
+                    <h1 class="brown">Sign In</h1>
+                    </div>
+                    <form [formGroup]="signUpForm">
+                        <div class="form-group">
+                            <label for="phone">Company Name</label>
+                            <input type="text" class="form-control" formControlName="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" formControlName="phone">
+                        </div>
+                   
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" formControlName="password">
+                        </div>
+                    <p class="brown" style="cursor:pointer; text-align:right;" (click)='passfor()'>Forgot Password?</p>
+                        
+                        <div class="row" style="height:auto;">
+                            <button class="btn createButton" (click)="onSubmit()">Log In</button>
+                        </div>
+                    </form>
+                </div>
+                   
+                
+                      
+                
+           </div>   
+           
+</div>
+
+<div id="forpassword" class="pass container-fluid" style="height:100vh;">
+         <div class="container" style="height:100%;">
+               <div class="myformdiv formdivpass">
+                      <div class="title">
+                    <h1 class="brown">Change Password</h1>
+                    </div>
+                    <form [formGroup]="signUpForm">
+                        <div class="form-group">
+                            <label for="phone">Company Name</label>
+                            <input type="text" class="form-control" formControlName="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Registered Phone</label>
+                            <input type="text" class="form-control" formControlName="phone">
+                        </div>
+                   
+                        <div class="form-group">
+                            <label for="password">New Password</label>
+                            <input type="text" class="form-control" formControlName="password">
+                        </div>
+                        
+                        <div class="row" style="height:auto;">
+                            <button class="btn createButton" (click)="changepassword()">Update Password</button>
+                        </div>
+                    </form>
+                </div>
+                   
+                
+                      
+                
+           </div>   
+           
 </div>

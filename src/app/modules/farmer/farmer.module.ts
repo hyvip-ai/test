@@ -11,7 +11,7 @@ import { DoughNutChartModule } from "../common/doughnut-chart/doughnut-chart.mod
 import { HorizontalBarChartModule } from "../common/horizontal-bar-chart/horizontal-bar-chart.module";
 import { BarChartModule } from '../common/bar-chart/bar-chart.module';
 import { DoubleBarChartModule } from "../common/double-bar-chart/double-bar-chart.module";
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,8 @@ import { DoubleBarChartModule } from "../common/double-bar-chart/double-bar-char
             HorizontalBarChartModule,
             BarChartModule,
             DoubleBarChartModule,
+             ReactiveFormsModule,
+          FormsModule,
               NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.

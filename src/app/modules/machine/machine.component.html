@@ -43,11 +43,14 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" *ngIf='showyeargraph'>
     <div class="col-12" [ngClass]="{'reducePadding': innerWidth < 1220}">
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body">
                 <h2 class="cardTitle">Scans by month</h2>
+                <select (change)='selectyear()' class="form-control" name="year" id="year">
+                    <option *ngFor='let item of selectionarray' value="{{item}}">{{item}}</option>
+                </select>
                 <app-bar-chart [data]="scansByMonthData" [labels]="scansByMonthLabels" barColor="rgb(112,212,224)" size="400px">
                 </app-bar-chart>
             </div>

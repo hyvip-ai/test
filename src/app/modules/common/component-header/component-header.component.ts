@@ -6,7 +6,7 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./component-header.component.scss'],
 })
 export class ComponentHeaderComponent {
-  username = 'Pranav';
+  username = localStorage.getItem('name');
   innerWidth;
   samllerScreenUI = false;
   sizeOfMap;

@@ -17,7 +17,9 @@ export class DataService {
    
   }
 
-
+  getcompany(company:any){
+    return this.afs.collection(company).valueChanges();
+  }
   getusers(){
   return this.afs.collection('comp_a').valueChanges();  
   }
@@ -299,6 +301,21 @@ getlocationname(lat:any,long:any){
   return this.http.get(`https://api.bigdatacloud.net/data/reverse-geocode?latitude=${lat}&longitude=${long}&localityLanguage=en&key=276def1cf9d3461aa9d3e7c53774935c`)
 
   //276def1cf9d3461aa9d3e7c53774935c
+}
+// getadmins(){
+//   return this.afs.collection('administrators').doc('comp_a').valueChanges()
+// }
+getyeardata(){
+  return this.afs.collection('comp_a').doc('year').valueChanges();
+}
+
+getmainadmins(number:any){
+  return this.afs.collection('comp_a').doc('Users').collection('administrators').doc(number).valueChanges();
+}
+updateadminpass(number:any,password:any){
+this.afs.collection("comp_a").doc("Users").collection('administrators').doc(number).update({
+  password:password
+}) 
 }
 
 }

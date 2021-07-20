@@ -13,11 +13,11 @@ const routes: Routes = [
 {
   path:'',
   pathMatch:'full',
-  redirectTo:'home'
+  redirectTo:'signin'
 },
  {
-    path: 'signUp',
-    component: SignUpComponent,
+    path: 'signin',
+    component: SignUpComponent, 
   },
   {
     path: 'home',

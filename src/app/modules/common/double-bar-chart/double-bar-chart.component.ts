@@ -1,3 +1,4 @@
+
 import { AfterViewInit, Component, Input, SimpleChanges } from '@angular/core';
 import * as echarts from 'echarts/dist/echarts.js';
 
@@ -48,7 +49,7 @@ export class DoubleBarChartComponent implements AfterViewInit {
         {
           type: 'value',
           splitLine: {
-            show: false,
+            show: true,
           },
         },
       ],
@@ -121,7 +122,7 @@ export class DoubleBarChartComponent implements AfterViewInit {
         {
           type: 'value',
           splitLine: {
-            show: false,
+            show: true,
           },
         },
       ],

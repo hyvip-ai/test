@@ -40,6 +40,11 @@ export class DashBoardComponent implements OnInit {
   donutcharttemp:any=[]
   constructor(private service:DataService,private router:Router){}
   ngOnInit(): void {
+
+    if(!localStorage.getItem('loggedin')){
+      localStorage.setItem('loginmessege','Log In to Access The Page')
+      this.router.navigate(['/signin'])
+    }
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
      this.service.getcrops().subscribe(res=>{

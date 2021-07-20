@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./appheader.component.scss'],
 })
 export class AppHeaderComponent {
-  fullName = 'Pranav';
-  email = 'Pranav.ashtha@gmail.com';
-   username = 'Pranav';
+  fullName = localStorage.getItem('name');
+  email = localStorage.getItem('email');
+   username = localStorage.getItem('name');
 }
