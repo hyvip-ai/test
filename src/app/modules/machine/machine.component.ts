@@ -213,9 +213,9 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       let graphdata = []
       for(let croptemp of temp){
 
-        croptemp.good_percentage = Math.round((Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10)
-      croptemp.average_percentage = Math.round((Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10)
-      croptemp.bad_percentage = Math.round((Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10)
+        croptemp.good_percentage = (Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10
+      croptemp.average_percentage = (Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10
+      croptemp.bad_percentage =(Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10
       
       this.cropScanLabels.push(croptemp.name)
       this.cropScanData.push(croptemp.total_scans)
@@ -238,9 +238,9 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       // console.log(this.machineCardData)
     for(let item of this.machineCardData){
 
-        item.good_percentage =Math.round((Math.floor(((item.good_scans/item.total_scans)*100)*10))/10)
-        item.average_percentage = Math.round((Math.floor(((item.average_scans/item.total_scans)*100)*10))/10)
-        item.bad_percentage = Math.round((Math.floor(((item.bad_scans/item.total_scans)*100)*10))/10)
+        item.good_percentage =(Math.floor(((item.good_scans/item.total_scans)*100)*10))/10
+        item.average_percentage = (Math.floor(((item.average_scans/item.total_scans)*100)*10))/10
+        item.bad_percentage = (Math.floor(((item.bad_scans/item.total_scans)*100)*10))/10
        }
     })
   this.service.getfarmers().subscribe(res=>{
@@ -263,9 +263,9 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
     // console.log(this.goodtemp,this.averagetemp,this.badtemp)
    this.noofscans.push(this.numbertemp)
 
-    userersobject.good_percentage  = Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
-    userersobject.average_percentage  = Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
-    userersobject.bad_percentage  = Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
+    userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
+    userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
+    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
     userersobject.total = this.numbertemp
    userersobject.user = 'Farmer'
    this.doughnutChartData.splice(0,this.doughnutChartData.length)
@@ -306,9 +306,9 @@ this.averagetemp = 0
 
     this.noofscans.push(this.numbertemp)
 
-     userersobject.good_percentage  = Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
-    userersobject.average_percentage  = Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
-    userersobject.bad_percentage  =Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
+     userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
+    userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
+    userersobject.bad_percentage  =(Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Trader'
@@ -340,9 +340,9 @@ this.numbertemp = 0
     }
     this.noofscans.push(this.numbertemp)
 
-      userersobject.good_percentage  = Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
-    userersobject.average_percentage  = Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
-    userersobject.bad_percentage  = Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
+      userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
+    userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
+    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Inspector'
@@ -373,9 +373,9 @@ this.averagetemp = 0
       this.goodtemp = this.goodtemp + item.good_scans 
     }
     this.noofscans.push(this.numbertemp)
-        userersobject.good_percentage  = Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
-    userersobject.average_percentage  =Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
-    userersobject.bad_percentage  = Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
+        userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
+    userersobject.average_percentage  =(Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
+    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Technician'
@@ -407,9 +407,9 @@ this.averagetemp = 0
       this.goodtemp = this.goodtemp + item.good_scans  
     }
     this.noofscans.push(this.numbertemp)
-          userersobject.good_percentage  = Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
-    userersobject.average_percentage  = Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
-    userersobject.bad_percentage  = Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
+          userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
+    userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
+    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Broker'
