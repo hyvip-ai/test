@@ -174,9 +174,9 @@ export class CropComponent implements OnInit {
   this.service.getcrops().subscribe(res=>{
     this.cropArray = res;
     for(let croptemp of this.cropArray){
-        croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+                croptemp.good_percentage = Math.round((Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10)
+      croptemp.average_percentage = Math.round((Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10)
+      croptemp.bad_percentage = Math.round((Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10)
     }
     this.cropData = true
        this.selectedcropmonthdata = this.cropArray[0].months
@@ -285,9 +285,10 @@ export class CropComponent implements OnInit {
       
         this.machinedata = res;
        for(let item of this.machinedata){
-        item.good_percentage = Math.floor((item.good_scans/item.total_scans)*100)
-        item.average_percentage = Math.floor((item.average_scans/item.total_scans)*100)
-        item.bad_percentage = Math.floor((item.bad_scans/item.total_scans)*100)
+
+        item.good_percentage = Math.round((Math.floor(((item.good_scans/item.total_scans)*100)*10))/10)
+        item.average_percentage = Math.round((Math.floor(((item.average_scans/item.total_scans)*100)*10))/10)
+        item.bad_percentage = Math.round((Math.floor(((item.bad_scans/item.total_scans)*100)*10))/10)
        }
        let machinetempbardata=[]
        machinetempbardata.push(this.machinedata[0].good_percentage)
@@ -322,9 +323,10 @@ export class CropComponent implements OnInit {
       this.goodtemp = this.goodtemp + item.good_scans
     }
     this.noofscans.push(this.numbertemp)
-     userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
-    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
-    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+
+     userersobject.good_percentage  =    Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
+    userersobject.average_percentage  =    Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
+    userersobject.bad_percentage  =    Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
     userersobject.total = this.numbertemp
    userersobject.user = 'Farmer'
      //console.log(userersobject)
@@ -360,9 +362,9 @@ this.numbertemp = 0
       this.goodtemp = this.goodtemp + item.good_scans 
     }
     this.noofscans.push(this.numbertemp)
-       userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
-    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
-    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+       userersobject.good_percentage  =   Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
+    userersobject.average_percentage  =   Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
+    userersobject.bad_percentage  =    Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Trader'
@@ -392,9 +394,9 @@ this.numbertemp = 0
       this.goodtemp = this.goodtemp + item.good_scans 
     }
     this.noofscans.push(this.numbertemp)
-          userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
-    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
-    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+          userersobject.good_percentage  =    Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
+    userersobject.average_percentage  =    Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
+    userersobject.bad_percentage  =   Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Inspector'
@@ -425,9 +427,9 @@ this.averagetemp = 0
       this.goodtemp = this.goodtemp + item.good_scans 
     }
     this.noofscans.push(this.numbertemp)
-       userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
-    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
-    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+       userersobject.good_percentage  =    Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
+    userersobject.average_percentage  =    Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
+    userersobject.bad_percentage  =    Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Technician'
@@ -459,9 +461,9 @@ this.averagetemp = 0
       this.goodtemp = this.goodtemp + item.good_scans  
     }
     this.noofscans.push(this.numbertemp)
-             userersobject.good_percentage  = Math.floor((this.goodtemp/this.numbertemp)*100)
-    userersobject.average_percentage  = Math.floor((this.averagetemp/this.numbertemp)*100)
-    userersobject.bad_percentage  = Math.floor((this.badtemp/this.numbertemp)*100)
+             userersobject.good_percentage  =    Math.round((Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10)
+    userersobject.average_percentage  =   Math.round((Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10)
+    userersobject.bad_percentage  =    Math.round((Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10)
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Broker'
@@ -526,9 +528,10 @@ crop:any = null
     console.log(this.crop.value)
     this.service.getselectedcrop(this.crop.value).subscribe(res=>{
        let croptemp = res
-            croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+
+            croptemp.good_percentage =  Math.round((Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10)
+      croptemp.average_percentage =  Math.round((Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10)
+      croptemp.bad_percentage =  Math.round((Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10)
       // this.cropArray.push(croptemp);
       this.selectedcropmonthdata = croptemp.months
       // this.uniquedistricts = croptemp.district

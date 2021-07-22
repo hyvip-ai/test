@@ -88,10 +88,10 @@ totalscans:any = 0
       this.userData = this.mainstatedata[0].user_num
       this.userscanData = this.mainstatedata[0].user_scan
       this.userlabels = this.mainstatedata[0].user_type
-     
-      this.totalscandata.push(Math.floor((this.mainstatedata[0].good_scan/this.mainstatedata[0].total_scan)*100))
-      this.totalscandata.push(Math.floor((this.mainstatedata[0].average_scan/this.mainstatedata[0].total_scan)*100))
-      this.totalscandata.push(Math.floor((this.mainstatedata[0].bad_scan/this.mainstatedata[0].total_scan)*100))
+      
+      this.totalscandata.push(Math.round((Math.floor(((this.mainstatedata[0].good_scan/this.mainstatedata[0].total_scan)*100)*10))/10))
+      this.totalscandata.push(Math.round((Math.floor(((this.mainstatedata[0].average_scan/this.mainstatedata[0].total_scan)*100)*10))/10))
+      this.totalscandata.push(Math.round((Math.floor(((this.mainstatedata[0].bad_scan/this.mainstatedata[0].total_scan)*100)*10))/10))
       this.showmygraph = true;
     })
       
@@ -215,9 +215,10 @@ compare(a,b){
       this.userlabels.splice(0,this.userlabels.length)
       this.userlabels = temp.user_type
       let tottalscandatatemp =[]
-      tottalscandatatemp.push(Math.floor((temp.good_scan/temp.total_scan)*100))
-      tottalscandatatemp.push(Math.floor((temp.average_scan/temp.total_scan)*100))
-      tottalscandatatemp.push(Math.floor((temp.bad_scan/temp.total_scan)*100))
+
+      tottalscandatatemp.push(Math.round((Math.floor(((temp.good_scan/temp.total_scan)*100)*10))/10))
+      tottalscandatatemp.push(Math.round((Math.floor(((temp.average_scan/temp.total_scan)*100)*10))/10))
+      tottalscandatatemp.push(Math.round((Math.floor(((temp.bad_scan/temp.total_scan)*100)*10))/10))
       this.totalscandata.splice(0,this.totalscandata.length)
       this.totalscandata = tottalscandatatemp
       this.showmygraph = true;

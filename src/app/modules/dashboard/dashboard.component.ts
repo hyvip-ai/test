@@ -50,9 +50,9 @@ export class DashBoardComponent implements OnInit {
      this.service.getcrops().subscribe(res=>{
       this.cropArray = res
       for(let croptemp of this.cropArray){
-         croptemp.good_percentage = Math.floor((croptemp.good_scans/croptemp.total_scans)*100)
-      croptemp.average_percentage = Math.floor((croptemp.average_scans/croptemp.total_scans)*100)
-      croptemp.bad_percentage = Math.floor((croptemp.bad_scans/croptemp.total_scans)*100)
+         croptemp.good_percentage = Math.round((Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10)
+      croptemp.average_percentage = Math.round((Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10)
+      croptemp.bad_percentage = Math.round((Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10)
       }
         this.cropData = true
         console.log(this.cropArray)
@@ -114,14 +114,15 @@ export class DashBoardComponent implements OnInit {
         for(let i=0;i<this.machinedata.length;i++){
           if(i==0){
             // console.log(this.machinedata[i].total_scans)
-            this.machine1scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+           
+            this.machine1scan =  Math.round((Math.floor(((this.machinedata[i].total_scans/this.totalscans)*100)*10))/10)
             this.donutcharttemp.push(this.machine1scan)
             this.machine1 = this.machinedata[i].no_of_machines
             this.machine1scan = this.machinedata[i].total_scans
           }
           else if(i==1){
             // console.log(this.machinedata[i].total_scans)
-            this.machine2scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.machine2scan = Math.round((Math.floor(((this.machinedata[i].total_scans/this.totalscans)*100)*10))/10)
             this.donutcharttemp.push(this.machine2scan)
             this.machine2 = this.machinedata[i].no_of_machines
             this.machine2scan = this.machinedata[i].total_scans
@@ -130,7 +131,7 @@ export class DashBoardComponent implements OnInit {
           }
           else if(i==2){
             // console.log(this.machinedata[i].total_scans)
-            this.machine3scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.machine3scan =  Math.round((Math.floor(((this.machinedata[i].total_scans/this.totalscans)*100)*10))/10)
             this.donutcharttemp.push(this.machine3scan)
             this.machine3 = this.machinedata[i].no_of_machines
             this.machine3scan = this.machinedata[i].total_scans
@@ -138,7 +139,7 @@ export class DashBoardComponent implements OnInit {
 
           }else{
             // console.log(this.machinedata[i].total_scans)
-            this.machine4scan = Math.floor((this.machinedata[i].total_scans/this.totalscans)*100)
+            this.machine4scan =  Math.round((Math.floor(((this.machinedata[i].total_scans/this.totalscans)*100)*10))/10)
             this.donutcharttemp.push(this.machine4scan)
             // console.log(this.machine4scan)
             this.machine4 = this.machinedata[i].no_of_machines
