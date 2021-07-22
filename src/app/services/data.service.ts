@@ -37,7 +37,7 @@ export class DataService {
   gettraders(){
   return this.afs.collection('comp_a').doc('Users').collection('Traders').valueChanges();
 
-  }
+  } 
   getbrokers(){
     // console.log('asche')
   return this.afs.collection('comp_a').doc('Users').collection('Brokers').valueChanges();
@@ -106,8 +106,8 @@ addfarmer(){
   
   
   var good =1
-  var bad = 1
-  var average = 1
+  var bad = 0
+  var average = 0
  
 
   console.log(good,bad,average)
@@ -119,7 +119,7 @@ addfarmer(){
  
    
 
-  this.afs.collection("comp_a").doc("Users").collection('Technician').doc(`${ph_no}`).set({
+  this.afs.collection("comp_a").doc("Users").collection('Brokers').doc(`${ph_no}`).set({
     name: name,
     ph_no:ph_no,
     date:date,
@@ -178,62 +178,10 @@ addfarmer(){
           numbers:[count,broken,insect,mold,nodefect,nonyellow,foreign]
     
         },
-        user_type:'Technician'
+        user_type:'Broker'
     })
  
  
-    for(let i=0;i<2;i++){
-        console.log(i)
-  var date = `${month[Math.floor(Math.random()*month.length)]}/${day[Math.floor(Math.random()*day.length)]}/${year[Math.floor(Math.random()*year.length)]}`
-  var crop=['Rice','Wheat','Corn','Barley','Maize','Millet']
-  var machine = ['Machine 1','Machine 2','Machine 3','Machine 4']
-  var timestamp = new Date(date).getTime();
-  var broken = Math.floor(Math.random() * 100)  
-  var insect = Math.floor(Math.random() * 100)
-  var mold = Math.floor(Math.random() * 100)
-  var nodefect = Math.floor(Math.random() * 100)
-  var nonyellow = Math.floor(Math.random() * 100)
-  var foreign = Math.floor(Math.random() * 100)
-  var cropindex = (Math.floor(Math.random() * crop.length))
-  var machineindex = (Math.floor(Math.random() * machine.length))
-  var count = broken + insect + mold + nodefect + nonyellow + foreign
-  const p ={
-        latitude:23.5120,
-        longitude:80.32900,
-      }
-      const r = 500000
-      const randomPoint = randomCirclePoint(p,r)
-     
-
-  var img = 'https://firebasestorage.googleapis.com/v0/b/upjaoconsumer-1f03d.appspot.com/o/upjao_consumer%2Fupload_19_June_2021_1624096490560%2Fprocessed.png?alt=media&token=28726010-5067-4a43-b341-ee97923c52b1'
-  var finalcrop = crop[cropindex]
-  var finalmachine = machine[machineindex]
-  console.log(finalcrop)
- 
-  console.log(String(ph_no),name,date,good,average,bad,good+bad+average)
-  console.log(finalcrop,finalmachine)
-  console.log(date)
-  console.log(timestamp,finalcrop,finalmachine,broken,insect,mold,nodefect,nonyellow,foreign,count)
-    console.log(randomPoint.latitude,randomPoint.longitude,timestamp)
-    this.afs.collection("comp_a").doc("Users").collection('scan_data').doc(ph_no).update({
-        [timestamp]:{
-          location:{
-            _lat:randomPoint.latitude,
-            _long:randomPoint.longitude
-          },
-          name : name,
-          count:count,
-          ph_no:ph_no,
-          time:timestamp,
-          details:['Total Kernel Count','Broken Kernel','Insect Kernel','Mold Kernel','No Defect Kernel','Non Yellow kernel','Foreign Kernel'],
-          images:[img,img],
-          machine:finalmachine,
-          crop:finalcrop,
-          numbers:[count,broken,insect,mold,nodefect,nonyellow,foreign]
-    
-        }
-    })
-    }
 
   
     return ph_no

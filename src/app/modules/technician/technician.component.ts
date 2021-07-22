@@ -12,6 +12,7 @@ import {Router} from '@angular/router'
 })
 export class TechnicianComponent implements OnInit {
 
+mainsearched:any = []
 farmerdata:any = []
 farmerdatatemp:any = null
 sortingdupli:any = []
@@ -51,6 +52,13 @@ constructor(private service:DataService,private router:Router){}
           
            
           }
+            var searched = this.farmerscandata;
+ 
+  for(let item of searched){
+    for(let key in item){
+      this.mainsearched.push(item[key])
+    }
+  }
     let jsonstring = []
           for(let item of this.farmerscandata){
         
@@ -138,25 +146,26 @@ constructor(private service:DataService,private router:Router){}
         }
 b :any = null
 getreversegeocoding(lat:number,long:number,newitem:any){
-this.service.getlocationname(lat,long).subscribe(res=>{
-  this.b = res;
-  // console.log(lat,long);
-  for(let item of this.b.localityInfo.administrative){
-    if(item.description){
-      var a = item.description
-      var b = a.split(' ')
-      if(b.includes('district')){
-         var district = item.name
-      // console.log(district);
-      }
+// this.service.getlocationname(lat,long).subscribe(res=>{
+//   this.b = res;
+//   // console.log(lat,long);
+//   for(let item of this.b.localityInfo.administrative){
+//     if(item.description){
+//       var a = item.description
+//       var b = a.split(' ')
+//       if(b.includes('district')){
+//          var district = item.name
+//       // console.log(district);
+//       }
      
-    }
-  }
-  var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
-  // console.log(locationName)
- newitem.location_name = locationName
- // console.log(newitem)
-})
+//     }
+//   }
+//   var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
+//   // console.log(locationName)
+//  newitem.location_name = locationName
+//  // console.log(newitem)
+// })
+newitem.location_name = 'N/A'
 }
  
 
@@ -305,7 +314,7 @@ ph_no:any = null
       console.log('asche')
     
       
-        this.ph_no =  this.service.addfarmer()
+        this.ph_no =  this.service.addfarmer() 
     
       
         console.log(this.ph_no)
@@ -319,5 +328,24 @@ addscan(){
   download(){
     this.service.downloadFile(this.jsonData, 'Technician Scan Data');
   }
+  searchedFarmerName:any = null
+  searchresult:any = []
+  showsearchresults:boolean = false
+searchfarmer(){
+  if(this.searchedFarmerName==''){
+    this.showsearchresults = false
+  }
+  else{
+    this.showsearchresults = true
+  }
+  // console.log(this.searchedFarmerName)
+  var re = new RegExp(this.searchedFarmerName+'.+$','i');
+  this.searchresult = this.mainsearched.filter((e,i,a)=>{
+    // console.log(e.name)
+    return e.name.search(re) != -1;
+  })
+  // console.log(this.searchresult);
+}
+
 
 }
