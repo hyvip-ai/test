@@ -38,6 +38,7 @@ export class DashBoardComponent implements OnInit {
   state:any = false
   uniquestates:any =[]
   donutcharttemp:any=[]
+    labels = ['Farmer', 'Broker', 'Trader', 'Technician', 'Inspector'];
   constructor(private service:DataService,private router:Router){}
   ngOnInit(): void {
 
@@ -58,7 +59,7 @@ export class DashBoardComponent implements OnInit {
         console.log(this.cropArray)
      })
   
-    this.service.getfarmers().subscribe(res=>{
+    this.service.getfarmers().subscribe(res=>{ 
       
       this.temp = res
       // console.log(this.temp)
@@ -240,7 +241,7 @@ export class DashBoardComponent implements OnInit {
   doughnutChartLabels = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
 
   data = [];
-  labels = ['Farmer', 'Broker', 'Trader', 'Inspector', 'Technician'];
+
   color = [
     'rgb(215,223,35)',
     'rgb(112,212,224)',

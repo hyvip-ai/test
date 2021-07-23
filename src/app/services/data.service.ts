@@ -21,85 +21,105 @@ export class DataService {
     return this.afs.collection(company).valueChanges();
   }
   getusers(){
-  return this.afs.collection('comp_a').valueChanges();  
+    var comp = localStorage.getItem('company')
+    console.log(comp+' asche dataservice a')
+  return this.afs.collection(comp).valueChanges();  
   }
   getfarmers(){
-  return this.afs.collection('comp_a').doc('Users').collection('Farmers').valueChanges();
+    var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('Farmers').valueChanges();
   }
   getfarmersscans(){
-  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Farmer')).valueChanges();
+    var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Farmer')).valueChanges();
 
   }
    gettradersscans(){
-  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Trader')).valueChanges();
+    var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Trader')).valueChanges();
 
   }
   gettraders(){
-  return this.afs.collection('comp_a').doc('Users').collection('Traders').valueChanges();
+    var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('Traders').valueChanges();
 
   } 
   getbrokers(){
+    var comp = localStorage.getItem('company')
     // console.log('asche')
-  return this.afs.collection('comp_a').doc('Users').collection('Brokers').valueChanges();
+  return this.afs.collection(comp).doc('Users').collection('Brokers').valueChanges();
 
   }
     getbrokersscans(){
-  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Broker')).valueChanges();
+      var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Broker')).valueChanges();
 
   }
   getpolice(){
-  return this.afs.collection('comp_a').doc('Users').collection('Inspector').valueChanges();
+    var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('Inspector').valueChanges();
 
   }
     getinspectorsscans(){
-  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Inspector')).valueChanges();
+      var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Inspector')).valueChanges();
 
   }
   gettechinician(){
-  return this.afs.collection('comp_a').doc('Users').collection('Technician').valueChanges();
+    var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('Technician').valueChanges();
 
   }
     gettechnicianscans(){
-  return this.afs.collection('comp_a').doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Technician')).valueChanges();
+      var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('scan_data',ref=>ref.where('user_type','==','Technician')).valueChanges();
 
   }
   getscanresults(id:any){
+    var comp = localStorage.getItem('company')
   // console.log(id);
-    return this.afs.collection('comp_a').doc('Users').collection('scan_data').doc(`${id}`).valueChanges();
+    return this.afs.collection(comp).doc('Users').collection('scan_data').doc(`${id}`).valueChanges();
   }
   getmachinedata(){
-    return this.afs.collection('comp_a').doc('Machines').collection('machine_data').valueChanges();
+    var comp = localStorage.getItem('company')
+    return this.afs.collection(comp).doc('Machines').collection('machine_data').valueChanges();
   }
 
   getusernumber(){
-    return this.afs.collection('comp_a').doc('Users').collection('Farmers').valueChanges()
+    var comp = localStorage.getItem('company')
+    return this.afs.collection(comp).doc('Users').collection('Farmers').valueChanges()
   }
 
   getmachinestates(i:any){
-    return this.afs.collection('comp_a').doc('Machines').collection('machine_data').doc(`machine_${i}`).valueChanges();
+    var comp = localStorage.getItem('company')
+    return this.afs.collection(comp).doc('Machines').collection('machine_data').doc(`machine_${i}`).valueChanges();
 
   }
   getcrops(){
-    return this.afs.collection('comp_a').doc('Crops').collection('crop').valueChanges()
+    var comp = localStorage.getItem('company')
+    return this.afs.collection(comp).doc('Crops').collection('crop').valueChanges()
   }
   getselectedcrop(crop:any){
-    return this.afs.collection('comp_a').doc('Crops').collection('crop').doc(crop).valueChanges()
+    var comp = localStorage.getItem('company')
+    return this.afs.collection(comp).doc('Crops').collection('crop').doc(crop).valueChanges()
   }
  
 
 getallstate(){
-    return this.afs.collection('comp_a').doc('States').collection('states').valueChanges()
+  var comp = localStorage.getItem('company')
+    return this.afs.collection(comp).doc('States').collection('states').valueChanges()
 
 }
 
 getselectedstate(state:any){
- return this.afs.collection('comp_a').doc('States').collection('states').doc(state).valueChanges()
+  var comp = localStorage.getItem('company')
+ return this.afs.collection(comp).doc('States').collection('states').doc(state).valueChanges()
 
 }
 
 
 addfarmer(){
-
+var comp = localStorage.getItem('company')
  
   var ph = Math.floor(Math.random() * 10000000000);
   var ph_no = ph.toString()
@@ -119,7 +139,7 @@ addfarmer(){
  
    
 
-  this.afs.collection("comp_a").doc("Users").collection('Brokers').doc(`${ph_no}`).set({
+  this.afs.collection(comp).doc("Users").collection('Brokers').doc(`${ph_no}`).set({
     name: name,
     ph_no:ph_no,
     date:date,
@@ -161,7 +181,7 @@ addfarmer(){
   console.log(date)
   console.log(timestamp,finalcrop,finalmachine,broken,insect,mold,nodefect,nonyellow,foreign,count)
     console.log(randomPoint.latitude,randomPoint.longitude,timestamp)
-    this.afs.collection("comp_a").doc("Users").collection('scan_data').doc(ph_no).set({
+    this.afs.collection(comp).doc("Users").collection('scan_data').doc(ph_no).set({
         [timestamp]:{
           location:{
             _lat:randomPoint.latitude,
@@ -251,17 +271,20 @@ getlocationname(lat:any,long:any){
   //276def1cf9d3461aa9d3e7c53774935c
 }
 // getadmins(){
-//   return this.afs.collection('administrators').doc('comp_a').valueChanges()
+//   return this.afs.collection('administrators').doc(comp).valueChanges()
 // }
 getyeardata(){
-  return this.afs.collection('comp_a').doc('year').valueChanges();
+  var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('year').valueChanges();
 }
 
 getmainadmins(number:any){
-  return this.afs.collection('comp_a').doc('Users').collection('administrators').doc(number).valueChanges();
+  var comp = localStorage.getItem('company')
+  return this.afs.collection(comp).doc('Users').collection('administrators').doc(number).valueChanges();
 }
 updateadminpass(number:any,password:any){
-this.afs.collection("comp_a").doc("Users").collection('administrators').doc(number).update({
+  var comp = localStorage.getItem('company')
+this.afs.collection(comp).doc("Users").collection('administrators').doc(number).update({
   password:password
 }) 
 }

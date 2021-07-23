@@ -48,9 +48,15 @@
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body">
                 <h2 class="cardTitle">Scans by month</h2>
-                <select (change)='selectyear()' class="form-control" name="year" id="year">
+                 <div class="row paddingLeft">
+                    <h3  [ngClass]="{ 'middle': innerWidth >= 741}" class="greyText">Showing For :</h3>
+                    <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12': innerWidth < 741}">
+                        <select (change)='selectyear()' class="form-control" name="year" id="year">
                     <option *ngFor='let item of selectionarray' value="{{item}}">{{item}}</option>
                 </select>
+                    </div>
+                </div> 
+                
                 <app-bar-chart [data]="scansByMonthData" [labels]="scansByMonthLabels" barColor="rgb(112,212,224)" size="400px">
                 </app-bar-chart>
             </div>

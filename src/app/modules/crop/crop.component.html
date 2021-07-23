@@ -56,7 +56,7 @@
 <div class="row">
     <div class="card listing-cards bg-light mb-3 fullWidth">
         <div class="card-body">
-            <div class="row paddingLeft">
+            <div class="row paddingLeft" style="margin-bottom: 20px;">
                 <h3 [ngClass]="{ 'middle': innerWidth >= 741}" class="greyText">Showing For :</h3>
                 <div [ngClass]="{ 'col-3': innerWidth >= 741, 'col-12 moreMargin': innerWidth < 741 }" class="col-3">
                     <select class="form-control" name="crop" id="crop" (change)='cropselected()'>
@@ -64,7 +64,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-bottom:30px;">
                 <div [ngClass]="{ 'extarMargin': innerWidth > 414 }" class="card listing-cards graphCard">
                     <div class="card-body graphCardBody" *ngIf='monthdata'>
                         <h2 class="cardTitle">Scans by month</h2>
