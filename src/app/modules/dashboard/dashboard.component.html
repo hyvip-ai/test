@@ -51,7 +51,7 @@
 		<div class="card listing-cards bg-light mb-3 w-100">
 			<div class="card-body">
 				<h2 class="cardTitle">Types of Machines used for Scanning</h2>
-				<app-dashboard-doughnut-chart *ngIf='doughnutChartData' [data]="doughnutChartData" [labels]="doughnutChartLabels">
+				<app-dashboard-doughnut-chart *ngIf='doughnutChartData' [data]="doughnutChartData" [labels]="doughnutChartLabels" [position]='inside' [smallerUI]='false'>
 				</app-dashboard-doughnut-chart>
 				<div class="row">
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">

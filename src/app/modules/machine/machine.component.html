@@ -146,7 +146,7 @@
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body" *ngIf='showcropgraph'>
                 <h6>{{ cropArray[selectedCropIndex].name }}</h6>
-                <app-doughnut-chart [data]="doughcropdata" [labels]="doughnutcropLabels" postion="inside" [smallerUI]='false'></app-doughnut-chart>
+                <app-doughnut-chart [data]="doughcropdata" [labels]="doughnutcropLabels" postion="inside" smallerUI='true'></app-doughnut-chart>
             </div>
         </div>
     </div>
@@ -211,7 +211,7 @@
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div class="card-body">
                 <h6>{{ myusers[selectUserIndex].user }}</h6>
-                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside" [smallerUI]='false'>
+                <app-doughnut-chart [data]="doughnutChartData" [labels]="doughnutChartLabels" postion="inside" smallerUI='true'>
                 </app-doughnut-chart>
             </div>
         </div>

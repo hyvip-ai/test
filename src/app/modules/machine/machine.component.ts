@@ -215,7 +215,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
 
         croptemp.good_percentage = (Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10
       croptemp.average_percentage = (Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10
-      croptemp.bad_percentage =(Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10
+      croptemp.bad_percentage =Math.floor(Math.round((100 - (croptemp.good_percentage + croptemp.average_percentage))*10))/10
       
       this.cropScanLabels.push(croptemp.name)
       this.cropScanData.push(croptemp.total_scans)
@@ -240,7 +240,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
 
         item.good_percentage =(Math.floor(((item.good_scans/item.total_scans)*100)*10))/10
         item.average_percentage = (Math.floor(((item.average_scans/item.total_scans)*100)*10))/10
-        item.bad_percentage = (Math.floor(((item.bad_scans/item.total_scans)*100)*10))/10
+        item.bad_percentage =Math.floor(Math.round((100 - (item.good_percentage + item.average_percentage))*10))/10
        }
     })
   this.service.getfarmers().subscribe(res=>{
@@ -265,7 +265,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
 
     userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
-    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
+    userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
     userersobject.total = this.numbertemp
    userersobject.user = 'Farmer'
    this.doughnutChartData.splice(0,this.doughnutChartData.length)
@@ -308,7 +308,7 @@ this.averagetemp = 0
 
      userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
-    userersobject.bad_percentage  =(Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
+     userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Trader'
@@ -342,7 +342,7 @@ this.numbertemp = 0
 
       userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
-    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
+     userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Inspector'
@@ -375,7 +375,7 @@ this.averagetemp = 0
     this.noofscans.push(this.numbertemp)
         userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  =(Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
-    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
+ userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Technician'
@@ -409,7 +409,7 @@ this.averagetemp = 0
     this.noofscans.push(this.numbertemp)
           userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
-    userersobject.bad_percentage  = (Math.floor(((this.badtemp/this.numbertemp)*100)*10))/10
+ userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Broker'

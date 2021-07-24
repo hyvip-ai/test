@@ -59,20 +59,20 @@
 			<th>Phone No.</th>
 			<th>Message</th>
             <th>Scan History</th>
-			 <th>Machine</th>
-            <th>Crop</th>
-          <th>Time</th>
-           <th>Location</th>
-        <th style="text-align:center;">See Results</th>
-        <th>Raw Image</th>
-        <th>Annotated Image</th>
-        <th>Total Kernel</th>
-        <th>Broken Kernel</th>
-        <th>Insect Kernel</th>
-        <th>Mold Kernel</th>
-        <th>No Defect Kernel</th>
-        <th>Non Yellow Kernel</th>
-        <th>Foreign Kernel</th>
+			 <th class="{{showactive? 'active' : 'notactive'}}">Machine</th>
+            <th class="{{showactive? 'active' : 'notactive'}}">Crop</th>
+          <th class="{{showactive? 'active' : 'notactive'}}">Time</th>
+           <th class="{{showactive? 'active' : 'notactive'}}">Location</th>
+        <th style="text-align:center;" class="{{showactive? 'active' : 'notactive'}}">See Results</th>
+        <th class="{{remainactive?'active':'notactive'}}">Raw Image</th>
+        <th class="{{remainactive?'active':'notactive'}}">Annotated Image</th>
+        <th class="{{remainactive?'active':'notactive'}}">Total Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Broken Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Insect Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Mold Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">No Defect Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Non Yellow Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Foreign Kernel</th>
 			
 			
 	</thead>
@@ -82,10 +82,10 @@
             <tr> 
             <td><input type="checkbox" name="" id="{{item.name}}"><label for="{{item.name}}">&nbsp; {{item.name}}</label></td>
             <td>{{item.ph_no}}</td>
-            <td><a routerLink='' style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
-            <td *ngIf='!show[i]'><a (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See History</a>
+            <td><a routerLink='' style="text-decoration: none;color: brown"><i class="fas fa-envelope"></i></a></td>
+            <td *ngIf='!show[i]'><a (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See History <i class="fas fa-caret-right"></i></a>
             </td>
-            <td *ngIf='show[i]'><a  (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Close History</a>
+            <td *ngIf='show[i]'><a  (click)='toogleshow(i)' style="text-decoration: none;color: black;font-weight: bolder;cursor: pointer;">Close History <i class="fas fa-caret-right"></i></a>
             </td>
           
 
@@ -171,10 +171,10 @@
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                            
                              
-                             <td *ngIf='!scanshow[i+z]'><a *ngIf='i==0' (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details</a></td>
-                              <td *ngIf='scanshow[i+z]'><a *ngIf='i==0' (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Hide Details</a></td>
-                              <td *ngIf='!scanshow[z+scanlength[i-1]]'><a *ngIf='i>0' (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details</a></td>
-                              <td *ngIf='scanshow[z+scanlength[i-1]]'><a *ngIf='i>0' (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Hide Details</a></td>
+                             <td *ngIf='!scanshow[i+z] && i==0'><a (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details <i class="fas fa-caret-right"></i></a></td>
+                              <td *ngIf='scanshow[i+z] && i==0'><a (click)='getdetails(i+z)' style="text-decoration: none;color: black;font-weight: bolder;cursor: pointer;">Hide Details <i class="fas fa-caret-right"></i></a></td>
+                              <td *ngIf='!scanshow[z+scanlength[i-1]] && i>0'><a (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details <i class="fas fa-caret-right"></i></a></td>
+                              <td *ngIf='scanshow[z+scanlength[i-1]] && i>0'><a (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: black;font-weight: bolder;cursor: pointer;">Hide Details <i class="fas fa-caret-right"></i></a></td>
                               
                              </tr>
                           </tbody>
@@ -446,6 +446,12 @@
     </table>   
         </div>
     </div>
+</div>
+
+
+
+<div id="imagemodal">
+
 </div>
 
 

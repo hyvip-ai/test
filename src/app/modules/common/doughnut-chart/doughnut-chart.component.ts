@@ -35,7 +35,9 @@ export class DoughNutChartComponent implements AfterViewInit {
   chartColor = [];
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.data)
+    // console.log(this.smallerUI)
+    // position = 'inside'
+    // console.log(this.position)
     this.getChartData();
     this.option = {
       tooltip: {
@@ -51,7 +53,7 @@ export class DoughNutChartComponent implements AfterViewInit {
           avoidLabelOverlap: false,
           label: {
             show: true,
-            fontSize: '18',
+            fontSize: '12',
             position: this.postion,
             color: 'white',
             formatter: function (d) {
@@ -62,7 +64,7 @@ export class DoughNutChartComponent implements AfterViewInit {
           emphasis: {
             label: {
               show: true,
-              fontSize: '30',
+              fontSize: '18',
               fontWeight: 'bold',
               formatter: function (d) {
                 return d.value + '%';
@@ -95,7 +97,7 @@ export class DoughNutChartComponent implements AfterViewInit {
           avoidLabelOverlap: false,
           label: {
             show: true,
-            fontSize: '1rem',
+            fontSize: '0.75rem',
             position: this.postion,
             color: this.postion == 'inside' ? 'white' : 'black',
             formatter: function (d) {
@@ -106,7 +108,7 @@ export class DoughNutChartComponent implements AfterViewInit {
           emphasis: {
             label: {
               show: true,
-              fontSize: '30',
+              fontSize: '18',
               fontWeight: 'bold',
               formatter: function (d) {
                 return d.value + '%';

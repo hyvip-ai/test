@@ -182,6 +182,8 @@ keyarraysortnum(a,b){
   }
 
 }
+
+showactive:boolean = false
 toogleshow(i:any){
 
   if(this.show[i]){
@@ -190,6 +192,14 @@ toogleshow(i:any){
   else{
     this.show[i] = true
   }
+
+  if(this.show.includes(true)){
+    this.showactive = true
+  }
+  else{
+    this.showactive = false
+  }
+  console.log(this.showactive)
 }
 
 expand(e:any){
@@ -234,6 +244,7 @@ collapse(e:any){
   }
  }
 }
+remainactive:boolean = false
 getdetails(i:any){
  
   // console.log(i)
@@ -245,6 +256,12 @@ getdetails(i:any){
     }
     // console.log(this.scanshow)
     // console.log(this.scanlength)
+    if(this.scanshow.includes(true)){
+      this.remainactive = true;
+    }
+    else{
+      this.remainactive = false
+    }
 }
 
 
@@ -339,6 +356,7 @@ searchfarmer(){
   }
   // console.log(this.searchedFarmerName)
   var re = new RegExp(this.searchedFarmerName+'.+$','i');
+  // console.log(re)
   this.searchresult = this.mainsearched.filter((e,i,a)=>{
     // console.log(e.name)
     return e.name.search(re) != -1;

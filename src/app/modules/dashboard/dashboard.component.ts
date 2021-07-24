@@ -53,7 +53,10 @@ export class DashBoardComponent implements OnInit {
       for(let croptemp of this.cropArray){
          croptemp.good_percentage = (Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10
          croptemp.average_percentage = (Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10
-         croptemp.bad_percentage = (Math.floor(((croptemp.bad_scans/croptemp.total_scans)*100)*10))/10
+         // console.log(croptemp.good_percentage,croptemp.average_percentage)
+         // console.log(croptemp.good_percentage+croptemp.average_percentage)
+         // console.log(100-(croptemp.good_percentage+croptemp.average_percentage))
+         croptemp.bad_percentage = (Math.floor(Math.round((100-(croptemp.good_percentage+croptemp.average_percentage))*10)))/10
       }
         this.cropData = true
         console.log(this.cropArray)
@@ -139,8 +142,12 @@ export class DashBoardComponent implements OnInit {
 
 
           }else{
+            var tot = 0
+            for(let item of this.donutcharttemp){
+              tot = tot + item
+            }
             // console.log(this.machinedata[i].total_scans)
-            this.machine4scan = (Math.floor(((this.machinedata[i].total_scans/this.totalscans)*100)*10))/10
+            this.machine4scan = (Math.floor(Math.round((100-tot)*10)))/10
             this.donutcharttemp.push(this.machine4scan)
             // console.log(this.machine4scan)
             this.machine4 = this.machinedata[i].no_of_machines

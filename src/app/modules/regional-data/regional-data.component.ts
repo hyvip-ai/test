@@ -91,7 +91,13 @@ totalscans:any = 0
       
       this.totalscandata.push((Math.floor(((this.mainstatedata[0].good_scan/this.mainstatedata[0].total_scan)*100)*10))/10)
       this.totalscandata.push((Math.floor(((this.mainstatedata[0].average_scan/this.mainstatedata[0].total_scan)*100)*10))/10)
-      this.totalscandata.push((Math.floor(((this.mainstatedata[0].bad_scan/this.mainstatedata[0].total_scan)*100)*10))/10)
+      var b = (Math.floor(((this.mainstatedata[0].good_scan/this.mainstatedata[0].total_scan)*100)*10))/10 + (Math.floor(((this.mainstatedata[0].average_scan/this.mainstatedata[0].total_scan)*100)*10))/10
+      b = 100 - b;
+      b = b * 10
+      b = Math.round(b)
+      b = Math.floor(b)
+      b = b/10
+      this.totalscandata.push(b)
       this.showmygraph = true;
     })
       
@@ -218,7 +224,13 @@ compare(a,b){
 
       tottalscandatatemp.push((Math.floor(((temp.good_scan/temp.total_scan)*100)*10))/10)
       tottalscandatatemp.push((Math.floor(((temp.average_scan/temp.total_scan)*100)*10))/10)
-      tottalscandatatemp.push((Math.floor(((temp.bad_scan/temp.total_scan)*100)*10))/10)
+      var b = (Math.floor(((temp.good_scan/temp.total_scan)*100)*10))/10 + (Math.floor(((temp.average_scan/temp.total_scan)*100)*10))/10
+      b = 100 - b;
+      b = b * 10
+      b = Math.round(b)
+      b = Math.floor(b)
+      b = b/10
+      tottalscandatatemp.push(b)
       this.totalscandata.splice(0,this.totalscandata.length)
       this.totalscandata = tottalscandatatemp
       this.showmygraph = true;

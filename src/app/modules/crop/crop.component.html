@@ -169,7 +169,7 @@
         <div class="card listing-cards bg-light mb-3 fullWidth">
             <div *ngIf='showmachine' class="card-body">
                 <h6>Machine {{selectMachineIndex+1}}</h6>
-                <app-doughnut-chart [data]="machinechartdata" [labels]="doughnutChartLabels" postion="inside">
+                <app-doughnut-chart [data]="machinechartdata" [labels]="doughnutChartLabels" postion="inside" smallerUI='true'>
                 </app-doughnut-chart> 
             </div>
         </div>
@@ -238,7 +238,7 @@
                         myusers[selectUserIndex].user
                     }}
                 </h6>
-                <app-doughnut-chart [data]="userchartdata" [labels]="doughnutChartLabels" postion="inside">
+                <app-doughnut-chart [data]="userchartdata" [labels]="doughnutChartLabels" postion="inside" smallerUI='true'>
                 </app-doughnut-chart>
             </div>
         </div>
