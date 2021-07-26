@@ -31,7 +31,7 @@ jsonstring:any = null
 
 constructor(private service:DataService,private router:Router){}
   ngOnInit(){
-  
+  console.log('technician a asche')
       this.service.gettechinician().subscribe(res=>{
         // console.log(res)
         this.farmerdatatemp = res

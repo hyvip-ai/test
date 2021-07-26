@@ -11,7 +11,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private service:DataService,private router:Router) { }
   users:any = null
-  usernames:Array<string> = ['Farmers','Traders',,'Inspectors','Techinicians','Brokers']
+  usernames:Array<string> = ['Farmers','Traders','Inspectors','Technicians','Brokers']
   samllerScreenUI:boolean = false
   readusers:boolean = true
   innerWidth:any = 0;
