@@ -118,5 +118,39 @@ export class SignUpComponent implements OnInit{
               })
           }
        })
-    }
+    } 
+  passtooglevis(){
+    console.log("asche")
+    var vis = document.getElementById("vis")
+    var hid = document.getElementById("hid")
+    vis!.style.display = "none";
+    hid!.style.display = "block";
+    document.getElementById("togpass")!.setAttribute('type','text')
+
+  }
+   passtoogle(){
+    var vis = document.getElementById("vis")
+    var hid = document.getElementById("hid")
+    vis!.style.display = "block";
+    hid!.style.display = "none";
+    document.getElementById("togpass")!.setAttribute('type','password')
+
+  }
+   passtooglevis1(){
+    console.log("asche")
+    var vis = document.getElementById("vis1")
+    var hid = document.getElementById("hid1")
+    vis!.style.display = "none";
+    hid!.style.display = "block";
+    document.getElementById("togpass1")!.setAttribute('type','text')
+
+  }
+   passtoogle1(){
+    var vis = document.getElementById("vis1")
+    var hid = document.getElementById("hid1")
+    vis!.style.display = "block";
+    hid!.style.display = "none";
+    document.getElementById("togpass1")!.setAttribute('type','password')
+
+  }
 }

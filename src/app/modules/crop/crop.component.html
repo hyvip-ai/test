@@ -27,10 +27,10 @@
                                 <div *ngIf="innerWidth < 575" class="row">
                                    
                                     <div class="col-12 center">
-                                        <h6>{{ crop.crop }}</h6>
+                                        <img src="../../../assets/images/crops-icon/{{(i+1)%5}}.png" alt="crop"><h6> {{ crop.crop }}</h6>
                                     </div>
                                 </div>
-                                <h6 *ngIf="innerWidth >= 575">{{
+                                <h6 *ngIf="innerWidth >= 575"><img src="../../../assets/images/crops-icon/{{(i+1)%5}}.png" alt="crop"> {{
                                     crop.name
                                     }}</h6>
                             </td>
@@ -142,10 +142,10 @@
                                        
                                     </div>
                                     <div class="col-12 center">
-                                        <h6>Machine {{i+1}}</h6> 
+                                        <img src="../../../assets/images/machine-icon/Machine {{i+1}}.png" alt="Machine"><h6>Machine {{i+1}}</h6> 
                                     </div>
                                 </div>
-                                <h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1082)">Machine {{i+1}}</h6>
+                                <img src="../../../assets/images/machine-icon/Machine {{i+1}}.png" alt="Machine"><h6 *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1082)">Machine {{i+1}}</h6>
                             </td>
                             <td>
                                 <h6 class="center"><strong>{{ machine.total_scans }}</strong></h6>
@@ -168,7 +168,7 @@
     <div [ngClass]="{ 'col-4': innerWidth >= 961, 'col-12': innerWidth < 961 ,'reducePadding': innerWidth < 1220 , 'd-flex': 961 < this.innerWidth && this.innerWidth < 1302 }" class="removeRightPadding">
         <div class="card listing-cards bg-light mb-3 fullWidth">
             <div *ngIf='showmachine' class="card-body">
-                <h6>Machine {{selectMachineIndex+1}}</h6>
+                <img src="../../../assets/images/machine-icon/Machine {{selectMachineIndex+1}}.png" alt="Machine"><h6>Machine {{selectMachineIndex+1}}</h6>
                 <app-doughnut-chart [data]="machinechartdata" [labels]="doughnutChartLabels" postion="inside" smallerUI='true'>
                 </app-doughnut-chart> 
             </div>

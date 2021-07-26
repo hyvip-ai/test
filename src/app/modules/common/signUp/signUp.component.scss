@@ -52,7 +52,14 @@ h1{
     font-size: xx-large;
     font-weight: 300;
 }
-
+#vis,
+#vis1{
+    display:block;
+}
+#hid,
+#hid1{
+display:none;
+}
 .red{
     color: red;
 }
@@ -101,6 +108,14 @@ h1{
     box-shadow: 5px 5px 8px rgba(0 ,0 ,0 , 0.3);
     
  }
+ i{
+ position: absolute;
+    bottom: 11px;
+    right: 11px;
+    color: brown;
+    font-size: 20px;
+    cursor: pointer;
+    }
 @media(max-width:660px){
     .noshow{
     display:none;

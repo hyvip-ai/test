@@ -65,11 +65,11 @@ const routes: Routes = [
    
   },
       {
-    path:'Technician',
+    path:'Technicians',
     component:TechnicianComponent
    
   },{
-    path:'Inspector',
+    path:'Inspectors',
     component:InspectorComponent
   }
    ,

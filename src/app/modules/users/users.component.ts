@@ -11,22 +11,12 @@ export class UsersComponent implements OnInit {
 
   constructor(private service:DataService,private router:Router) { }
   users:any = null
-  usernames:any = null
+  usernames:Array<string> = ['Farmers','Traders',,'Inspectors','Techinicians','Brokers']
   samllerScreenUI:boolean = false
-  readusers:boolean = false
+  readusers:boolean = true
   innerWidth:any = 0;
   ngOnInit(): void {
-      if(!localStorage.getItem('loggedin')){
-      localStorage.setItem('loginmessege','Log In to Access The Page')
-      this.router.navigate(['/signin'])
-    }
-    this.service.getusers().subscribe(res=>{
-      this.users = res
-      // console.log(this.users)
-      this.usernames = this.users[3].users
-      console.log(this.users)
-      this.readusers = true
-    })
+    console.log(this.usernames)
   }
   redir(item:any){
     console.log(item);
