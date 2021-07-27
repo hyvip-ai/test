@@ -26,19 +26,19 @@
     <div class="card listing-cards bg-light mb-3 w-100 noMargin" >
         <div class="card-header" style="width:100%">
             <div class="row">
-                <div class="col-5 paddingTop inherit">
+                <div class="col-9 paddingTop inherit">
                     <h3 class="left"><input type="checkbox" id="select_all"> Select All</h3>
                     <h3 class="left"><input type="checkbox"> Message All</h3>
                     <h3 class="left"><input type="radio" (change)='expand($event)' name="show" id="Expand"> <label for="Expand">Expand All</label></h3>
                     <h3 class="left"><input (change)='collapse($event)' type="radio" name="show" id="Collapse"> <label for="Collapse">Collapse All</label></h3>
 
                 </div>
-                <div class="col-4">
+            <!--     <div class="col-4">
                 
-                   <!--  <button class="btn grey"> Hide</button>
+                    <button class="btn grey"> Hide</button>
                     <button class="btn marginLeft grey"> Unhide</button>
-                    <button (click)='changevisibility()' class="btn marginLeft grey">Scan Results</button> -->
-                </div>
+                    <button (click)='changevisibility()' class="btn marginLeft grey">Scan Results</button>
+                </div> -->
                 <div class="col-3" id='searchbar'>
                     <div class="row">
 
@@ -389,7 +389,7 @@
                <td><a href="" style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
                <td>{{item.machine}}</td>
                <td>{{item.crop}}</td>
-               <td>{{item.time}}</td>
+               <td>{{item.time | date:'d/M/y'}}</td>
                <td>{{item.location._lat}}<br>{{item.location._long}}</td>
                <td><a href="{{item.images[0]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
                <td><a href="{{item.images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
@@ -430,7 +430,7 @@
                <td><a href="" style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
                <td>{{item.machine}}</td>
                <td>{{item.crop}}</td>
-               <td>{{item.time}}</td>
+               <td>{{item.time | date:'d/M/y'}}</td>
                <td>{{item.location._lat}}<br>{{item.location._long}}</td>
                <td><a href="{{item.images[0]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
                <td><a href="{{item.images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>

@@ -498,7 +498,7 @@ this.averagetemp = 0
     
       this.mymachinestatestemp = res;
     
-      console.log(res)
+      // console.log(res)
       this.mymachinestates = this.mymachinestatestemp.states ;
       this.mymachinedistricts = this.mymachinestatestemp.districts;
       console.log(this.mymachinedistricts)

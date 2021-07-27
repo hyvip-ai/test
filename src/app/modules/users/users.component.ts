@@ -21,6 +21,9 @@ export class UsersComponent implements OnInit {
   redir(item:any){
     console.log(item);
     this.router.navigate([`/${item}`])
+                          setInterval(()=>{
+                            location.reload()
+                          },1000)
   }
   // @HostListener('window:resize', ['$event'])
   // onResize(event) {

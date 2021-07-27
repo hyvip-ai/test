@@ -23,24 +23,21 @@ export class MapComponent implements OnInit, OnDestroy {
   previousmark:any = null;
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(this.previousmark)
+    console.log(this.mark)
       if(this.previousmark){
+        
           for (var i = 0; i < this.previousmark.length; i++) {
-        document.getElementById(this.mark[i])['style']['fill'] =
+        document.getElementById(this.previousmark[i])['style']['fill'] =
           'white';
-          document.getElementById(this.mark[i])['style']['stroke'] =
-          'transparent';
-          document.getElementById(this.mark[i])['style']['stroke-width'] =
-          '0px';
+         
       }
       }
 
     for (var i = 0; i < this.mark.length; i++) {
         document.getElementById(this.mark[i])['style']['fill'] =
           'rgb(255,213,103)';
-          document.getElementById(this.mark[i])['style']['stroke'] =
-          'tomato';
-          document.getElementById(this.mark[i])['style']['stroke-width'] =
-          '3px';
+          
       }
       this.previousmark = this.mark;
      
@@ -55,6 +52,8 @@ export class MapComponent implements OnInit, OnDestroy {
       this.offsetY = 10;
       this.offsetX = 0;
     }
+    // var districts = document.querySelectorAll("path");
+    // console.log(districts)
     // var url = '../../../../assets/images/marker/marker.png';
     // var svg = document.getElementById('district');
     // var mark = this.mark;
@@ -97,10 +96,7 @@ export class MapComponent implements OnInit, OnDestroy {
        for (var i = 0; i < this.mark.length; i++) {
         document.getElementById(this.mark[i])['style']['fill'] =
           'rgb(255,213,103)';
-          document.getElementById(this.mark[i])['style']['stroke'] =
-          'tomato';
-          document.getElementById(this.mark[i])['style']['stroke-width'] =
-          '3px';
+      
       }
   }
 
