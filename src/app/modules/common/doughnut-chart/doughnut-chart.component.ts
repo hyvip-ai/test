@@ -137,7 +137,7 @@ export class DoughNutChartComponent implements AfterViewInit {
       });
       this.chartColor.push(this.colors[i]);
     }
-    console.log(this.chartData, this.chartColor);
+    //console.log(this.chartData, this.chartColor);
   }
 
   onChartInit(ec) {

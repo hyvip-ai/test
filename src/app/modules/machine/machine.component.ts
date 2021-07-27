@@ -11,6 +11,7 @@ import {Router} from '@angular/router'
 export class MachineComponent implements OnInit{
   constructor(private service:DataService,private router:Router,private aroute:ActivatedRoute) {}
  temp:any= null; 
+ showindiamap:boolean = false
   selectedMachineIndex = 0;
   machineOption = ['Machine 1', 'Machine 2', 'Machine 3', 'Machine 4'];
   myusers:any = []
@@ -152,7 +153,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
   samllerScreenUI = false;
   sizeOfMap;
   leftPercent; 
-  topPercent;
+  topPercent:string = "20px";
   usernumbers = []
   noofscans = []
   usertemp:any = null;
@@ -180,6 +181,9 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
   selectionarray:any = []
   showyeargraph:boolean = false
   myyeardata:any = {}
+    mymachinestates:any = []
+   previousstates:any = []
+    mymachinedistricts:any = []
   ngOnInit(): void {
       if(!localStorage.getItem('loggedin')){
       localStorage.setItem('loginmessege','Log In to Access The Page')
@@ -236,6 +240,11 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       //   this.machineCardData.push(item.data);
       // }
       // console.log(this.machineCardData)
+      this.mymachinestates = this.machineCardData[0].states
+      this.previousstates = this.machineCardData[0].states
+      this.mymachinedistricts = this.machineCardData[0].districts
+      console.log(this.mymachinedistricts)
+      this.showindiamap = true;
     for(let item of this.machineCardData){
 
         item.good_percentage =(Math.floor(((item.good_scans/item.total_scans)*100)*10))/10
@@ -469,14 +478,13 @@ this.averagetemp = 0
     else if(this.innerWidth < 930){
     }
   }
-  mymachinestates:any = ['Gujarat','Punjab','West Bengal']
-   previousstates:any = ['Gujarat','Punjab','West Bengal']
+
 
   mymachinestatestemp:any = null
 
   
   changeMachine(i:any) {
-
+// this.showindiamap  = false;
     this.selectedMachineIndex = i;
 
   
@@ -490,10 +498,12 @@ this.averagetemp = 0
     
       this.mymachinestatestemp = res;
     
-      
+      console.log(res)
       this.mymachinestates = this.mymachinestatestemp.states ;
+      this.mymachinedistricts = this.mymachinestatestemp.districts;
+      console.log(this.mymachinedistricts)
 
-            
+          // this.showindiamap = true  
     })
   }
   yearvalue:any = null

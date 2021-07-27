@@ -55,7 +55,7 @@
 				</app-dashboard-doughnut-chart>
 				<div class="row">
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
-						<h6 style="font-size: 1rem;" class="pieChartLabelTitle"><img src="../../../assets/images/machine-icon/Machine 1.png" alt=""> {{ doughnutChartLabels[0] }}</h6>
+						<h6 style="font-size: 1rem;" class="pieChartLabelTitle"><img src="../../../assets/images/machine-icon/Machine 1.png" alt=""> &nbsp;{{ doughnutChartLabels[0] }}</h6>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine1}} <br></span>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine1scan}} <br></span>
 						<div class="pieChartlabelColor">
@@ -63,7 +63,7 @@
 						</div>
 					</div>
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
-						<h6 style="font-size: 1rem;"><img src="../../../assets/images/machine-icon/Machine 2.png" alt=""> {{ doughnutChartLabels[1] }}</h6>
+						<h6 style="font-size: 1rem;"><img src="../../../assets/images/machine-icon/Machine 2.png" alt="">&nbsp; {{ doughnutChartLabels[1] }}</h6>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine2}} <br></span>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine2scan}} <br></span>
 						<div class="pieChartlabelColor">
@@ -73,7 +73,7 @@
 				</div>
 				<div class="row">
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
-						<h6 style="font-size: 1rem;" class="pieChartLabelTitle"><img src="../../../assets/images/machine-icon/Machine 3.png" alt=""> {{ doughnutChartLabels[2] }}</h6>
+						<h6 style="font-size: 1rem;" class="pieChartLabelTitle"><img src="../../../assets/images/machine-icon/Machine 3.png" alt=""> &nbsp; {{ doughnutChartLabels[2] }}</h6>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine3}} <br></span>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine3scan}} <br></span>
 						<div class="pieChartlabelColor">
@@ -81,7 +81,7 @@
 						</div>
 					</div>
 					<div class="col-6 pieChartLabel" [ngClass]="{ 'reducePaddingLeft': 961 < innerWidth && innerWidth < 1393 }">
-						<h6 style="font-size: 1rem;"><img src="../../../assets/images/machine-icon/Machine 4.png" alt=""> {{ doughnutChartLabels[3] }}</h6>
+						<h6 style="font-size: 1rem;"><img src="../../../assets/images/machine-icon/Machine 4.png" alt="">&nbsp; {{ doughnutChartLabels[3] }}</h6>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of machines {{machine4}} <br></span>
 						<span [ngClass]="{ 'reduceFont': 961 < innerWidth && innerWidth < 1393 }">No of Scans {{machine4scan}} <br></span>
 						<div class="pieChartlabelColor">
@@ -121,10 +121,10 @@
 								<div *ngIf="innerWidth < 575 ||( 960 < innerWidth && innerWidth <= 1395)" class="row">
 									
 									<div class="col-12 center">
-										<h6 style="font-size: 1rem;">{{ crop.name }}</h6>
+										<h6 style="font-size: 1rem;"><img src="../../../assets/images/crops-icon/{{(i+1)%5}}.png" alt="Crop"> &nbsp; {{ crop.name }}</h6>
 									</div>
 								</div>
-								<h6 style="font-size: 1rem;" *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1395)">{{
+								<h6 style="font-size: 1rem;" *ngIf="innerWidth >= 575 && !( 960 < innerWidth && innerWidth <=1395)"><img src="../../../assets/images/crops-icon/{{(i+1)%5}}.png" alt="Crop"> &nbsp;{{
 									crop.name
 									}}</h6>
 							</td>
