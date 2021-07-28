@@ -14,7 +14,12 @@ export class SignUpComponent implements OnInit{
     signUpForm: FormGroup;
     constructor(private service:DataService,private router:Router){}
     ngOnInit(){
-  
+      if(localStorage.getItem("name") && localStorage.getItem("email") && localStorage.getItem("company") && localStorage.getItem("loggedin")){
+     
+      console.log("ache sob kichu")
+      this.router.navigate([`/home`])
+       // this.showlogin = false
+    }
     
         this.signUpForm = new FormGroup({
           phone: new FormControl(null,[Validators.required]),
@@ -25,7 +30,7 @@ export class SignUpComponent implements OnInit{
           alert(localStorage.getItem('loginmessege'))
           localStorage.removeItem('loginmessege')
         }
-    }
+    } 
     myadmin:any = null
     mycomp:any= null
     onSubmit(){
@@ -37,7 +42,7 @@ export class SignUpComponent implements OnInit{
               alert('Wrong Company Name')
             }
             else{
-              this.service.getmainadmins(this.signUpForm.value.phone).subscribe(res=>{
+              this.service.getmainadmins(this.signUpForm.value.phone,this.signUpForm.value.company).subscribe(res=>{
                 this.myadmin = res
                 if(res){
                     if(this.signUpForm.value.password == this.myadmin.password){
@@ -94,18 +99,18 @@ export class SignUpComponent implements OnInit{
           else{
            
              console.log('exist');
-              this.service.getmainadmins(this.signUpForm.value.phone).subscribe(res=>{
+              this.service.getmainadmins(this.signUpForm.value.phone,this.signUpForm.value.company).subscribe(res=>{
                   if(res){
                     this.chngpassuser = res;
                     // console.log(res)
-                    this.service.updateadminpass(this.signUpForm.value.phone,this.signUpForm.value.password)
+                    this.service.updateadminpass(this.signUpForm.value.phone,this.signUpForm.value.password,this.signUpForm.value.company)
                       this.pass = document.getElementById('forpassword');
                       this.pass.style.display = 'none';
                       this.small = document.getElementById('small');
                       this.big = document.getElementById('big');
-                      if(window.innerWidth>=660){
+                      if(window.innerWidth>=660){ 
 
-                      this.big.style.display = 'block'
+                      this.big.style.display = 'block' 
                       }
                       else{
                         this.small.style.display = 'block'

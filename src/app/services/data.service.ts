@@ -278,12 +278,13 @@ getyeardata(){
   return this.afs.collection(comp).doc('year').valueChanges();
 }
 
-getmainadmins(number:any){
-  var comp = localStorage.getItem('company')
+getmainadmins(number:any,comp:any){
+  // var comp = localStorage.getItem('company')
+  console.log(comp,number)
   return this.afs.collection(comp).doc('Users').collection('administrators').doc(number).valueChanges();
 }
-updateadminpass(number:any,password:any){
-  var comp = localStorage.getItem('company')
+updateadminpass(number:any,password:any,comp:any){
+  // var comp = localStorage.getItem('company')
 this.afs.collection(comp).doc("Users").collection('administrators').doc(number).update({
   password:password
 }) 

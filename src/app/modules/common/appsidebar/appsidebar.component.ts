@@ -15,6 +15,7 @@ export class AppSidebarComponent {
     // console.log('click hocche')
     localStorage.removeItem('name')
     localStorage.removeItem('email')
+    localStorage.removeItem('company')
     localStorage.removeItem('loggedin')
     this.router.navigate(['/signin'])
     setInterval(()=>{

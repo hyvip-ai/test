@@ -44,7 +44,9 @@ export class DashBoardComponent implements OnInit {
 
     if(!localStorage.getItem('loggedin')){
       localStorage.setItem('loginmessege','Log In to Access The Page')
+      console.log("navigate er age")
       this.router.navigate(['/signin'])
+      console.log("navigate er pore")
     }
     this.innerWidth = window.innerWidth;
     this.setMapOptions();

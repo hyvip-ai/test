@@ -42,18 +42,27 @@ export class AppComponent implements OnInit{
     console.log(window.location.href)
     var b = window.location.href.split('/');
     console.log(b);
-    if( !b.includes('home') && !b.includes('regional-data')&& !b.includes('machine')&& !b.includes('crop') && !b.includes('users') && !b.includes('Farmers') && !b.includes('Traders') && !b.includes('Technician') && !b.includes('Inspector') && !b.includes('Brokers')){
-      console.log('asche ekhane')
-      if(localStorage.getItem('loggedin')){
-        localStorage.removeItem('loggedin')
-      }
+    // if( !b.includes('home') && !b.includes('regional-data')&& !b.includes('machine')&& !b.includes('crop') && !b.includes('users') && !b.includes('Farmers') && !b.includes('Traders') && !b.includes('Technicians') && !b.includes('Inspectors') && !b.includes('Brokers')){
+    //   console.log('asche ekhane')
+    //   if(localStorage.getItem('loggedin')){
+    //     localStorage.removeItem('loggedin')
+    //   }
+    // }
+
+    if(localStorage.getItem("name") && localStorage.getItem("email") && localStorage.getItem("company") && localStorage.getItem("loggedin")){
+     
+      console.log("ache sob kichu")
+      this.showlogin = false
+      this.router.navigate([`/${b[b.length-1]}`])
+       
     }
-   if(localStorage.getItem('loggedin')){
-    this.showlogin = false
-   }
-   else{
-    this.showlogin = true
-   }
+    else{
+       console.log("nei kichu")
+        this.showlogin = true
+      this.router.navigate(["/signin"])
+      
+    }
+
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <992) {
       this.samllerScreenUI = true;
