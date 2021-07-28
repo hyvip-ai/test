@@ -164,6 +164,7 @@ export class CropComponent implements OnInit {
   selectUserIndex = 0;
   selectMachineIndex = 0;
 
+
   ngOnInit(): void {
       if(!localStorage.getItem('loggedin')){
       localStorage.setItem('loginmessege','Log In to Access The Page')
@@ -171,7 +172,7 @@ export class CropComponent implements OnInit {
     }
     this.innerWidth = window.innerWidth;
     this.setMapOptions();
-  this.service.getcrops().subscribe(res=>{
+  this.service.getcrops().subscribe(res=>{ 
     this.cropArray = res;
     for(let croptemp of this.cropArray){
                 croptemp.good_percentage = (Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10
@@ -183,6 +184,7 @@ export class CropComponent implements OnInit {
       // this.uniquedistricts = croptemp.district
       this.previousstaetemp = this.cropArray[0].states
       this.uniquestates = this.cropArray[0].states
+      this.uniquedistricts = this.cropArray[0].districts
       // this.selectedcroppreviousstate = croptemp.states
       this.monthdata = true
       this.state = true
@@ -538,7 +540,7 @@ crop:any = null
       
       // console.log(this.selectedcroppreviousstate)
       this.uniquestates = croptemp.states 
-     
+      this.uniquedistricts = croptemp.districts
        this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
      this.selectedcroppreviousstate = this.previousstaetemp
      console.log(this.selectedcroppreviousstate)

@@ -29,7 +29,7 @@ export class MapComponent implements OnInit, OnDestroy {
         
           for (var i = 0; i < this.previousmark.length; i++) {
         document.getElementById(this.previousmark[i])['style']['fill'] =
-          'white';
+          '#ebebeb';
          
       }
       }

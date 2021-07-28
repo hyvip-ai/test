@@ -77,7 +77,7 @@
             <div class="row">
                 <div [ngClass]="{ 'extarMargin': innerWidth > 414 }" class="card listing-cards mb-3 graphCard">
                     <div *ngIf='state' [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
-                        <app-map [yellowStates]="uniquestates" [previous]='selectedcroppreviousstate' [size]="sizeOfMap" [top]="topPercent"></app-map>
+                        <app-map [yellowStates]="uniquestates" [previous]='selectedcroppreviousstate' [size]="sizeOfMap" [mark]="uniquedistricts" [top]="topPercent"></app-map>
                     </div>
                 </div>
             </div>
