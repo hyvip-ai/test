@@ -37,7 +37,9 @@ export class DashBoardComponent implements OnInit {
   mystates:any = []
   state:any = false
   uniquestates:any =[]
+  uniquenumbers:any = []
   donutcharttemp:any=[]
+
     labels = ['Farmer', 'Broker', 'Trader', 'Technician', 'Inspector'];
   constructor(private service:DataService,private router:Router){}
   ngOnInit(): void {
@@ -63,7 +65,19 @@ export class DashBoardComponent implements OnInit {
         this.cropData = true
         console.log(this.cropArray)
      })
-  
+    this.service.getallstate().subscribe(res=>{
+      var temp = res;
+      for(let item of temp){
+        for(let key in item.districts){
+          this.uniquedistricts.push(key);
+          this.uniquenumbers.push(item.districts[key]);
+        }
+        this.uniquestates.push(item.name)
+      }
+      this.state = true
+      this.districtscan = this.uniquedistricts.length
+      this.statescan = this.uniquestates.length
+    })
     this.service.getfarmers().subscribe(res=>{ 
       
       this.temp = res
@@ -164,37 +178,7 @@ export class DashBoardComponent implements OnInit {
         console.log(this.doughnutChartData)
         console.log(this.machine1scan,this.machine2scan,this.machine3scan,this.machine4scan)
 
-        let mydistrict = []
-        for(let item of this.machinedata){
-          console.log(item.districts)
-
-          this.mystates = this.mystates.concat(item.states)
-          mydistrict = mydistrict.concat(item.districts)
-        }
-        console.log(mydistrict)
-        console.log(this.mystates)
-        for(let item of mydistrict){
-          if(this.uniquedistricts.includes(item)){
-            continue;
-          }
-          else{
-            this.uniquedistricts.push(item)
-          }
-        }
-        for(let item of this.mystates){
-
-          if(this.uniquestates.includes(item)){
-            continue;
-          }
-            else{
-              this.uniquestates.push(item)
-            }
-        }
-        this.districtscan = this.uniquedistricts.length
-        console.log(this.uniquestates)
-        console.log(this.uniquedistricts)
-        this.statescan = this.uniquestates.length
-        this.state = true
+        
       })
 
      

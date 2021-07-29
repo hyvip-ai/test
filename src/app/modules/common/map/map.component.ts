@@ -15,36 +15,57 @@ export class MapComponent implements OnInit, OnDestroy {
 
  @Input() yellowStates = [];
  @Input() previous = [];
-
+ @Input() numbers = [];
 
   @Input() mark = [];
   offsetY = 0;
   offsetX = 0;
-  previousmark:any = null;
+  previousmark:any = [];
+  duplicate:any = []
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.previousmark)
-    console.log(this.mark)
+     
+    var duplicate = []
+    duplicate.splice(0,duplicate.length)
+        for(let item of this.numbers){
+        duplicate.push(item)
+    }
+    duplicate.sort(this.comparenumeric);
+    console.log(this.numbers,duplicate)
+    var max = duplicate[duplicate.length-1]
       if(this.previousmark){
-        
+          console.log('previous a asche '+this.previousmark)
           for (var i = 0; i < this.previousmark.length; i++) {
         document.getElementById(this.previousmark[i])['style']['fill'] =
           '#ebebeb';
          
       }
+      this.previousmark.splice(0,this.previousmark.length)
       }
 
     for (var i = 0; i < this.mark.length; i++) {
+      var alpha = (Math.floor(((this.numbers[i])/(max))*100))/100
         document.getElementById(this.mark[i])['style']['fill'] =
-          'rgb(255,213,103)';
+          `rgba(255,213,103,${alpha})`;
           
       }
-      this.previousmark = this.mark;
+      for(let item of this.mark){
+      this.previousmark.push(item);
+    }
      
   }
 
   ngOnInit(): void {
-    this.previousmark = this.mark;
+    var duplicate = []
+    for(let item of this.numbers){
+        duplicate.push(item)
+    }
+    duplicate.sort(this.comparenumeric);
+    // this.previousmark = this.mark;
+    for(let item of this.mark){
+      this.previousmark.push(item);
+    }
+    var max = duplicate[duplicate.length-1]
     // console.log('firsttime ',this.size)
     this.style = 'height: ' + this.size + ';';
 
@@ -94,8 +115,9 @@ export class MapComponent implements OnInit, OnDestroy {
     //   }
     // }, 200);
        for (var i = 0; i < this.mark.length; i++) {
+        var alpha = (Math.floor(((this.numbers[i])/(max))*100))/100
         document.getElementById(this.mark[i])['style']['fill'] =
-          'rgb(255,213,103)';
+          `rgba(255,213,103,${alpha})`;
       
       }
   }
@@ -104,6 +126,17 @@ export class MapComponent implements OnInit, OnDestroy {
     var markerList = $('img.marker');
     for (var i = 0; i < markerList.length; i++) {
       markerList[i].remove(); 
+    }
+  }
+  comparenumeric(a,b){
+    if(a>b){
+      return 1
+    }
+    else if(a<b){
+      return -1;
+    }
+    else{
+      return 0
     }
   }
 }

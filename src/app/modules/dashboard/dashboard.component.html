@@ -41,7 +41,7 @@
 	<div  [ngClass]="{ 'col-7 flex': this.innerWidth > 961, 'col-12': 961 > this.innerWidth ,'reducePadding': 961 < this.innerWidth && this.innerWidth < 1302 }">
 		<div  class="card listing-cards bg-light mb-3 w-100">
 			<div *ngIf='state' [ngStyle]="{height: sizeOfMap+50+'px'}"  class="card-body mapBody">
-				<app-map size="{{sizeOfMap}}px" [left]="leftPercent" [top]="topPercent" [yellowStates]="uniquestates" [mark]='uniquedistricts'></app-map>
+				<app-map size="{{sizeOfMap}}px" [left]="leftPercent" [top]="topPercent" [yellowStates]="uniquestates" [mark]='uniquedistricts' [numbers]="uniquenumbers"></app-map>
 			</div>
 		</div>
 	</div>

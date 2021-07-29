@@ -184,6 +184,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
     mymachinestates:any = []
    previousstates:any = []
     mymachinedistricts:any = []
+    mymachinedistrictnumbers:any = []
   ngOnInit(): void {
       if(!localStorage.getItem('loggedin')){
       localStorage.setItem('loginmessege','Log In to Access The Page')
@@ -242,8 +243,12 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       // console.log(this.machineCardData)
       this.mymachinestates = this.machineCardData[0].states
       this.previousstates = this.machineCardData[0].states
-      this.mymachinedistricts = this.machineCardData[0].districts
-      console.log(this.mymachinedistricts)
+      var districtobject = this.machineCardData[0].districts
+      for(let key in districtobject){
+        this.mymachinedistricts.push(key)
+        this.mymachinedistrictnumbers.push(districtobject[key])
+      }
+      console.log(this.mymachinedistricts,this.mymachinedistrictnumbers)
       this.showindiamap = true;
     for(let item of this.machineCardData){
 
@@ -500,7 +505,14 @@ this.averagetemp = 0
     
       // console.log(res)
       this.mymachinestates = this.mymachinestatestemp.states ;
-      this.mymachinedistricts = this.mymachinestatestemp.districts;
+      var districttemp = this.mymachinestatestemp.districts;
+      console.log(districttemp)
+      this.mymachinedistricts.splice(0,this.mymachinedistricts.length)
+      this.mymachinedistrictnumbers.splice(0,this.mymachinedistrictnumbers.length)
+      for(let item in districttemp){
+        this.mymachinedistricts.push(item);
+        this.mymachinedistrictnumbers.push(districttemp[item])
+      }
       console.log(this.mymachinedistricts)
 
           // this.showindiamap = true  

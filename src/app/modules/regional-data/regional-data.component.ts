@@ -51,6 +51,7 @@ totalscans:any = 0
   labels = ['Punjab', 'Bihar', 'Uttar Pradesh', 'Maharashtra', 'Gujarat'];
   higesttotal:any = []
   higesttotallabels:any = []
+  uniquenumbers:any = []
   ngOnInit(): void {
     
       if(!localStorage.getItem('loggedin')){
@@ -61,6 +62,19 @@ totalscans:any = 0
     this.setMapOptions();
     this.service.getallstate().subscribe(res=>{
       console.log(res)
+          
+      var temp = res;
+      for(let item of temp){
+        for(let key in item.districts){
+          this.uniquedistricts.push(key);
+          this.uniquenumbers.push(item.districts[key]);
+        }
+        this.uniquestates.push(item.name)
+      }
+      this.state = true
+      this.numofdistricts = this.uniquedistricts.length
+      this.statescan = this.uniquestates.length
+  
      this.mainstatedata = res
      for(let item of this.mainstatedata){
       this.higesttotal.push(item.total_scan)
@@ -118,38 +132,7 @@ totalscans:any = 0
           this.totalscans = this.totalscans + item.total_scans
 
         }
-        let mydistrict = []
-
-                for(let item of this.machinedata){
-          //console.log(item.states)
-
-          this.mystates = this.mystates.concat(item.states)
-          mydistrict = mydistrict.concat(item.districts)
-        }
-        //console.log(this.mystates)
-           for(let item of mydistrict){
-          if(this.uniquedistricts.includes(item)){
-            continue;
-          }
-          else{
-            this.uniquedistricts.push(item)
-          }
-        }
-        this.numofdistricts = this.uniquedistricts.length
-
-        for(let item of this.mystates){
-
-          if(this.uniquestates.includes(item)){
-            continue;
-          }
-            else{
-              this.uniquestates.push(item)
-            }
-        }
-
-        //console.log(this.uniquestates)
-        this.statescan = this.uniquestates.length
-        this.state = true
+        
         })
   }
 

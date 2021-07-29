@@ -38,7 +38,7 @@
     <div class="col-12" [ngClass]="{'reducePadding': innerWidth < 1220}">
         <div class="card listing-cards bg-light mb-3 graphCard">
             <div *ngIf="showindiamap" [ngClass]="{'leftPadding': innerWidth > 1128}" class="card-body extraPadding mapCardBody">
-                <app-map [yellowStates]="mymachinestates" [previous]='previousstates' [size]="sizeOfMap" [top]="topPercent" [mark]="mymachinedistricts"></app-map> 
+                <app-map [yellowStates]="mymachinestates" [previous]='previousstates' [size]="sizeOfMap" [top]="topPercent" [mark]="mymachinedistricts" [numbers]="mymachinedistrictnumbers"></app-map> 
             </div>
         </div>
     </div>
