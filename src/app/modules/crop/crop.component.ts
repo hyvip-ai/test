@@ -163,7 +163,7 @@ export class CropComponent implements OnInit {
   topPercent;
   selectUserIndex = 0;
   selectMachineIndex = 0;
-
+  uniquenumbers:any = [];
 
   ngOnInit(): void {
       if(!localStorage.getItem('loggedin')){
@@ -184,7 +184,14 @@ export class CropComponent implements OnInit {
       // this.uniquedistricts = croptemp.district
       this.previousstaetemp = this.cropArray[0].states
       this.uniquestates = this.cropArray[0].states
-      this.uniquedistricts = this.cropArray[0].districts
+        console.log(this.cropArray)
+        var disttemp = this.cropArray[0].districts
+        console.log(disttemp) 
+      for(let key in disttemp){
+        console.log(key)
+        this.uniquedistricts.push(key);
+        this.uniquenumbers.push(disttemp[key]);
+      }
       // this.selectedcroppreviousstate = croptemp.states
       this.monthdata = true
       this.state = true
@@ -530,8 +537,8 @@ crop:any = null
     console.log(this.crop.value)
     this.service.getselectedcrop(this.crop.value).subscribe(res=>{
        let croptemp = res
-
-            croptemp.good_percentage = (Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10
+       console.log(croptemp)
+      croptemp.good_percentage = (Math.floor(((croptemp.good_scans/croptemp.total_scans)*100)*10))/10
       croptemp.average_percentage = (Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10
       croptemp.bad_percentage = Math.floor(Math.round((100 - (croptemp.good_percentage + croptemp.average_percentage))*10))/10
       // this.cropArray.push(croptemp);
@@ -539,9 +546,15 @@ crop:any = null
       // this.uniquedistricts = croptemp.district
       
       // console.log(this.selectedcroppreviousstate)
-      this.uniquestates = croptemp.states 
-      this.uniquedistricts = croptemp.districts
+      this.uniquestates = croptemp.states
+      this.uniquedistricts.splice(0,this.uniquedistricts.length)
+      this.uniquenumbers.splice(0,this.uniquenumbers.length) 
+      for(let key in croptemp.districts){
+        this.uniquedistricts.push(key)
+        this.uniquenumbers.push(croptemp.districts[key])
+      }
        this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
+      
      this.selectedcroppreviousstate = this.previousstaetemp
      console.log(this.selectedcroppreviousstate)
        this.previousstaetemp = this.uniquestates

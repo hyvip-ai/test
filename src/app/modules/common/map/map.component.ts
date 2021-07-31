@@ -24,7 +24,7 @@ export class MapComponent implements OnInit, OnDestroy {
   duplicate:any = []
 
   ngOnChanges(changes: SimpleChanges) {
-     
+     console.log(this.numbers,this.mark)
     var duplicate = []
     duplicate.splice(0,duplicate.length)
         for(let item of this.numbers){
@@ -66,7 +66,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.previousmark.push(item);
     }
     var max = duplicate[duplicate.length-1]
-    // console.log('firsttime ',this.size)
+    console.log('firsttime ',this.size)
     this.style = 'height: ' + this.size + ';';
 
     if (this.size == '650px') {
@@ -77,43 +77,43 @@ export class MapComponent implements OnInit, OnDestroy {
     // console.log(districts)
     // var url = '../../../../assets/images/marker/marker.png';
     // var svg = document.getElementById('district');
-    // var mark = this.mark;
+    var mark = this.mark;
     // var yellowStates = this.yellowStates;
-    // var offsetY = this.offsetY;
+    var offsetY = this.offsetY;
 
-    // var offsetX = this.offsetX;
-    //  console.log(`offsety:${offsetY}`)
-    //  console.log(`offsetx:${offsetX}`)
-    // setTimeout(function () {
-    //   for (var i = 0; i < mark.length; i++) {
-    //     if (this.left) {
-    //       $('#district')[0].style.left = this.left;
-    //       $('#chart')[0].style.left = this.left;
-    //     }
+    var offsetX = this.offsetX;
+     console.log(`offsety:${offsetY}`)
+     console.log(`offsetx:${offsetX}`)
+    setTimeout(function () {
+      for (var i = 0; i < mark.length; i++) {
+        if (this.left) {
+          $('#district')[0].style.left = this.left;
+          $('#chart')[0].style.left = this.left;
+        }
 
-    //     if (this.top) {
-    //       console.log(this.top)
-    //       $('#district')[0].style.top = this.top;
-    //       $('#chart')[0].style.top = this.top;
-    //     }
-    //     var image = new Image();
-    //     image.src = url;
-    //     image.className = 'marker';
-    //     image.style.position = 'absolute';
-    //     image.style['z-index'] = 2;
-    //     image.style.height = '24.5px';
-    //     image.style.width = '12.5px';
-    //     var position = $('#' + mark[i] + '')[0].getBoundingClientRect();
-    //     image.style.top = position.y - offsetY + 'px';
-    //     image.style.left = position.x - offsetX + 'px';
-    //     $('body')[0].prepend(image);
-    //   }
+        if (this.top) {
+          console.log(this.top)
+          $('#district')[0].style.top = this.top;
+          $('#chart')[0].style.top = this.top;
+        }
+      //   var image = new Image();
+      //   image.src = url;
+      //   image.className = 'marker';
+      //   image.style.position = 'absolute';
+      //   image.style['z-index'] = 2;
+      //   image.style.height = '24.5px';
+      //   image.style.width = '12.5px';
+      //   var position = $('#' + mark[i] + '')[0].getBoundingClientRect();
+      //   image.style.top = position.y - offsetY + 'px';
+      //   image.style.left = position.x - offsetX + 'px';
+      //   $('body')[0].prepend(image);
+      }
 
-    //   for (var i = 0; i < yellowStates.length; i++) {
-    //     document.getElementById(yellowStates[i])['style']['fill'] =
-    //       'rgb(255,213,103)';
-    //   }
-    // }, 200);
+      // for (var i = 0; i < yellowStates.length; i++) {
+      //   document.getElementById(yellowStates[i])['style']['fill'] =
+      //     'rgb(255,213,103)';
+      // }
+    }, 200);
        for (var i = 0; i < this.mark.length; i++) {
         var alpha = (Math.floor(((this.numbers[i])/(max))*100))/100
         document.getElementById(this.mark[i])['style']['fill'] =
