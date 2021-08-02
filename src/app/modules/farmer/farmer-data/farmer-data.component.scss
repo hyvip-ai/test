@@ -161,3 +161,30 @@ select:focus{
         font-size:6px;
     }
 }
+
+
+#imagemodal{
+height:80vh;
+width:55%;
+background-color:rgba(0,0,0,0.5);
+position:fixed;
+top:9%;
+left:56%;
+transform:translate(-50%,0%);
+z-index:20;
+}
+#imagemodal button{
+    position:absolute;
+    right:3%;
+    top:3%;
+    height:50px;
+    width:50px;
+    border-radius:50%;
+    border:none;
+    outline:none;
+}
+#imagemodal img{
+    height:100%;
+    width:100%;
+    object-fit:contain;
+}

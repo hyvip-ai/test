@@ -11,6 +11,7 @@ import {Router} from '@angular/router'
   styleUrls: ['./farmer-data.component.scss'],
 })
 export class FarmerDataComponent {
+
   mainsearched:any = []
 farmerdata:any = []
 farmerdatatemp:any = null
@@ -145,26 +146,26 @@ constructor(private service:DataService,private router:Router){}
         }
 b :any = null
 getreversegeocoding(lat:number,long:number,newitem:any){
-// this.service.getlocationname(lat,long).subscribe(res=>{
-//   this.b = res;
-//   // console.log(lat,long);
-//   for(let item of this.b.localityInfo.administrative){
-//     if(item.description){
-//       var a = item.description
-//       var b = a.split(' ')
-//       if(b.includes('district')){
-//          var district = item.name
-//       // console.log(district);
-//       }
+this.service.getlocationname(lat,long).subscribe(res=>{
+  this.b = res;
+  // console.log(lat,long);
+  for(let item of this.b.localityInfo.administrative){
+    if(item.description){
+      var a = item.description
+      var b = a.split(' ')
+      if(b.includes('district')){
+         var district = item.name
+      // console.log(district);
+      }
      
-//     }
-//   }
-//   var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
-//   // console.log(locationName)
-//  newitem.location_name = locationName
-//  // console.log(newitem)
-// })
-newitem.location_name = 'N/A'
+    }
+  }
+  var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
+  // console.log(locationName)
+ newitem.location_name = locationName
+ // console.log(newitem)
+})
+// newitem.location_name = 'N/A'
 }
  
 
@@ -284,17 +285,31 @@ sortscan(){
     // console.log(this.showsorted)
    }
     if(this.sortingvalue == 'time'){
-
-      this.sortingdupli.sort(this.compare)
       this.showsorted = true
+
+      if(this.showsearchresults){
+        console.log(this.showsorted,this.showsearchresults)
+        this.bothtrue = this.searchresult.sort(this.compare)
+      }
+      else{
+      this.sortingdupli.sort(this.compare)
+    }
+      
     }
     if(this.sortingvalue == 'name'){
-      this.sortingdupli.sort(this.namecompare)
       this.showsorted = true
+        if(this.showsearchresults){
+        this.bothtrue= this.searchresult.sort(this.namecompare)
+      }
+      else{
+      this.sortingdupli.sort(this.namecompare)
     }
-  // console.log(this.sortingdupli)
-    
-  //   console.log(this.showsorted)
+
+      
+    }
+    for(let item of this.sortingdupli){
+      this.getreversegeocoding(item.location._lat,item.location._long,item);
+    }
 }
 namecompare(a, b){
   console.log('name compare hocche')
@@ -347,6 +362,7 @@ addscan(){
   searchedFarmerName:any = null
   searchresult:any = []
   showsearchresults:boolean = false
+  bothtrue:any = []
 searchfarmer(){
   if(this.searchedFarmerName==''){
     this.showsearchresults = false
@@ -357,11 +373,45 @@ searchfarmer(){
   // console.log(this.searchedFarmerName)
   var re = new RegExp(this.searchedFarmerName+'.+$','i');
   // console.log(re)
-  this.searchresult = this.mainsearched.filter((e,i,a)=>{
+if(this.showsorted){
+  this.bothtrue = this.sortingdupli.filter((e,i,a)=>{
+     return e.name.search(re) != -1;
+  })
+   for(let item of this.bothtrue){
+
+    this.getreversegeocoding(item.location._lat,item.location._long,item); 
+  }
+}
+else{
+    this.searchresult = this.mainsearched.filter((e,i,a)=>{
     // console.log(e.name)
     return e.name.search(re) != -1;
   })
+  for(let item of this.searchresult){
+
+    this.getreversegeocoding(item.location._lat,item.location._long,item); 
+  }
   // console.log(this.searchresult);
+}
+}
+  selectcheck:any =null
+  checkall:boolean = false
+allselect(){
+  this.selectcheck = document.getElementById("select_all");
+  this.checkall = this.selectcheck.checked;
+  console.log(this.checkall)
+  
+}
+modalvisisble:boolean = false;
+modalimgurl:any = null
+showmodal(url:any){
+console.log(url)
+this.modalvisisble = true;
+this.modalimgurl = url;
+}
+closemodal(){
+this.modalvisisble = false;
+this.modalimgurl = null
 }
 
 }    
