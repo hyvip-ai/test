@@ -24,17 +24,17 @@ export class MapComponent implements OnInit, OnDestroy {
   duplicate:any = []
 
   ngOnChanges(changes: SimpleChanges) {
-     console.log(this.numbers,this.mark)
+     // console.log(this.numbers,this.mark)
     var duplicate = []
     duplicate.splice(0,duplicate.length)
         for(let item of this.numbers){
         duplicate.push(item)
     }
     duplicate.sort(this.comparenumeric);
-    console.log(this.numbers,duplicate)
+    // console.log(this.numbers,duplicate)
     var max = duplicate[duplicate.length-1]
       if(this.previousmark){
-          console.log('previous a asche '+this.previousmark)
+          // console.log('previous a asche '+this.previousmark)
           for (var i = 0; i < this.previousmark.length; i++) {
         document.getElementById(this.previousmark[i])['style']['fill'] =
           '#ebebeb';
@@ -66,7 +66,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.previousmark.push(item);
     }
     var max = duplicate[duplicate.length-1]
-    console.log('firsttime ',this.size)
+    // console.log('firsttime ',this.size)
     this.style = 'height: ' + this.size + ';';
 
     if (this.size == '650px') {
@@ -82,8 +82,8 @@ export class MapComponent implements OnInit, OnDestroy {
     var offsetY = this.offsetY;
 
     var offsetX = this.offsetX;
-     console.log(`offsety:${offsetY}`)
-     console.log(`offsetx:${offsetX}`)
+     // console.log(`offsety:${offsetY}`)
+     // console.log(`offsetx:${offsetX}`)
     setTimeout(function () {
       for (var i = 0; i < mark.length; i++) {
         if (this.left) {
@@ -92,7 +92,7 @@ export class MapComponent implements OnInit, OnDestroy {
         }
 
         if (this.top) {
-          console.log(this.top)
+          // console.log(this.top)
           $('#district')[0].style.top = this.top;
           $('#chart')[0].style.top = this.top;
         }

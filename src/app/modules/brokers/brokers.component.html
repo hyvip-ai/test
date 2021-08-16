@@ -26,19 +26,19 @@
     <div class="card listing-cards bg-light mb-3 w-100 noMargin" >
         <div class="card-header" style="width:100%">
             <div class="row">
-                <div class="col-5 paddingTop inherit">
-                    <h3 class="left"><input type="checkbox" id="select_all"> Select All</h3>
+                <div class="col-9 paddingTop inherit">
+                    <h3 class="left"><input type="checkbox" id="select_all" (change)="allselect()"> <label for="select_all">Select All</label></h3>
                     <h3 class="left"><input type="checkbox"> Message All</h3>
                     <h3 class="left"><input type="radio" (change)='expand($event)' name="show" id="Expand"> <label for="Expand">Expand All</label></h3>
                     <h3 class="left"><input (change)='collapse($event)' type="radio" name="show" id="Collapse"> <label for="Collapse">Collapse All</label></h3>
 
                 </div>
-                <div class="col-4">
+            <!--     <div class="col-4">
                 
-                   <!--  <button class="btn grey"> Hide</button>
+                    <button class="btn grey"> Hide</button>
                     <button class="btn marginLeft grey"> Unhide</button>
-                    <button (click)='changevisibility()' class="btn marginLeft grey">Scan Results</button> -->
-                </div>
+                    <button (click)='changevisibility()' class="btn marginLeft grey">Scan Results</button>
+                </div> -->
                 <div class="col-3" id='searchbar'>
                     <div class="row">
 
@@ -59,20 +59,20 @@
             <th>Phone No.</th>
             <th>Message</th>
             <th>Scan History</th>
-             <th>Machine</th>
-            <th>Crop</th>
-          <th>Time</th>
-           <th>Location</th>
-        <th style="text-align:center;">See Results</th>
-        <th>Raw Image</th>
-        <th>Annotated Image</th>
-        <th>Total Kernel</th>
-        <th>Broken Kernel</th>
-        <th>Insect Kernel</th>
-        <th>Mold Kernel</th>
-        <th>No Defect Kernel</th>
-        <th>Non Yellow Kernel</th>
-        <th>Foreign Kernel</th>
+             <th class="{{showactive? 'active' : 'notactive'}}">Machine</th>
+            <th class="{{showactive? 'active' : 'notactive'}}">Crop</th>
+          <th class="{{showactive? 'active' : 'notactive'}}">Time</th>
+           <th class="{{showactive? 'active' : 'notactive'}}">Location</th>
+        <th style="text-align:center;" class="{{showactive? 'active' : 'notactive'}}">See Results</th>
+        <th class="{{remainactive?'active':'notactive'}}">Raw Image</th>
+        <th class="{{remainactive?'active':'notactive'}}">Annotated Image</th>
+        <th class="{{remainactive?'active':'notactive'}}">Total Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Broken Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Insect Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Mold Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">No Defect Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Non Yellow Kernel</th>
+        <th class="{{remainactive?'active':'notactive'}}">Foreign Kernel</th>
             
             
     </thead>
@@ -80,12 +80,12 @@
     <tbody *ngFor='let item of farmerdata;index as i'>
     
             <tr> 
-            <td><input type="checkbox" name="" id="{{item.name}}"><label for="{{item.name}}">&nbsp; {{item.name}}</label></td>
+            <td><input type="checkbox" id="{{item.ph_no}}" name="fname" [checked]="checkall?'null':''"><label for="{{item.ph_no}}">&nbsp; {{item.name}}</label></td>
             <td>{{item.ph_no}}</td>
-            <td><a routerLink='' style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
-            <td *ngIf='!show[i]'><a (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See History</a>
+            <td><a routerLink='' style="text-decoration: none;color: brown"><i class="fas fa-envelope"></i></a></td>
+            <td *ngIf='!show[i]'><a (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See History <i class="fas fa-caret-right"></i></a>
             </td>
-            <td *ngIf='show[i]'><a  (click)='toogleshow(i)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Close History</a>
+            <td *ngIf='show[i]'><a  (click)='toogleshow(i)' style="text-decoration: none;color: black;font-weight: bolder;cursor: pointer;">Close History <i class="fas fa-caret-right"></i></a>
             </td>
           
 
@@ -171,10 +171,10 @@
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
                            
                              
-                             <td *ngIf='!scanshow[i+z]'><a *ngIf='i==0' (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details</a></td>
-                              <td *ngIf='scanshow[i+z]'><a *ngIf='i==0' (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Hide Details</a></td>
-                              <td *ngIf='!scanshow[z+scanlength[i-1]]'><a *ngIf='i>0' (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details</a></td>
-                              <td *ngIf='scanshow[z+scanlength[i-1]]'><a *ngIf='i>0' (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">Hide Details</a></td>
+                             <td *ngIf='!scanshow[i+z] && i==0'><a (click)='getdetails(i+z)' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details <i class="fas fa-caret-right"></i></a></td>
+                              <td *ngIf='scanshow[i+z] && i==0'><a (click)='getdetails(i+z)' style="text-decoration: none;color: black;font-weight: bolder;cursor: pointer;">Hide Details <i class="fas fa-caret-right"></i></a></td>
+                              <td *ngIf='!scanshow[z+scanlength[i-1]] && i>0'><a (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: brown;font-weight: bolder;cursor: pointer;">See Details <i class="fas fa-caret-right"></i></a></td>
+                              <td *ngIf='scanshow[z+scanlength[i-1]] && i>0'><a (click)='getdetails(z+scanlength[i-1])' style="text-decoration: none;color: black;font-weight: bolder;cursor: pointer;">Hide Details <i class="fas fa-caret-right"></i></a></td>
                               
                              </tr>
                           </tbody>
@@ -185,7 +185,7 @@
                 <table *ngIf='i==0'>
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
-                                <td *ngIf='scanshow[i+z]'><a href="{{this.scandetails[i+z].images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+                                <td *ngIf='scanshow[i+z]'><a (click)="showmodal(scandetails[i+z].images[0])" style="text-decoration:none;color: black;cursor: pointer;"><i class="fas fa-images"></i> Image</a></td>
                                 <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
@@ -193,7 +193,7 @@
                          <table *ngIf='i>0'>
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
-                                <td *ngIf='scanshow[z+scanlength[i-1]]'><a href="{{this.scandetails[i+z].images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+                                <td *ngIf='scanshow[z+scanlength[i-1]]'><a (click)="showmodal(scandetails[i+z].images[0])" style="text-decoration:none;color: black;cursor: pointer;"><i class="fas fa-images"></i> Image</a></td>
                                 <td *ngIf='!scanshow[z+scanlength[i-1]]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
@@ -204,7 +204,7 @@
                       <table *ngIf='i==0'>
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
-                                <td *ngIf='scanshow[i+z]'><a href="{{this.scandetails[i+z].images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+                                <td *ngIf='scanshow[i+z]'><a (click)="showmodal(scandetails[i+z].images[1])" style="text-decoration:none;color: black;cursor: pointer;"><i class="fas fa-images"></i> Image</a></td>
                                   <td *ngIf='!scanshow[i+z]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
@@ -213,7 +213,7 @@
                        <table *ngIf='i>0'>
                         <tbody>
                             <tr *ngFor='let key of farmerscandata[i] | keyvalue;index as z'>
-                                <td *ngIf='scanshow[z+scanlength[i-1]]'><a href="{{this.scandetails[i+z].images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+                                <td *ngIf='scanshow[z+scanlength[i-1]]'><a (click)="showmodal(scandetails[i+z].images[1])" style="text-decoration:none;color: black; cursor: pointer;"><i class="fas fa-images"></i> Image</a></td>
                                   <td *ngIf='!scanshow[z+scanlength[i-1]]' style="transform: rotate(90deg);">&#124;</td>
                             </tr>
                         </tbody>
@@ -384,13 +384,13 @@
            </thead>
            <tbody>
                <tr *ngFor='let item of sortingdupli;index as i'>
-               <td>{{item.name}}</td>
+               <td><input type="checkbox" id="{{item.ph_no}}" name="fname" [checked]="checkall?'null':''"><label for="{{item.ph_no}}">&nbsp; {{item.name}}</label></td>
                <td>{{item.ph_no}}</td>
                <td><a href="" style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
                <td>{{item.machine}}</td>
                <td>{{item.crop}}</td>
-               <td>{{item.time}}</td>
-               <td>{{item.location._lat}}<br>{{item.location._long}}</td>
+               <td>{{item.time | date:'d/M/y'}}</td>
+               <td>{{item.location_name}}</td>
                <td><a href="{{item.images[0]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
                <td><a href="{{item.images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
                <td>{{item.numbers[0]}}</td>
@@ -425,13 +425,54 @@
            </thead>
            <tbody>
                <tr *ngFor='let item of searchresult;index as i'>
-               <td>{{item.name}}</td>
+               <td><input type="checkbox" id="{{item.ph_no}}" name="fname" [checked]="checkall?'null':''"><label for="{{item.ph_no}}">&nbsp; {{item.name}}</label></td>
                <td>{{item.ph_no}}</td>
                <td><a href="" style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
                <td>{{item.machine}}</td>
                <td>{{item.crop}}</td>
-               <td>{{item.time}}</td>
-               <td>{{item.location._lat}}<br>{{item.location._long}}</td>
+               <td>{{item.time | date:'d/M/y'}}</td>
+               <td>{{item.location_name}}</td>
+               <td><a href="{{item.images[0]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+               <td><a href="{{item.images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
+               <td>{{item.numbers[0]}}</td>
+               <td>{{item.numbers[1]}}</td>
+               <td>{{item.numbers[2]}}</td>
+               <td>{{item.numbers[3]}}</td>
+               <td>{{item.numbers[4]}}</td>
+               <td>{{item.numbers[5]}}</td>
+               <td>{{item.numbers[6]}}</td>
+           </tr>
+           </tbody>
+    </table> 
+         <table *ngIf='showsorted && showsearchresults' class="table table-hover">
+           <thead>
+            <th>Farmer's Name</th>
+            <th>Phone No.</th>
+            <th>Message</th>
+         
+            <th>Machine</th>
+            <th>Crop</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Raw Image</th>
+            <th>Annotated Image</th>
+            <th>Total Kernel</th>
+            <th>Broken Kernel</th>
+            <th>Insect Kernel</th>
+            <th>Mold Kernel</th>
+            <th>No Defect Kernel</th>
+            <th>Non Yellow Kernel</th>
+            <th>Foreign Kernel</th>
+           </thead>
+           <tbody>
+               <tr *ngFor='let item of bothtrue;index as i'>
+               <td><input type="checkbox" id="{{item.ph_no}}" name="fname" [checked]="checkall?'null':''"><label for="{{item.ph_no}}">&nbsp; {{item.name}}</label></td>
+               <td>{{item.ph_no}}</td>
+               <td><a href="" style="text-decoration: none;color: black"><i class="fas fa-envelope"></i></a></td>
+               <td>{{item.machine}}</td>
+               <td>{{item.crop}}</td>
+               <td>{{item.time | date:'d/M/y'}}</td>
+               <td>{{item.location_name}}</td>
                <td><a href="{{item.images[0]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
                <td><a href="{{item.images[1]}}" target="_blank" style="text-decoration:none;color: black;"><i class="fas fa-images"></i> Image</a></td>
                <td>{{item.numbers[0]}}</td>
@@ -444,11 +485,21 @@
            </tr>
            </tbody>
     </table>   
+        
         </div>
     </div>
 </div>
 
-<!-- <button (click)='addData()'>Add Data</button> -->
+
+
+
+<div id="imagemodal" *ngIf="modalvisisble && modalimgurl">
+<button (click)="closemodal()">&#10006;</button>
+<img src="{{modalimgurl}}" alt="">
+</div>
+
+
+
 
 
 

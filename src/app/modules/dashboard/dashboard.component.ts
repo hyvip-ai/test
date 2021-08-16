@@ -67,7 +67,9 @@ export class DashBoardComponent implements OnInit {
      })
     this.service.getallstate().subscribe(res=>{
       var temp = res;
+      console.log(res)
       for(let item of temp){
+        console.log(item);
         for(let key in item.districts){
           this.uniquedistricts.push(key);
           this.uniquenumbers.push(item.districts[key]);

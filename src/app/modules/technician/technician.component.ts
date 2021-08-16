@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import {Router} from '@angular/router'
 
-
+import { MessegeService } from 'src/app/services/messege.service'
 @Component({
   selector: 'app-technician',
   templateUrl: './technician.component.html',
@@ -29,9 +29,9 @@ show:any = []
 scanlength:any = []
 jsonstring:any = null
 
-constructor(private service:DataService,private router:Router){}
+constructor(private service:DataService,private router:Router,private msgservice:MessegeService){}
   ngOnInit(){
-  console.log('technician a asche')
+    // this.msgservice.requestPerm()
       this.service.gettechinician().subscribe(res=>{
         // console.log(res)
         this.farmerdatatemp = res
@@ -183,6 +183,8 @@ keyarraysortnum(a,b){
   }
 
 }
+
+showactive:boolean = false
 toogleshow(i:any){
 
   if(this.show[i]){
@@ -191,6 +193,14 @@ toogleshow(i:any){
   else{
     this.show[i] = true
   }
+
+  if(this.show.includes(true)){
+    this.showactive = true
+  }
+  else{
+    this.showactive = false
+  }
+  console.log(this.showactive)
 }
 
 expand(e:any){
@@ -235,6 +245,7 @@ collapse(e:any){
   }
  }
 }
+remainactive:boolean = false
 getdetails(i:any){
  
   // console.log(i)
@@ -246,6 +257,12 @@ getdetails(i:any){
     }
     // console.log(this.scanshow)
     // console.log(this.scanlength)
+    if(this.scanshow.includes(true)){
+      this.remainactive = true;
+    }
+    else{
+      this.remainactive = false
+    }
 }
 
 
@@ -268,17 +285,31 @@ sortscan(){
     // console.log(this.showsorted)
    }
     if(this.sortingvalue == 'time'){
-
-      this.sortingdupli.sort(this.compare)
       this.showsorted = true
+
+      if(this.showsearchresults){
+        console.log(this.showsorted,this.showsearchresults)
+        this.bothtrue = this.searchresult.sort(this.compare)
+      }
+      else{
+      this.sortingdupli.sort(this.compare)
+    }
+      
     }
     if(this.sortingvalue == 'name'){
-      this.sortingdupli.sort(this.namecompare)
       this.showsorted = true
+        if(this.showsearchresults){
+        this.bothtrue= this.searchresult.sort(this.namecompare)
+      }
+      else{
+      this.sortingdupli.sort(this.namecompare)
     }
-  // console.log(this.sortingdupli)
-    
-  //   console.log(this.showsorted)
+
+      
+    }
+    for(let item of this.sortingdupli){
+      this.getreversegeocoding(item.location._lat,item.location._long,item);
+    }
 }
 namecompare(a, b){
   console.log('name compare hocche')
@@ -314,7 +345,7 @@ ph_no:any = null
       console.log('asche')
     
       
-        this.ph_no =  this.service.addfarmer() 
+        this.ph_no =  this.service.addfarmer()
     
       
         console.log(this.ph_no)
@@ -326,11 +357,12 @@ addscan(){
   console.log('hocche')
 }
   download(){
-    this.service.downloadFile(this.jsonData, 'Technician Scan Data');
+    this.service.downloadFile(this.jsonData, 'Farmer Scan Data');
   }
   searchedFarmerName:any = null
   searchresult:any = []
   showsearchresults:boolean = false
+  bothtrue:any = []
 searchfarmer(){
   if(this.searchedFarmerName==''){
     this.showsearchresults = false
@@ -340,11 +372,46 @@ searchfarmer(){
   }
   // console.log(this.searchedFarmerName)
   var re = new RegExp(this.searchedFarmerName+'.+$','i');
-  this.searchresult = this.mainsearched.filter((e,i,a)=>{
+  // console.log(re)
+if(this.showsorted){
+  this.bothtrue = this.sortingdupli.filter((e,i,a)=>{
+     return e.name.search(re) != -1;
+  })
+   for(let item of this.bothtrue){
+
+    this.getreversegeocoding(item.location._lat,item.location._long,item); 
+  }
+}
+else{
+    this.searchresult = this.mainsearched.filter((e,i,a)=>{
     // console.log(e.name)
     return e.name.search(re) != -1;
   })
+  for(let item of this.searchresult){
+
+    this.getreversegeocoding(item.location._lat,item.location._long,item); 
+  }
   // console.log(this.searchresult);
+}
+}
+  selectcheck:any =null
+  checkall:boolean = false
+allselect(){
+  this.selectcheck = document.getElementById("select_all");
+  this.checkall = this.selectcheck.checked;
+  console.log(this.checkall)
+  
+}
+modalvisisble:boolean = false;
+modalimgurl:any = null
+showmodal(url:any){
+console.log(url)
+this.modalvisisble = true;
+this.modalimgurl = url;
+}
+closemodal(){
+this.modalvisisble = false;
+this.modalimgurl = null
 }
 
 

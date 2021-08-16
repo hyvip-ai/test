@@ -21,6 +21,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import {DataService} from './services/data.service'
+import {MessegeService} from './services/messege.service'
 import { UsersComponent } from './modules/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TraderComponent } from './modules/trader/trader.component';
@@ -29,7 +30,7 @@ import { BrokersComponent } from './modules/brokers/brokers.component';
 import { BrokerscandataComponent } from './modules/brokers/brokerscandata/brokerscandata.component';
 import { InspectorComponent } from './modules/inspector/inspector.component';
 import { TechnicianComponent } from './modules/technician/technician.component'
-
+import {AngularFireMessagingModule} from '@angular/fire/messaging'
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,11 +63,11 @@ import { TechnicianComponent } from './modules/technician/technician.component'
     FarmerModule,
     AngularFirestoreModule,
       HttpClientModule,
-    
+    AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase)
 
   ],
-  providers: [DataService],
+  providers: [DataService,MessegeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

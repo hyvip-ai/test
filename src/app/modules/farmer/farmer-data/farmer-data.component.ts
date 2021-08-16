@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { DataService } from 'src/app/services/data.service';
+import { MessegeService } from 'src/app/services/messege.service'
 import {Router} from '@angular/router'
 
  
@@ -29,9 +30,9 @@ show:any = []
 scanlength:any = []
 jsonstring:any = null
 
-constructor(private service:DataService,private router:Router){}
+constructor(private service:DataService,private router:Router,private msgservice:MessegeService){}
   ngOnInit(){
-  
+    this.msgservice.requestPerm()
       this.service.getfarmers().subscribe(res=>{
         // console.log(res)
         this.farmerdatatemp = res
@@ -146,26 +147,26 @@ constructor(private service:DataService,private router:Router){}
         }
 b :any = null
 getreversegeocoding(lat:number,long:number,newitem:any){
-this.service.getlocationname(lat,long).subscribe(res=>{
-  this.b = res;
-  // console.log(lat,long);
-  for(let item of this.b.localityInfo.administrative){
-    if(item.description){
-      var a = item.description
-      var b = a.split(' ')
-      if(b.includes('district')){
-         var district = item.name
-      // console.log(district);
-      }
+// this.service.getlocationname(lat,long).subscribe(res=>{
+//   this.b = res;
+//   // console.log(lat,long);
+//   for(let item of this.b.localityInfo.administrative){
+//     if(item.description){
+//       var a = item.description
+//       var b = a.split(' ')
+//       if(b.includes('district')){
+//          var district = item.name
+//       // console.log(district);
+//       }
      
-    }
-  }
-  var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
-  // console.log(locationName)
- newitem.location_name = locationName
- // console.log(newitem)
-})
-// newitem.location_name = 'N/A'
+//     }
+//   }
+//   var locationName = `${this.b.locality}, ${district}, ${this.b.principalSubdivision}`
+//   // console.log(locationName)
+//  newitem.location_name = locationName
+//  // console.log(newitem)
+// })
+newitem.location_name = 'N/A'
 }
  
 
@@ -412,7 +413,7 @@ this.modalimgurl = url;
 closemodal(){
 this.modalvisisble = false;
 this.modalimgurl = null
-}
+} 
 
 }    
   
