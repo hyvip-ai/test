@@ -468,8 +468,8 @@ crop:any = null
       var tempstate = []
       var tempnum = []
       for(let key in croptemp.districts){
-        this.tempstate.push(key)
-        this.tempnum.push(croptemp.districts[key])
+       tempstate.push(key)
+       tempnum.push(croptemp.districts[key])
       }
        this.uniquedistricts = tempstate
         this.uniquenumbers = tempnum 
