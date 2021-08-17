@@ -231,8 +231,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       this.machineCardData.splice(0,this.machineCardData.length)
       this.temp = res;
       this.machineCardData = res
-      this.mymachinestates = this.machineCardData[0].states
-      this.previousstates = this.machineCardData[0].states
+    
       var districtobject = this.machineCardData[0].districts
       for(let key in districtobject){
         this.mymachinedistricts.push(key)
@@ -411,14 +410,14 @@ this.averagetemp = 0
     this.showusers =true
     this.showgraph = true
   })
-  this.service.getmachinestates(1).subscribe(res=>{
-      this.mymachinestatestemp = res;
-      this.mymachinestates.splice(0,this.mymachinestates.length);
-      this.mymachinestates = this.mymachinestatestemp.states ;
-       this.previousstates.splice(0,this.previousstates.length);
-     this.previousstates = this.mymachinestates;
+//   this.service.getmachinestates(1).subscribe(res=>{
+//       this.mymachinestatestemp = res;
+//       this.mymachinestates.splice(0,this.mymachinestates.length);
+//       this.mymachinestates = this.mymachinestatestemp.states ;
+//        this.previousstates.splice(0,this.previousstates.length);
+//      this.previousstates = this.mymachinestates;
       
-    })
+//     })
         
 
   }
