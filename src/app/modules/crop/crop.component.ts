@@ -461,8 +461,6 @@ crop:any = null
       croptemp.average_percentage = (Math.floor(((croptemp.average_scans/croptemp.total_scans)*100)*10))/10
       croptemp.bad_percentage = Math.floor(Math.round((100 - (croptemp.good_percentage + croptemp.average_percentage))*10))/10
       this.selectedcropmonthdata = croptemp.months
-
-//       this.uniquestates = croptemp.states
       this.uniquedistricts.splice(0,this.uniquedistricts.length)
       this.uniquenumbers.splice(0,this.uniquenumbers.length)
       var tempstate = []
@@ -473,11 +471,6 @@ crop:any = null
       }
        this.uniquedistricts = tempstate
         this.uniquenumbers = tempnum 
-//        this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
-      
-//      this.selectedcroppreviousstate = this.previousstaetemp
-//      console.log(this.selectedcroppreviousstate)
-//      this.previousstaetemp = this.uniquestates
       this.monthdata = true
       this.state = true
       let userlabeltemp=[]
