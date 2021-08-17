@@ -464,16 +464,20 @@ crop:any = null
 
 //       this.uniquestates = croptemp.states
       this.uniquedistricts.splice(0,this.uniquedistricts.length)
-      this.uniquenumbers.splice(0,this.uniquenumbers.length) 
+      this.uniquenumbers.splice(0,this.uniquenumbers.length)
+      var tempstate = []
+      var tempnum = []
       for(let key in croptemp.districts){
-        this.uniquedistricts.push(key)
-        this.uniquenumbers.push(croptemp.districts[key])
+        this.tempstate.push(key)
+        this.tempnum.push(croptemp.districts[key])
       }
+       this.uniquedistricts = tempstate
+        this.uniquenumbers = tempnum 
 //        this.selectedcroppreviousstate.splice(0,this.selectedcroppreviousstate.length)
       
 //      this.selectedcroppreviousstate = this.previousstaetemp
 //      console.log(this.selectedcroppreviousstate)
-//        this.previousstaetemp = this.uniquestates
+//      this.previousstaetemp = this.uniquestates
       this.monthdata = true
       this.state = true
       let userlabeltemp=[]
