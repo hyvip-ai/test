@@ -132,20 +132,15 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
   showgraph:any = false
   changeSelectedUser(index:any) {
     let doughnuttemp = []
-    // console.log(index)
-     // console.log(this.doughnuttemp)
-    // console.log(this.doughnutChartData)
+
     this.selectUserIndex = index;
-    
-     // console.log(this.doughnuttemp)
-    // console.log(this.doughnutChartData)
+  
     doughnuttemp.push(this.myusers[index].good_percentage)
    doughnuttemp.push(this.myusers[index].bad_percentage)
    doughnuttemp.push(this.myusers[index].average_percentage)
     this.doughnutChartData.splice(0,this.doughnutChartData.length)
     this.doughnutChartData = doughnuttemp
-    // console.log(doughnuttemp)
-    // console.log(this.doughnutChartData)
+  
     
   }
 
@@ -209,7 +204,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
           }
        }
        this.showyeargraph = true
-       // console.log(this.selectionarray);
+     
     })
     this.service.getcrops().subscribe(res=>{
       console.log(res)
@@ -236,11 +231,6 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       this.machineCardData.splice(0,this.machineCardData.length)
       this.temp = res;
       this.machineCardData = res
-      // console.log(res)
-      // for(let item of this.temp){
-      //   this.machineCardData.push(item.data);
-      // }
-      // console.log(this.machineCardData)
       this.mymachinestates = this.machineCardData[0].states
       this.previousstates = this.machineCardData[0].states
       var districtobject = this.machineCardData[0].districts
@@ -265,7 +255,6 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       total:0,
       user:'person'
     }
-    // console.log(res)
     this.usertemp = res;
     this.usernumbers.push(this.usertemp.length);
     for(let item of this.usertemp){
@@ -274,9 +263,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
       this.averagetemp = this.averagetemp + item.average_scans
       this.goodtemp = this.goodtemp + item.good_scans
     }
-    // console.log(this.goodtemp,this.averagetemp,this.badtemp)
    this.noofscans.push(this.numbertemp)
-
     userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
     userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
@@ -286,11 +273,7 @@ doughnutcropLabels = ['Good', 'Bad', 'Average'];
    this.doughnutChartData.push(userersobject.good_percentage)
    this.doughnutChartData.push(userersobject.bad_percentage)
    this.doughnutChartData.push(userersobject.average_percentage)
-    // console.log(userersobject)
     this.myusers.push(userersobject)
-    // console.log(this.myusers)
-
-  
   })
 
     this.service.gettraders().subscribe(res=>{
@@ -316,19 +299,13 @@ this.averagetemp = 0
       this.goodtemp = this.goodtemp + item.good_scans 
     
     }
-  
-
     this.noofscans.push(this.numbertemp)
-
      userersobject.good_percentage  = (Math.floor(((this.goodtemp/this.numbertemp)*100)*10))/10
     userersobject.average_percentage  = (Math.floor(((this.averagetemp/this.numbertemp)*100)*10))/10
      userersobject.bad_percentage  = Math.floor(Math.round((100 - (userersobject.good_percentage + userersobject.average_percentage))*10))/10
     userersobject.total = this.numbertemp
-
     userersobject.user = 'Trader'
-    // console.log(userersobject)
     this.myusers.push(userersobject)
-    // console.log(this.myusers)
 
   })
        this.service.getpolice().subscribe(res=>{
@@ -360,12 +337,10 @@ this.numbertemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Inspector'
-    // console.log(userersobject)
     this.myusers.push(userersobject)
-    // console.log(this.myusers)
   })
 
-           this.service.gettechinician().subscribe(res=>{
+  this.service.gettechinician().subscribe(res=>{
 this.numbertemp = 0
 this.badtemp = 0
 this.goodtemp = 0
@@ -393,9 +368,9 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Technician'
-    // console.log(userersobject)
+ 
     this.myusers.push(userersobject)
-    // console.log(this.myusers)
+ 
   })
 
 
@@ -427,26 +402,21 @@ this.averagetemp = 0
     userersobject.total = this.numbertemp
 
     userersobject.user = 'Broker'
-    // console.log(userersobject)
     this.myusers.push(userersobject)
-    // console.log(this.myusers)
+   
     this.userBarData.splice(0,this.userBarData.length)
     this.userBarData = this.usernumbers
     this.scanBarData.push(0,this.scanBarData.length)
     this.scanBarData = this.noofscans
-    // console.log(this.usernumbers,this.noofscans,this.userBarData,this.scanBarData)
     this.showusers =true
     this.showgraph = true
   })
   this.service.getmachinestates(1).subscribe(res=>{
-    // console.log(res)
       this.mymachinestatestemp = res;
       this.mymachinestates.splice(0,this.mymachinestates.length);
-      
       this.mymachinestates = this.mymachinestatestemp.states ;
        this.previousstates.splice(0,this.previousstates.length);
      this.previousstates = this.mymachinestates;
-     // console.log(this.mymachinestates,this.previousstates)
       
     })
         
@@ -491,19 +461,9 @@ this.averagetemp = 0
   changeMachine(i:any) {
 // this.showindiamap  = false;
     this.selectedMachineIndex = i;
-
-  
-  
-       
      this.previousstates = this.mymachinestates;
-   
-
-    
     this.service.getmachinestates(i+1).subscribe(res=>{
-    
       this.mymachinestatestemp = res;
-    
-      // console.log(res)
       this.mymachinestates = this.mymachinestatestemp.states ;
       var districttemp = this.mymachinestatestemp.districts;
       console.log(districttemp)
@@ -514,8 +474,6 @@ this.averagetemp = 0
         this.mymachinedistrictnumbers.push(districttemp[item])
       }
       console.log(this.mymachinedistricts)
-
-          // this.showindiamap = true  
     })
   }
   yearvalue:any = null
