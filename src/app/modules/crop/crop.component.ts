@@ -180,7 +180,7 @@ export class CropComponent implements OnInit {
     }
     this.cropData = true
        this.selectedcropmonthdata = this.cropArray[0].months
-      // this.uniquedistricts = croptemp.district
+      this.uniquedistricts = croptemp.district
 //       this.previousstaetemp = this.cropArray[0].states
 //       this.uniquestates = this.cropArray[0].states
         console.log(this.cropArray)
@@ -477,7 +477,7 @@ crop:any = null
 //      console.log(this.selectedcroppreviousstate)
 //        this.previousstaetemp = this.uniquestates
       this.monthdata = true
-//       this.state = true
+      this.state = true
       let userlabeltemp=[]
       let userdatatemp = []
       let machinedatatemp = []
