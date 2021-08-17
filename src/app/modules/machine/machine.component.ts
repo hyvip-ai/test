@@ -409,16 +409,7 @@ this.averagetemp = 0
     this.scanBarData = this.noofscans
     this.showusers =true
     this.showgraph = true
-  })
-//   this.service.getmachinestates(1).subscribe(res=>{
-//       this.mymachinestatestemp = res;
-//       this.mymachinestates.splice(0,this.mymachinestates.length);
-//       this.mymachinestates = this.mymachinestatestemp.states ;
-//        this.previousstates.splice(0,this.previousstates.length);
-//      this.previousstates = this.mymachinestates;
-      
-//     })
-        
+  })        
 
   }
 
